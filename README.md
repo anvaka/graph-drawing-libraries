@@ -19,5 +19,5 @@ This is a list of known graph drawing libraries. If you find something missing, 
 
 Why?
 ====
-This repository is inspired by [@mbektimirov](https://github.com/mbektimirov)'s question [https://github.com/anvaka/ngraph/issues/6](Difference with Sigma.js). I'll try to list all known graph drawing libraries, and invite their author to collaborate here.
+This repository is inspired by [@mbektimirov](https://github.com/mbektimirov)'s question [Difference with Sigma.js](https://github.com/anvaka/ngraph/issues/6). I'll try to list all known graph drawing libraries, and invite their author to collaborate here.
 
