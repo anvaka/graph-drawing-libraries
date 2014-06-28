@@ -1,4 +1,23 @@
 graph-drawing-libraries
 =======================
 
-Trying to compare known graph drawing libraries
+This is a list of known graph drawing libraries. If you find something missing, please let me know.
+
+* [jacomyal/sigma.js](https://github.com/jacomyal/sigma.js) - A JavaScript library dedicated to graph drawing http://sigmajs.org
+* [samizdatco/arbor](https://github.com/samizdatco/arbor) - a graph visualization library using web workers and jQuery http://arborjs.org
+* [anvaka/ngraph](https://github.com/anvaka/ngraph) - Beautiful Graphs
+* [anvaka/VivaGraphJS](https://github.com/anvaka/VivaGraphJS) - Graph drawing library for JavaScript
+* [strathausen/dracula](https://github.com/strathausen/dracula) - JavaScript browser based layout and representation of connected graphs. http://www.graphdracula.net
+* [dhotson/springy](https://github.com/dhotson/springy) - A force directed graph layout algorithm in JavaScript http://getspringy.com
+* [cytoscape/cytoscape.js](https://github.com/cytoscape/cytoscape.js) - An open-source JavaScript graph theory library for analysis and visualisation (compatible with CommonJS/Node.js, AMD/Require.js, jQuery 1.4+, Bower, npm, and plain JavaScript) http://cytoscape.github.com/cytoscape.js
+* [cpettitt/dagre](https://github.com/cpettitt/dagre) - Directed graph renderer for javascript
+* [mbostock/d3](https://github.com/mbostock/d3) - A JavaScript visualization library for HTML and SVG. http://d3js.org
+* [almende/vis](https://github.com/almende/vis) - Dynamic, browser-based visualization library http://visjs.org
+* [fkling/JSNetworkX](https://github.com/fkling/JSNetworkX) - A port of the graph library NetworkX to JavaScript http://jsnetworkx.org
+* [uskudnik/GraphGL](https://github.com/uskudnik/GraphGL) - A network visualization library
+
+
+Why?
+====
+This repository is inspired by [@mbektimirov](https://github.com/mbektimirov)'s question [https://github.com/anvaka/ngraph/issues/6](Difference with Sigma.js). I'll try to list all known graph drawing libraries, and invite their author to collaborate here.
+
