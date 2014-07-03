@@ -2,7 +2,7 @@ require('an').controller(AppController);
 
 function AppController($scope, $http, $q) {
   var getLibraries = require('./libraries');
-  $scope.libraries = getLibraries($http, $q, [
+  getLibraries($http, $q, [
     'almende/vis',
     'anvaka/ngraph',
     'anvaka/VivaGraphJS',
@@ -15,6 +15,8 @@ function AppController($scope, $http, $q) {
     'samizdatco/arbor',
     'strathausen/dracula',
     'uskudnik/GraphGL'
-  ]);
+  ]).then(function(libraries) {
+    $scope.libraries = libraries;
+  });
 }
 
