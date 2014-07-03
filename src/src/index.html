@@ -11,10 +11,17 @@
         <thead>
           <tr>
             <th>Library</th>
-            <th>Stars #</th>
-            <th>Forks #</th>
-            <th>Commits #</th>
-            <th>Bugs (open/closed)</th>
+            <th>Stars</th>
+            <th>Forks</th>
+            <th>Commits</th>
+            <th>Issues</th>
+          </tr>
+          <tr ng-repeat='library in libraries'>
+            <td><a href='#' target="_blank" ng-href='{{library.url}}'>{{library.name}}</td>
+            <td>{{library.watchers}}</td>
+            <td>{{library.forks}}</td>
+            <td>{{library.commits}}</td>
+            <td>{{library.issues}}</td>
           </tr>
         </thead>
       </table>
