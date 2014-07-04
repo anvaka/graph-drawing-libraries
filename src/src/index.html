@@ -13,14 +13,16 @@
             <th>Library</th>
             <th>Stars</th>
             <th>Forks</th>
-            <th>Commits</th>
+            <th>Created</th>
+            <th>Updated</th>
             <th>Issues</th>
           </tr>
           <tr ng-repeat='library in libraries'>
             <td><a href='#' target="_blank" ng-href='{{library.url}}'>{{library.name}}</td>
             <td>{{library.watchers}}</td>
             <td>{{library.forks}}</td>
-            <td>{{library.commits}}</td>
+            <td ng-attr-title='{{library.createdTooltip}}'>{{library.created}}</td>
+            <td ng-attr-title='{{library.updatedTooltip}}'>{{library.updated}}</td>
             <td>{{library.issues}}</td>
           </tr>
         </thead>

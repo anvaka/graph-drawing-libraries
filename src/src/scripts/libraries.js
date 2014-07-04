@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 module.exports = function getLibraries($http, $q, libraries) {
   return $q.all(libraries.map(getRepositoryInfo));
 
@@ -15,9 +17,11 @@ module.exports = function getLibraries($http, $q, libraries) {
       watchers: repoInfo.watchers,
       url: repoInfo.html_url,
       issues: repoInfo.open_issues,
-      created_at: repoInfo.created_at,
-      commits: 'tbd',
-      updated_at: repoInfo.updated_at
+      created: moment(repoInfo.created_at).fromNow(),
+      createdTooltip: repoInfo.created_at,
+      updated: moment(repoInfo.updated_at).fromNow(),
+      updatedTooltip: repoInfo.updated_at,
+      commits: 'tbd'
     };
   }
 };

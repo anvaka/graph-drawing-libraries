@@ -20,8 +20,9 @@
     "yargs": "^1.2.1"
   },
   "dependencies": {
-    "twitter-bootstrap-3.0.0": "^3.0.0",
     "an": "~0.0.2",
-    "angular": "^1.2.10"
+    "angular": "^1.2.10",
+    "moment": "^2.7.0",
+    "twitter-bootstrap-3.0.0": "^3.0.0"
   }
 }
