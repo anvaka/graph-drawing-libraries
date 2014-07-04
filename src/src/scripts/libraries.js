@@ -19,8 +19,8 @@ module.exports = function getLibraries($http, $q, libraries) {
       issues: repoInfo.open_issues,
       created: moment(repoInfo.created_at).fromNow(),
       createdTooltip: repoInfo.created_at,
-      updated: moment(repoInfo.updated_at).fromNow(),
-      updatedTooltip: repoInfo.updated_at,
+      updated: moment(repoInfo.pushed_at).fromNow(),
+      updatedTooltip: repoInfo.pushed_at,
       commits: 'tbd'
     };
   }
