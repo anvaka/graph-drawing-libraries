@@ -16,6 +16,7 @@
             <th>Created</th>
             <th>Updated</th>
             <th>Issues</th>
+            <th>License</th>
           </tr>
           <tr ng-repeat='library in libraries'>
             <td><a href='#' target="_blank" ng-href='{{library.url}}'>{{library.name}}</td>
@@ -24,6 +25,7 @@
             <td ng-attr-title='{{library.createdTooltip}}'>{{library.created}}</td>
             <td ng-attr-title='{{library.updatedTooltip}}'>{{library.updated}}</td>
             <td>{{library.issues}}</td>
+            <td>{{library.license}}</td>
           </tr>
         </thead>
       </table>
