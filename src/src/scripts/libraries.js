@@ -20,8 +20,10 @@ module.exports = function getLibraries($http, $q, libraries) {
       watchers: repoInfo.watchers,
       url: repoInfo.html_url,
       issues: repoInfo.open_issues,
+      createdTime: new Date(Date.parse(repoInfo.created_at)),
       created: moment(repoInfo.created_at).fromNow(),
       createdTooltip: repoInfo.created_at,
+      updatedTime: new Date(Date.parse(repoInfo.pushed_at)),
       updated: moment(repoInfo.pushed_at).fromNow(),
       updatedTooltip: repoInfo.pushed_at,
       commits: 'tbd'

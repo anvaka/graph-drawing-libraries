@@ -10,13 +10,13 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Library</th>
-            <th>Stars</th>
-            <th>Forks</th>
-            <th>Created</th>
-            <th>Updated</th>
-            <th>Issues</th>
-            <th>License</th>
+            <th ng-click='sortBy("name")'>Library</th>
+            <th ng-click='sortBy("watchers")'>Stars</th>
+            <th ng-click='sortBy("forks")'>Forks</th>
+            <th ng-click='sortBy("createdTime")'>Created</th>
+            <th ng-click='sortBy("updatedTime")'>Updated</th>
+            <th ng-click='sortBy("issues")'>Issues</th>
+            <th ng-click='sortBy("license")'>License</th>
           </tr>
           <tr ng-repeat='library in libraries'>
             <td><a href='#' target="_blank" ng-href='{{library.url}}'>{{library.name}}</td>
