@@ -32,13 +32,24 @@ gulp.task('startStaticServer', startStaticServer);
 function runBrowserify() {
   var fs = require('fs');
 
-  var bundle = require('browserify')()
-    .add('./src/scripts/index.js')
-    .bundle() 
+  var bundle = require('browserify')().add('./src/scripts/index.js');
+
+  if (process.env.PROD_BUILD) {
+    // for prod build we need to replace github oauth token with prod token:
+    var aliasify = require('aliasify').configure({
+          aliases: { './githubOauthLocal': { relative: "./githubOauthProd.js" } },
+          verbose: false
+      });
+
+    bundle.transform(aliasify);
+  }
+
+  bundle
+    .bundle()
     .on('error', function (err) {
-        gutil.log(gutil.colors.red('Failed to browserify'), gutil.colors.yellow(err.message));
-    });
-  bundle.pipe(fs.createWriteStream(path.join(__dirname + '/dist/bundle.js')));
+      gutil.log(gutil.colors.red('Failed to browserify'), gutil.colors.yellow(err.message));
+    })
+    .pipe(fs.createWriteStream(path.join(__dirname + '/dist/bundle.js')));
 }
 
 function compileLess() {

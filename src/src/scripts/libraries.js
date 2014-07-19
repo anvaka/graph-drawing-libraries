@@ -1,16 +1,27 @@
 var moment = require('moment');
 var offlineData = require('./offlineData');
+var Cookies = require('cookies-js');
 
-module.exports = function getLibraries($http, $q, libraries) {
+module.exports = function getLibraries($http, $q, $rootScope, libraries) {
+  var accessToken = Cookies.get('accessToken');
+
   return $q.all(libraries.map(getRepositoryInfo));
 
   function getRepositoryInfo(name) {
-    return $http.get('https://api.github.com/repos/' + name)
+    var suffix = '';
+    if (accessToken) {
+      suffix = '?access_token=' + accessToken;
+    }
+
+    return $http.get('https://api.github.com/repos/' + name + suffix)
                 .then(extractFields)
                 .then(mergeWithOfflineData);
   }
 
   function extractFields(reposResponse) {
+    var rateLimit = extractRateLimit(reposResponse.headers);
+    $rootScope.$broadcast('ratechanged', rateLimit);
+
     var repoInfo = reposResponse.data;
 
     return {
@@ -27,6 +38,14 @@ module.exports = function getLibraries($http, $q, libraries) {
       updated: moment(repoInfo.pushed_at).fromNow(),
       updatedTooltip: repoInfo.pushed_at,
       commits: 'tbd'
+    };
+  }
+
+  function extractRateLimit(headers) {
+    return {
+      limit: headers('X-RateLimit-Limit'),
+      remaining: headers('X-RateLimit-Remaining'),
+      reset: headers('X-RateLimit-Reset')
     };
   }
 

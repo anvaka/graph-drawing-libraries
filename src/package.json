@@ -1,27 +1,30 @@
 {
   "name": "src",
   "scripts": {
-    "start": "gulp",
+    "start": "gulp --port 31337",
     "cover": "istanbul cover ./test/flatten.js",
     "testlocal": "zuul --local 8080 --ui tape -- ./test/*.js",
     "test": "zuul -- ./test/*.js"
   },
   "devDependencies": {
-    "zuul": "^1.5.4",
+    "aliasify": "^1.4.0",
     "browserify": "^3.33.0",
-    "gulp": "^3.5.6",
-    "gulp-util": "^2.2.14",
-    "gulp-less": "^1.2.3",
-    "gulp-concat": "^2.2.0",
-    "tape": "^2.12.0",
-    "express": "^3.5.1",
     "connect-livereload": "^0.3.2",
+    "express": "^3.5.1",
+    "gulp": "^3.5.6",
+    "gulp-concat": "^2.2.0",
+    "gulp-less": "^1.2.3",
+    "gulp-util": "^2.2.14",
+    "tape": "^2.12.0",
     "tiny-lr": "0.0.5",
-    "yargs": "^1.2.1"
+    "yargs": "^1.2.1",
+    "zuul": "^1.5.4"
   },
   "dependencies": {
-    "an": "~0.0.2",
+    "an": "0.0.6",
     "angular": "^1.2.10",
+    "cookies-js": "^0.4.0",
+    "githuboauth": "0.0.1",
     "moment": "^2.7.0",
     "twitter-bootstrap-3.0.0": "^3.0.0"
   }

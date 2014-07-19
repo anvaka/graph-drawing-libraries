@@ -1,7 +1,7 @@
 #!/bin/bash
 rm -rf dist || exit 0;
 mkdir dist;
-gulp build
+env PROD_BUILD=1 && gulp build
 ( cd dist
  git init
  git add .

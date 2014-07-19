@@ -1,8 +1,11 @@
+require('githuboauth');
 require('an').controller(AppController);
+
+var githubOauth = require('./githubOauthLocal');
 
 function AppController($scope, $http, $q) {
   var getLibraries = require('./libraries');
-  getLibraries($http, $q, [
+  getLibraries($http, $q, $scope.$root, [
     'almende/vis',
     'anvaka/ngraph',
     'anvaka/VivaGraphJS',
@@ -19,10 +22,22 @@ function AppController($scope, $http, $q) {
     $scope.libraries = libraries;
   });
 
+  $scope.$on('githuboauth', updateUrl);
+  $scope.github = githubOauth;
+
   $scope.sort = {
     name: 'name',
     direction: 1
   };
+
+  function updateUrl(e, token) {
+    if (token) {
+      // this will refresh the page, it's bad but will only happen once...
+      // i don't know how to improve it. Oh why github does not support javascript
+      // flow for oauth
+      window.location.search = '';
+    }
+  }
 
   $scope.sortBy = function (name) {
     var sort = $scope.sort;
