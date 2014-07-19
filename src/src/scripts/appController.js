@@ -31,7 +31,10 @@ function AppController($scope, $http, $q) {
   };
 
   function updateUrl(e, token) {
-    if (token) {
+    if (!token) return;
+
+    var search = window.location.search;
+    if (search && search.indexOf('code=') >= -1)
       // this will refresh the page, it's bad but will only happen once...
       // i don't know how to improve it. Oh why github does not support javascript
       // flow for oauth
