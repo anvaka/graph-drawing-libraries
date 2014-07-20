@@ -7,7 +7,6 @@
     "test": "zuul -- ./test/*.js"
   },
   "devDependencies": {
-    "aliasify": "^1.4.0",
     "browserify": "^3.33.0",
     "connect-livereload": "^0.3.2",
     "express": "^3.5.1",
