@@ -23,9 +23,7 @@
   "dependencies": {
     "an": "0.0.6",
     "angular": "^1.2.10",
-    "cookies-js": "^0.4.0",
     "githuboauth": "0.0.5",
-    "moment": "^2.7.0",
     "twitter-bootstrap-3.0.0": "^3.0.0"
   }
 }
