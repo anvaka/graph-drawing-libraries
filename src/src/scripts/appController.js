@@ -5,6 +5,7 @@ function AppController($scope, $http, $q) {
   var getLibraries = require('./libraries');
   getLibraries($http, $q).then(function(libraries) {
     $scope.libraries = libraries;
+    $scope.loaded = true;
   });
 
   $scope.sort = {
