@@ -5,57 +5,12 @@
     <title>Graph Drawing Libraries</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css">
   </head>
-  <body ng-controller='AppController'>
-<a href="https://github.com/anvaka/graph-drawing-libraries"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
-    <div class='container'>
-      <table class="table table-hover ng-hide" ng-show='loaded'>
-        <thead>
-          <tr>
-            <th ng-click='sortBy("name")'>Library
-            <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "name" && sort.direction === 1'></span>
-            <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "name" && sort.direction === -1'></span>
-          </th>
-          <th ng-click='sortBy("watchers")'>Stars
-            <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "watchers" && sort.direction === 1'></span>
-            <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "watchers" && sort.direction === -1'></span>
-          </th>
-          <th ng-click='sortBy("forks")'>Forks
-            <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "forks" && sort.direction === 1'></span>
-            <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "forks" && sort.direction === -1'></span>
-          </th>
-          <th ng-click='sortBy("createdTime")'>Created
-            <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "createdTime" && sort.direction === 1'></span>
-            <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "createdTime" && sort.direction === -1'></span>
-          </th>
-          <th ng-click='sortBy("updatedTime")'>Updated
-            <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "updatedTime" && sort.direction === 1'></span>
-            <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "updatedTime" && sort.direction === -1'></span>
-          </th>
-          <th ng-click='sortBy("issues")'>Issues
-            <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "issues" && sort.direction === 1'></span>
-            <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "issues" && sort.direction === -1'></span>
-          </th>
-          <th ng-click='sortBy("license")'>License
-            <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "license" && sort.direction === 1'></span>
-            <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "license" && sort.direction === -1'></span>
-          </th>
-          </tr>
-          <tr ng-repeat='library in libraries'>
-            <td><a href='#' target="_blank" ng-href='{{library.url}}'>{{library.name}}</td>
-            <td>{{library.watchers}}</td>
-            <td>{{library.forks}}</td>
-            <td ng-attr-title='{{library.createdTooltip}}'>{{library.created}}</td>
-            <td ng-attr-title='{{library.updatedTooltip}}'>{{library.updated}}</td>
-            <td>{{library.issues}}</td>
-            <td>{{library.license}}</td>
-          </tr>
-        </thead>
-      </table>
-      <h2 ng-hide='loaded'>Loading statistics...</h2>
-    </div>
+  <body>
+    <div ng-view></div>
+    <a href="https://github.com/anvaka/graph-drawing-libraries"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
     <script src='external.min.js' type="text/javascript" charset="utf-8">
     </script>
-    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular-route.min.js'>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular-route.js'>
     </script>
     <script src='bundle.js' type="text/javascript" charset="utf-8">
     </script>
