@@ -31,7 +31,7 @@
         <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "license" && sort.direction === -1'></span>
       </th>
       </tr>
-      <tr ng-repeat='library in libraries'>
+      <tr ng-repeat='library in libraries' ng-click='routeTo(library.name)' class='library-info'>
         <td><a href='#' target="_blank" ng-href='{{library.url}}'>{{library.name}}</td>
         <td>{{library.watchers}}</td>
         <td>{{library.forks}}</td>

@@ -1,13 +1,18 @@
 require('githuboauth');
 require('an').controller(AllController, 'AllController');
 
-function AllController($scope, $http) {
+function AllController($scope, $http, $location) {
   var getLibraries = require('./libraries');
 
   getLibraries($http).then(function(libraries) {
     $scope.libraries = libraries;
     $scope.loaded = true;
   });
+
+  $scope.routeTo = function (route) {
+    route = route.replace('/', '_');
+    $location.path('library/' + route);
+  };
 
   $scope.sort = {
     name: 'name',
@@ -28,4 +33,4 @@ function AllController($scope, $http) {
   };
 }
 
-AllController.$inject = ['$scope', '$http'];
+AllController.$inject = ['$scope', '$http', '$location'];
