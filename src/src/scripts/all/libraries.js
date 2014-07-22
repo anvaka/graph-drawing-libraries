@@ -1,6 +1,6 @@
 var offlineData = require('./offlineData');
 
-module.exports = function getLibraries($http, $q) {
+module.exports = function getLibraries($http) {
   return $http.get('http://gh-graph-stats.herokuapp.com/githubstats/').then(mergeWithOfflineData);
 
   function mergeWithOfflineData(res) {

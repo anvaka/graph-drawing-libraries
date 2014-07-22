@@ -1,9 +1,10 @@
 require('githuboauth');
 require('an').controller(AllController, 'AllController');
 
-function AllController($scope, $http, $q) {
+function AllController($scope, $http) {
   var getLibraries = require('./libraries');
-  getLibraries($http, $q).then(function(libraries) {
+
+  getLibraries($http).then(function(libraries) {
     $scope.libraries = libraries;
     $scope.loaded = true;
   });
@@ -27,4 +28,4 @@ function AllController($scope, $http, $q) {
   };
 }
 
-AllController.$inject = ['$scope', '$http', '$q'];
+AllController.$inject = ['$scope', '$http'];
