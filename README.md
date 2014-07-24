@@ -16,6 +16,7 @@ This is a list of known graph drawing libraries. If you find something missing, 
 * [strathausen/dracula](https://github.com/strathausen/dracula) - JavaScript browser based layout and representation of connected graphs. http://www.graphdracula.net
 * [uskudnik/GraphGL](https://github.com/uskudnik/GraphGL) - A network visualization library
 
+See also: [A website with interactive data](http://anvaka.github.io/graph-drawing-libraries/#/all)
 
 Why?
 ====
