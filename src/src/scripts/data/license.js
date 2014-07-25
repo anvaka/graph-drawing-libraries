@@ -9,7 +9,12 @@ module.exports = {
   generated: 1404587171695, // epoch time when data was generated
   libraries: {
     'almende/vis': {
-      license: 'Apache 2.0'
+      license: 'Apache 2.0',
+      // I tested only in these browsers:
+      browsers: {
+        'chrome': '36',
+        'firefox': '29.0.1'
+      }
     },
     'anvaka/ngraph': {
       license: 'MIT'
