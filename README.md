@@ -10,6 +10,7 @@ This is a list of known graph drawing libraries. If you find something missing, 
 * [cytoscape/cytoscape.js](https://github.com/cytoscape/cytoscape.js) - An open-source JavaScript graph theory library for analysis and visualisation (compatible with CommonJS/Node.js, AMD/Require.js, jQuery 1.4+, Bower, npm, and plain JavaScript) http://cytoscape.github.com/cytoscape.js
 * [dhotson/springy](https://github.com/dhotson/springy) - A force directed graph layout algorithm in JavaScript http://getspringy.com
 * [fkling/JSNetworkX](https://github.com/fkling/JSNetworkX) - A port of the graph library NetworkX to JavaScript http://jsnetworkx.org
+* [GraphAlchemist/Alchemy](https://github.com/GraphAlchemist/Alchemy) - a graph drawing application built in d3.
 * [jacomyal/sigma.js](https://github.com/jacomyal/sigma.js) - A JavaScript library dedicated to graph drawing http://sigmajs.org
 * [mbostock/d3](https://github.com/mbostock/d3) - A JavaScript visualization library for HTML and SVG. http://d3js.org
 * [samizdatco/arbor](https://github.com/samizdatco/arbor) - a graph visualization library using web workers and jQuery http://arborjs.org

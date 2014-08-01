@@ -34,6 +34,9 @@ module.exports = {
     'fkling/JSNetworkX': {
       license: 'BSD 3'
     },
+    'GraphAlchemist/Alchemy': {
+      license: 'AGPLv3'
+    },
     'jacomyal/sigma.js': {
       license: 'MIT'
     },
