@@ -15,7 +15,6 @@ This is a list of known graph drawing libraries. If you find something missing, 
 * [mbostock/d3](https://github.com/mbostock/d3) - A JavaScript visualization library for HTML and SVG. http://d3js.org
 * [samizdatco/arbor](https://github.com/samizdatco/arbor) - a graph visualization library using web workers and jQuery http://arborjs.org
 * [strathausen/dracula](https://github.com/strathausen/dracula) - JavaScript browser based layout and representation of connected graphs. http://www.graphdracula.net
-* [uskudnik/GraphGL](https://github.com/uskudnik/GraphGL) - A network visualization library
 
 See also: [A website with interactive data](http://anvaka.github.io/graph-drawing-libraries/#/all)
 

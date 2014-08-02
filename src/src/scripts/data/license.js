@@ -48,9 +48,6 @@ module.exports = {
     },
     'strathausen/dracula': {
       license: 'MIT'
-    },
-    'uskudnik/GraphGL': {
-      license: 'MIT'
     }
-}
+  }
 };
