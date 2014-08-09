@@ -6,6 +6,7 @@
           <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "name" && sort.direction === 1'></span>
           <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "name" && sort.direction === -1'></span>
         </th>
+        <th>Details</th>
         <th ng-click='sortBy("watchers")'>Stars
           <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "watchers" && sort.direction === 1'></span>
           <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "watchers" && sort.direction === -1'></span>
@@ -35,6 +36,7 @@
     <tbody>
       <tr ng-repeat='library in libraries' ng-click='routeTo(library.name)' class='library-info'>
         <td><a href='#' target="_blank" ng-href='{{library.url}}'>{{library.name}}</a></td>
+        <td><a href='#' ng-href='{{"#/" + getRoute(library.name)}}'>demo</a></td>
         <td>{{library.watchers}}</td>
         <td>{{library.forks}}</td>
         <td ng-attr-title='{{library.createdTooltip}}'>{{library.created}}</td>

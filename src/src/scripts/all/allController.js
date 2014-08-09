@@ -9,10 +9,11 @@ function AllController($scope, $http, $location) {
     $scope.loaded = true;
   });
 
-  $scope.routeTo = function (route) {
-    route = route.replace('/', '_');
-    $location.path('library/' + route);
+  $scope.routeTo = function (library) {
+    $location.path(getRoute(library));
   };
+
+  $scope.getRoute = getRoute; 
 
   $scope.sort = {
     name: 'name',
@@ -31,6 +32,10 @@ function AllController($scope, $http, $location) {
              a[name] === b[name] ? 0 : -1 * sort.direction;
     });
   };
+
+  function getRoute(libraryName) {
+    return 'library/' + libraryName.replace('/', '_');
+  }
 }
 
 AllController.$inject = ['$scope', '$http', '$location'];
