@@ -3,34 +3,36 @@
     <thead>
       <tr>
         <th ng-click='sortBy("name")'>Library
-        <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "name" && sort.direction === 1'></span>
-        <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "name" && sort.direction === -1'></span>
-      </th>
-      <th ng-click='sortBy("watchers")'>Stars
-        <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "watchers" && sort.direction === 1'></span>
-        <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "watchers" && sort.direction === -1'></span>
-      </th>
-      <th ng-click='sortBy("forks")'>Forks
-        <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "forks" && sort.direction === 1'></span>
-        <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "forks" && sort.direction === -1'></span>
-      </th>
-      <th ng-click='sortBy("createdTime")'>Created
-        <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "createdTime" && sort.direction === 1'></span>
-        <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "createdTime" && sort.direction === -1'></span>
-      </th>
-      <th ng-click='sortBy("updatedTime")'>Updated
-        <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "updatedTime" && sort.direction === 1'></span>
-        <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "updatedTime" && sort.direction === -1'></span>
-      </th>
-      <th ng-click='sortBy("issues")'>Issues
-        <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "issues" && sort.direction === 1'></span>
-        <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "issues" && sort.direction === -1'></span>
-      </th>
-      <th ng-click='sortBy("license")'>License
-        <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "license" && sort.direction === 1'></span>
-        <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "license" && sort.direction === -1'></span>
-      </th>
-      </tr>
+          <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "name" && sort.direction === 1'></span>
+          <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "name" && sort.direction === -1'></span>
+        </th>
+        <th ng-click='sortBy("watchers")'>Stars
+          <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "watchers" && sort.direction === 1'></span>
+          <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "watchers" && sort.direction === -1'></span>
+        </th>
+        <th ng-click='sortBy("forks")'>Forks
+          <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "forks" && sort.direction === 1'></span>
+          <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "forks" && sort.direction === -1'></span>
+        </th>
+        <th ng-click='sortBy("createdTime")'>Created
+          <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "createdTime" && sort.direction === 1'></span>
+          <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "createdTime" && sort.direction === -1'></span>
+        </th>
+        <th ng-click='sortBy("updatedTime")'>Updated
+          <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "updatedTime" && sort.direction === 1'></span>
+          <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "updatedTime" && sort.direction === -1'></span>
+        </th>
+        <th ng-click='sortBy("issues")'>Issues
+          <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "issues" && sort.direction === 1'></span>
+          <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "issues" && sort.direction === -1'></span>
+        </th>
+        <th ng-click='sortBy("license")'>License
+          <span class="glyphicon glyphicon-arrow-down" ng-show='sort.name === "license" && sort.direction === 1'></span>
+          <span class="glyphicon glyphicon-arrow-up" ng-show='sort.name === "license" && sort.direction === -1'></span>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
       <tr ng-repeat='library in libraries' ng-click='routeTo(library.name)' class='library-info'>
         <td><a href='#' target="_blank" ng-href='{{library.url}}'>{{library.name}}</td>
         <td>{{library.watchers}}</td>
@@ -40,7 +42,7 @@
         <td>{{library.issues}}</td>
         <td>{{library.license}}</td>
       </tr>
-    </thead>
+    </tbody>
   </table>
   <h2 ng-hide='loaded'>Loading statistics...</h2>
 </div>
