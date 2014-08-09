@@ -34,7 +34,7 @@
     </thead>
     <tbody>
       <tr ng-repeat='library in libraries' ng-click='routeTo(library.name)' class='library-info'>
-        <td><a href='#' target="_blank" ng-href='{{library.url}}'>{{library.name}}</td>
+        <td><a href='#' target="_blank" ng-href='{{library.url}}'>{{library.name}}</a></td>
         <td>{{library.watchers}}</td>
         <td>{{library.forks}}</td>
         <td ng-attr-title='{{library.createdTooltip}}'>{{library.created}}</td>
