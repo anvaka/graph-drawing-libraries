@@ -1,7 +1,7 @@
 JavaScript Graph Drawing Libraries
 =======================
 
-This is a list of known graph drawing libraries. If you find something missing, please let me know.
+This is a list of known graph drawing libraries. See [a website with interactive data](http://anvaka.github.io/graph-drawing-libraries/#/all). 
 
 * [almende/vis](https://github.com/almende/vis) - Dynamic, browser-based visualization library http://visjs.org
 * [anvaka/ngraph](https://github.com/anvaka/ngraph) - Beautiful Graphs
@@ -16,9 +16,8 @@ This is a list of known graph drawing libraries. If you find something missing, 
 * [samizdatco/arbor](https://github.com/samizdatco/arbor) - a graph visualization library using web workers and jQuery http://arborjs.org
 * [strathausen/dracula](https://github.com/strathausen/dracula) - JavaScript browser based layout and representation of connected graphs. http://www.graphdracula.net
 
-See also: [A website with interactive data](http://anvaka.github.io/graph-drawing-libraries/#/all)
+If you find something missing, please let me know.
 
 Why?
 ====
 This repository is inspired by [@mbektimirov](https://github.com/mbektimirov)'s question [Difference with Sigma.js](https://github.com/anvaka/ngraph/issues/6). I am trying to list all known graph drawing libraries, and [inviting their authors](https://github.com/anvaka/graph-drawing-libraries/issues/1) to collaborate here.
-
