@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>almende/vis Performance Test</title>
+<style type="text/css">
+    body,
+    #mynetwork {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div id="mynetwork"></div>
+
+<script src='../lib/vis.js'></script>
+<script src='../../../performance/runSuite.js'></script>
+<script>
+// todo: ask almende how to make it faster
+  runSuite(function (ngraph) {
+    // create an array with nodes
+    var nodes = [];
+
+    // create an array with edges
+    var edges = []
+
+    // copy ngraph to almende/vis format
+    ngraph.forEachNode(function (node) {
+      nodes.push({ id: node.id });
+    });
+
+    ngraph.forEachLink(function (link) {
+      edges.push({from: link.fromId, to: link.toId});
+    });
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+    var data = {
+      nodes: nodes,
+      edges: edges
+    };
+    var options = {};
+    var network = new vis.Network(container, data, options);
+  });
+</script>
+</body>
+</html>
