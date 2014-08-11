@@ -50,6 +50,16 @@ function runBrowserify() {
       gutil.log(gutil.colors.red('Failed to browserify'), gutil.colors.yellow(err.message));
     })
     .pipe(fs.createWriteStream(path.join(__dirname + '/dist/bundle.js')));
+
+  var perfBundle = require('browserify')().add('./src/scripts/performance/index.js');
+  perfBundle
+    .bundle({
+      standalone: 'runSuite'
+    })
+    .on('error', function (err) {
+      gutil.log(gutil.colors.red('Failed to browserify'), gutil.colors.yellow(err.message));
+    })
+    .pipe(fs.createWriteStream(path.join(__dirname + '/dist/performance/runSuite.js')));
 }
 
 function compileLess() {
@@ -67,6 +77,9 @@ function makeDist() {
   var fs = require('fs');
   if (!fs.existsSync('./dist')) {
     fs.mkdirSync('./dist');
+  }
+  if (!fs.existsSync('./dist/performance')) {
+    fs.mkdirSync('./dist/performance');
   }
 }
 
