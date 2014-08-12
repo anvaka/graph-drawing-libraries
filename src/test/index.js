@@ -1,5 +1,7 @@
-var test = require('tape').test;
+var test = require('tape').test,
+    librariesData = require('../src/scripts/data/libraries');
 
-test('I implemented my testes', function (t) {
-  t.fail('Nope. Will do it right now');
+test('It has libraries data', function (t) {
+  t.ok(librariesData && librariesData.libraries, 'It has libraries info');
+  t.end();
 });

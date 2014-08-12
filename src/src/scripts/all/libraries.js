@@ -1,4 +1,4 @@
-var license = require('../data/license');
+var libraries = require('../data/libraries');
 
 module.exports = function getLibraries($http) {
   return $http.get('http://gh-graph-stats.herokuapp.com/githubstats/').then(mergeWithOfflineData);
@@ -9,7 +9,7 @@ module.exports = function getLibraries($http) {
     return repositories;
 
     function merge(repoInfo) {
-      var offlineInfo = license.libraries[repoInfo.name];
+      var offlineInfo = libraries.libraries[repoInfo.name];
       if (!offlineInfo) {
         // we don't know wabout this library, bail out:
         return repoInfo;
