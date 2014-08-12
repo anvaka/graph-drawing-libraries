@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>almende/vis Performance Test</title>
-<style type="text/css">
+  <style type="text/css">
     body,
     #mynetwork {
       position: absolute;
@@ -21,17 +21,16 @@
 <script src='../lib/vis.js'></script>
 <script src='../../../performance/runSuite.js'></script>
 <script>
-// todo: ask almende how to make it faster
   runSuite(function (ngraph) {
     // create an array with nodes
     var nodes = [];
 
     // create an array with edges
-    var edges = []
+    var edges = [];
 
     // copy ngraph to almende/vis format
     ngraph.forEachNode(function (node) {
-      nodes.push({ id: node.id });
+      nodes.push({ id: node.id, label: ''});
     });
 
     ngraph.forEachLink(function (link) {
@@ -44,7 +43,29 @@
       nodes: nodes,
       edges: edges
     };
-    var options = {};
+    var options = {
+      // immediately start rendering the graph
+      stabilize: false,
+
+      // turn smooth curves off, faster
+      smoothCurves: false,
+
+      // specify a shape for all nodes
+      nodes: {
+        shape: 'dot' // 'square', 'dot', 'triangle', 'triangleDown', 'star', etc...
+      },
+
+      // to get a menu with sliders to tune the physics constants:
+      //configurePhysics: true,
+
+      // tuned physics for this specific data set (stabilizes faster)
+      physics: {
+        barnesHut: {
+          gravitationalConstant: -4800,
+          springConstant: 0.5,
+          springLength: 50}
+      }
+    };
     var network = new vis.Network(container, data, options);
   });
 </script>
