@@ -1,9 +1,0 @@
-name: src
-ui: tape
-browsers:
-  - name: chrome
-    version: 31..latest
-  - name: ie
-    version: latest
-  - name: iphone
-    version: 6.1

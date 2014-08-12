@@ -7,7 +7,6 @@ cache:
 script: cd src && npm install && npm test
 env:
   global:
-  - GH_REF: github.com/anvaka/graph-drawing-libraries.git
   - secure: cwtRqGXQLrJtTnxpakPa47JFYUGMJdwYhwa8HTSakCfAoc7dfsbJB9YLTO1abZ9uBRWySCVasDmMMjFTjFczEAVq4XnMKvX4vReL1/RNz9JWT8rqOcr6Qd9/2wdos6vDg5ctWb7NikaO2kTR3Ii6e9Z0Mk0U28HZ8L5Aaz/rjKI=
 after_success:
-  - cd src && npm run-script deploy
+  - npm run-script deploy
