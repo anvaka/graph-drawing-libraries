@@ -2,6 +2,7 @@
   "name": "src",
   "scripts": {
     "start": "gulp --port 31337",
+    "deploy": "./deploy-travis.sh",
     "cover": "istanbul cover ./test/flatten.js",
     "testlocal": "zuul --local 8080 --ui tape -- ./test/*.js",
     "test": "zuul -- ./test/*.js"
