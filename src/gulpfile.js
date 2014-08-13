@@ -14,7 +14,7 @@ var devServer = {
 };
 
 var paths = {
-  scripts: ['src/**/*.*', '!src/**/node_modules/*.*'],
+  scripts: ['src/**/*.*', '!node_modules/**'],
   markup: ['src/*.html'],
   styles: { paths: [ path.join(__dirname, 'src/styles') ] }
 };
@@ -104,7 +104,7 @@ function watchChanges() {
   gulp.watch(paths.scripts, ['runBrowserify']);
   gulp.watch('src/styles/*.less', ['compileLess']);
   gulp.watch(paths.markup, ['copyDist']);
-  gulp.watch('dist/**').on('change', notifyLivereload);
+  gulp.watch(['dist/**', '!dist/**/node_modules/**']).on('change', notifyLivereload);
 }
 
 var lr;
