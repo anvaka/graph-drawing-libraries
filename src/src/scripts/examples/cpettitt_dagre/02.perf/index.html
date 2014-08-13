@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>cpettitt/dagre Performance Test (with d3)</title>
+<style>
+body,
+svg {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.node rect {
+    stroke: #333;
+    stroke-width: 1.5px;
+    fill: #fff;
+}
+
+.edgeLabel rect {
+    fill: #fff;
+}
+
+.edgePath {
+    stroke: #333;
+    stroke-width: 1.5px;
+    fill: none;
+}
+</style>
+</head>
+<body>
+<svg>
+    <g transform="translate(20,20)"/>
+</svg>
+
+<script src="../lib/d3.v3.min.js">
+</script>
+<script src="../lib/dagre-d3.min.js">
+</script>
+<script src='../../../performance/runSuite.js'>
+</script>
+<script>
+  d3.select('svg')
+    .attr('width', document.body.clientWidth)
+    .attr('height', document.body.clientHeight);
+  runSuite(function (ngraph) {
+    // Create a new directed graph
+    var g = new dagreD3.Digraph();
+
+    ngraph.forEachNode(function (node) {
+      // Add nodes to the graph. The first argument is the node id. The second is
+      // metadata about the node. In this case we're going to add labels to each of
+      // our nodes.
+      g.addNode(node.id, { label: node.id.toString() });
+    });
+
+    ngraph.forEachLink(function (link) {
+      // Add edges to the graph. The first argument is the edge id. Here we use null
+      // to indicate that an arbitrary edge id can be assigned automatically. The
+      // second argument is the source of the edge. The third argument is the target
+      // of the edge. The last argument is the edge metadata.
+      g.addEdge(null, link.fromId, link.toId);
+    })
+
+    var renderer = new dagreD3.Renderer();
+    renderer.run(g, d3.select("svg g"));
+  });
+</script>
+</body>
+</html>
