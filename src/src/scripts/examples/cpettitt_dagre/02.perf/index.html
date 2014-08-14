@@ -61,7 +61,7 @@ svg {
       // second argument is the source of the edge. The third argument is the target
       // of the edge. The last argument is the edge metadata.
       g.addEdge(null, link.fromId, link.toId);
-    })
+    });
 
     var renderer = new dagreD3.Renderer();
     renderer.run(g, d3.select("svg g"));
