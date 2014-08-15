@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>samizdatco/arbor Performance Test</title>
+  <style type="text/css">
+  </style>
+</head>
+<body>
+
+<canvas id="mynetwork" width="800" height="600"></canvas>
+
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'></script>
+<script src='../lib/arbor.js'></script>
+<script src='../lib/arbor-graphics.js'></script>
+<script src='../lib/renderer.js'></script>
+<script src='../../../performance/runSuite.js'></script>
+<script>
+runSuite(function (ngraph) {
+  var nodes = {}, edges = {};
+  ngraph.forEachNode(function (node) {
+    nodes[node.id] = {};
+  });
+  ngraph.forEachLink(function (link) {
+    var edge = edges[link.fromId];
+    if (!edge) edge = edges[link.fromId] = {};
+    edge[link.toId] = {};
+  });
+  var sys = arbor.ParticleSystem();
+  sys.renderer = Renderer("#mynetwork");
+
+  sys.graft({
+    nodes: nodes,
+    edges: edges
+  });
+});
+</script>
+</body>
+</html>
