@@ -69,10 +69,7 @@ var force = d3.layout.force()
 var link = svg.selectAll(".link")
   .data(G.links)
   .enter().append("line")
-  .attr("class", "link")
-  .style("stroke-width", function(d) {
-    return Math.sqrt(d.value);
-  });
+  .attr("class", "link");
 
 var node = svg.selectAll(".node")
   .data(G.nodes)
