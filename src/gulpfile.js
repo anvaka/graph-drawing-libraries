@@ -101,7 +101,7 @@ function copyDist() {
 }
 
 function watchChanges() {
-  gulp.watch(paths.scripts, ['runBrowserify']);
+  gulp.watch(paths.scripts, ['runBrowserify', 'copyDist']);
   gulp.watch('src/styles/*.less', ['compileLess']);
   gulp.watch(paths.markup, ['copyDist']);
   gulp.watch(['dist/**', '!dist/**/node_modules/**']).on('change', notifyLivereload);
