@@ -21,6 +21,8 @@
 <script>
 alchemy.begin({
   divSelector: '#mynetwork',
+  forceLocked: false,
+  linkDistance: function(){ return 40; },
   dataSource: {
     nodes: [
       { id: 1 },
