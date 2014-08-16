@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "an": "0.0.6",
-    "ngraph.generators": "~0.0",
+    "ngraph.generators": "^0.0.8",
     "query-string": "~0.1.1",
     "angular": "^1.2.10",
     "githuboauth": "0.0.5",
