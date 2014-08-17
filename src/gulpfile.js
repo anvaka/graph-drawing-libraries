@@ -96,7 +96,9 @@ function copyDist() {
       .pipe(concat('external.min.js'))
       .pipe(gulp.dest('./dist'));
 
-  gulp.src('./node_modules/twitter-bootstrap-3.0.0/fonts/*')
+  gulp.src([
+    './node_modules/twitter-bootstrap-3.0.0/fonts/*',
+    './node_modules/font-awesome/fonts/*'])
       .pipe(gulp.dest('./dist/fonts/'));
 
   gulp.src(['./src/scripts/examples/**', '!src/scripts/examples/**/node_modules/**'])

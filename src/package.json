@@ -28,10 +28,11 @@
   },
   "dependencies": {
     "an": "0.0.6",
+    "angular": "^1.2.10",
+    "font-awesome": "^4.1.0",
+    "githuboauth": "0.0.5",
     "ngraph.generators": "^0.0.8",
     "query-string": "~0.1.1",
-    "angular": "^1.2.10",
-    "githuboauth": "0.0.5",
     "twitter-bootstrap-3.0.0": "^3.0.0"
   }
 }
