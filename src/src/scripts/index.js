@@ -1,4 +1,5 @@
 require('./all/allController');
+require('./navController');
 require('./library/libraryDetailsController');
 var fs = require('fs');
 
