@@ -1,5 +1,6 @@
 JavaScript Graph Drawing Libraries
 =======================
+[![Build Status](https://travis-ci.org/anvaka/graph-drawing-libraries.svg?branch=master)](https://travis-ci.org/anvaka/graph-drawing-libraries)
 
 This is a list of known graph drawing libraries. See [a website with interactive data](http://anvaka.github.io/graph-drawing-libraries/#/all). 
 
