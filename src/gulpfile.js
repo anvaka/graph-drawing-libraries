@@ -54,9 +54,7 @@ function runBrowserify() {
 
   var perfBundle = require('browserify')().add('./src/scripts/performance/runSuite.js');
   perfBundle
-    .bundle({
-      standalone: 'runSuite'
-    })
+    .bundle({ standalone: 'runSuite' })
     .on('error', function (err) {
       gutil.log(gutil.colors.red('Failed to browserify'), gutil.colors.yellow(err.message));
     })
