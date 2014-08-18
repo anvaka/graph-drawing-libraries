@@ -30,6 +30,7 @@ gulp.task('watchChanges', watchChanges);
 gulp.task('startStaticServer', startStaticServer);
 
 function runBrowserify() {
+  // todo: this should be invoked based on changes in particular folder
   var fs = require('fs');
 
   var bundle = require('browserify')().add('./src/scripts/index.js');
@@ -51,7 +52,7 @@ function runBrowserify() {
     })
     .pipe(fs.createWriteStream(path.join(__dirname + '/dist/bundle.js')));
 
-  var perfBundle = require('browserify')().add('./src/scripts/performance/index.js');
+  var perfBundle = require('browserify')().add('./src/scripts/performance/runSuite.js');
   perfBundle
     .bundle({
       standalone: 'runSuite'

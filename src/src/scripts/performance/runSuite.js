@@ -1,3 +1,7 @@
+/**
+ * This module generates ngraph graph based on query string paramenters. Then it
+ * let subscribers to be invoked when graph is generated.
+ */
 module.exports = runSuite;
 
 function runSuite(graphReadyCallback) {
