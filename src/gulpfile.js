@@ -88,12 +88,12 @@ function copyDist() {
   gulp.src('./src/index.html')
       .pipe(gulp.dest('./dist'));
 
+  gulp.src('./src/scripts/performance/index.html')
+      .pipe(gulp.dest('./dist/performance'));
+
   gulp.src([
-    './node_modules/angular/lib/angular.min.js',
-    './src/external/angular-route.js'
-  ])
-      .pipe(concat('external.min.js'))
-      .pipe(gulp.dest('./dist'));
+    './node_modules/angular/lib/angular.min.js'
+  ]).pipe(gulp.dest('./dist/performance'));
 
   gulp.src([
     './node_modules/twitter-bootstrap-3.0.0/fonts/*',
