@@ -35,16 +35,6 @@ function runBrowserify() {
 
   var bundle = require('browserify')().add('./src/scripts/index.js');
 
-  if (process.env.PROD_BUILD) {
-    // for prod build we need to replace github oauth token with prod token:
-    var aliasify = require('aliasify').configure({
-          aliases: { './githubOauthLocal': { relative: "./githubOauthProd.js" } },
-          verbose: false
-      });
-
-    bundle.transform(aliasify);
-  }
-
   bundle
     .bundle()
     .on('error', function (err) {
