@@ -13,12 +13,6 @@ var devServer = {
   root: './dist'
 };
 
-var paths = {
-  scripts: ['src/**/*.*', '!node_modules/**'],
-  markup: ['src/*.html'],
-  styles: { paths: [ path.join(__dirname, 'src/styles') ] }
-};
-
 gulp.task('default', ['build', 'startStaticServer', 'watchChanges']);
 gulp.task('build', ['makeDist', 'runBrowserify', 'copyDist', 'compileLess']);
 
@@ -52,7 +46,7 @@ function runBrowserify() {
 }
 
 function compileLess() {
-  var less = require('gulp-less')(paths.styles);
+  var less = require('gulp-less')('src/styles');
   less.on('error', function (err) {
     gutil.log(gutil.colors.red('Failed to compile less: '), gutil.colors.yellow(err.message));
   });
@@ -95,9 +89,9 @@ function copyDist() {
 }
 
 function watchChanges() {
-  gulp.watch(paths.scripts, ['runBrowserify', 'copyDist']);
+  gulp.watch(['src/**/*.*', '!node_modules/**'], ['runBrowserify', 'copyDist']);
   gulp.watch('src/styles/*.less', ['compileLess']);
-  gulp.watch(paths.markup, ['copyDist']);
+  gulp.watch(['src/*.html'], ['copyDist']);
   gulp.watch(['dist/**', '!dist/**/node_modules/**']).on('change', notifyLivereload);
 }
 
