@@ -89,7 +89,7 @@ function copyDist() {
 }
 
 function watchChanges() {
-  gulp.watch(['src/**/*.*', '!node_modules/**'], ['runBrowserify', 'copyDist']);
+  gulp.watch(['src/**/*.*', '!node_modules/**', '!src/*.html'], ['runBrowserify', 'copyDist']);
   gulp.watch('src/styles/*.less', ['compileLess']);
   gulp.watch(['src/*.html'], ['copyDist']);
   gulp.watch(['dist/**', '!dist/**/node_modules/**']).on('change', notifyLivereload);
