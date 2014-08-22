@@ -24,23 +24,28 @@ gulp.task('watchChanges', watchChanges);
 gulp.task('startStaticServer', startStaticServer);
 
 function runBrowserify() {
-  // todo: this should be invoked based on changes in particular folder
   var fs = require('fs');
 
-  var bundle = require('browserify')().add('./src/scripts/index.js');
+  produceMainBundle();
+  producePerfSuite();
+}
 
+function produceMainBundle() {
+  var bundle = require('browserify')().add('./src/scripts/index.js');
   bundle
     .bundle()
     .on('error', function (err) {
       gutil.log(gutil.colors.red('Failed to browserify'), gutil.colors.yellow(err.message));
     })
     .pipe(fs.createWriteStream(path.join(__dirname + '/dist/bundle.js')));
+}
 
-  var perfBundle = require('browserify')().add('./src/scripts/performance/runSuite.js');
-  perfBundle
+function producePerfSuite(argument) {
+  var browserify = require('browserify')();
+  browserify.add('./src/scripts/performance/runSuite.js')
     .bundle({ standalone: 'runSuite' })
     .on('error', function (err) {
-      gutil.log(gutil.colors.red('Failed to browserify'), gutil.colors.yellow(err.message));
+      gutil.log(gutil.colors.red('Failed to browserify perf suite'), gutil.colors.yellow(err.message));
     })
     .pipe(fs.createWriteStream(path.join(__dirname + '/dist/performance/runSuite.js')));
 }
