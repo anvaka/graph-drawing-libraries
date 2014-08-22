@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+    fs = require('fs'),
     gutil = require('gulp-util'),
     path = require('path'),
     argv = require('yargs')
@@ -24,8 +25,6 @@ gulp.task('watchChanges', watchChanges);
 gulp.task('startStaticServer', startStaticServer);
 
 function runBrowserify() {
-  var fs = require('fs');
-
   produceMainBundle();
   producePerfSuite();
 }
