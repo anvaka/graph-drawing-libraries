@@ -1,15 +1,27 @@
 var query = require('query-string').parse(window.location.search.substring(1));
-var libraries = require('../data/libraries').libraries;
+var allLibraries = require('../data/libraries').libraries;
 
-var defaultName = 'almende_vis';
-var libraryName = query.lib || defaultName;
-var libraryToRender = libraries.hasOwnProperty(libraryName.replace('_', '/')) ?
-                      libraryName : defaultName;
+window.PerfController = PerfController;
 
-var url = 'examples/' + libraryTyRender + '/02.perf/' + window.location.search;
+function PerfController($scope) {
+  $scope.libraries =  Object.keys(allLibraries);
+  $scope.currentLibrary = getLibraryToRender($scope.libraries);
+  $scope.getLibraryPerfSuite = function (libraryTyRender) {
+     return '../examples/' + libraryTyRender.replace('/', '_') + '/02.perf/' + window.location.search;
+  };
+}
 
-renderAvailableLibraries(Object.kyes(libraries), libraryToRender);
+PerfController.$inject = ['$scope'];
 
-function renderAvailableLibraries(allLibraries, currentLibrary) {
-  document.getElementById('currentLibrary');
+function getLibraryToRender(libraries) {
+  var libraryName = query.lib;
+  if (libraryName) libraryName = libraryName.replace('_', '/');
+
+  for (var i = 0; i < libraries.length; ++i) {
+    if (libraries[i] === libraryName) {
+      return libraries[i];
+    }
+  }
+
+  return libraries[0];
 }

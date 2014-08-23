@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
 <head>
   <meta charset="UTF-8">
   <title>Libraries performance comparison</title>
+  <style>
+body,
+iframe {
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#nav {
+  position: absolute;
+  width: 100%;
+  height: 32px;
+}
+  </style>
 </head>
-<body>
-  <iframe id='runner' src="" frameborder="0"></iframe>
+<body ng-controller='PerfController'>
+  <iframe id='runner' src="" ng-src="{{getLibraryPerfSuite(currentLibrary)}}" frameborder="0"></iframe>
   <div id='nav'>
-    <select id="currentLibrary">
-    </select>
+    <select ng-model='currentLibrary'
+            ng-options="lib for lib in libraries"></select>
   </div>
   <script src='angular.min.js'></script>
   <script src='perfBundle.js'></script>
