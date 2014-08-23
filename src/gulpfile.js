@@ -40,13 +40,21 @@ function produceMainBundle() {
 }
 
 function producePerfSuite(argument) {
-  var browserify = require('browserify')();
-  browserify.add('./src/scripts/performance/runSuite.js')
+  var runSuite = require('browserify')();
+  runSuite.add('./src/scripts/performance/runSuite.js')
     .bundle({ standalone: 'runSuite' })
+    .on('error', function (err) {
+      gutil.log(gutil.colors.red('Failed to browserify runPerf suite'), gutil.colors.yellow(err.message));
+    })
+    .pipe(fs.createWriteStream(path.join(__dirname + '/dist/performance/runSuite.js')));
+
+  var perfBundle = require('browserify')();
+  perfBundle.add('./src/scripts/performance/index.js')
+    .bundle()
     .on('error', function (err) {
       gutil.log(gutil.colors.red('Failed to browserify perf suite'), gutil.colors.yellow(err.message));
     })
-    .pipe(fs.createWriteStream(path.join(__dirname + '/dist/performance/runSuite.js')));
+    .pipe(fs.createWriteStream(path.join(__dirname + '/dist/performance/perfBundle.js')));
 }
 
 function compileLess() {
