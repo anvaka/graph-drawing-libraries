@@ -1,13 +1,26 @@
-var query = require('query-string').parse(window.location.search.substring(1));
+/**
+ * Performance runner is an html page which renders a nav bar and lets users
+ * change current graph drawing library
+ */
+var qs = require('query-string');
+var query = qs.parse(window.location.search.substring(1));
 var allLibraries = require('../data/libraries').libraries;
 
 window.PerfController = PerfController;
 
 function PerfController($scope) {
+  $scope.share = require('../share');
   $scope.libraries =  Object.keys(allLibraries);
   $scope.currentLibrary = getLibraryToRender($scope.libraries);
-  $scope.getLibraryPerfSuite = function (libraryTyRender) {
-     return '../examples/' + libraryTyRender.replace('/', '_') + '/02.perf/' + window.location.search;
+
+  // canonical name is a name without `/` symbol
+  var canonialName = $scope.currentLibrary.replace('/', '_');
+  $scope.libraryUrl = '../examples/' + canonialName + '/02.perf/' + window.location.search;
+  $scope.changeGraphUrl = '../#/library/' + canonialName;
+
+  $scope.changeLibrary = function (lib) {
+    query.lib = lib;
+    window.location.search = '?' + qs.stringify(query);
   };
 }
 
@@ -19,6 +32,8 @@ function getLibraryToRender(libraries) {
 
   for (var i = 0; i < libraries.length; ++i) {
     if (libraries[i] === libraryName) {
+      // we need to return exact instance, since ng-options requires equality by
+      // reference, not value;
       return libraries[i];
     }
   }
