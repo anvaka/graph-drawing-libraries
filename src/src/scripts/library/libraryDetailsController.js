@@ -8,12 +8,13 @@ function LibraryDetailsController($scope, $routeParams) {
 
   $scope.getPerfUrl = function getPerfUrl(graphType) {
     var i = 0;
+    // mapping query string to graph generator names
     var names = ['n', 'm', 'k'];
     var params = graphType.params.map(function (param) {
       return names[i++] + '=' + encodeURIComponent(param.value);
     }).join('&');
 
-    return 'examples/' + libraryName + '/02.perf/?graph=' + graphType.name + '&' + params;
+    return 'performance/?lib=' + libraryName + '&graph=' + graphType.name + '&' + params;
   };
 
   $scope.graphTypes = require('./supportedGraphTypes')();
