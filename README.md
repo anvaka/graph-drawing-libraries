@@ -19,6 +19,10 @@ This is a list of known graph drawing libraries. See [a website with interactive
 
 If you find something missing, please let me know.
 
+Video
+=====
+Side by side rendering of the grid graph by 12 libraries: https://www.youtube.com/watch?v=Ax7KSQZ0_hk 
+
 Why?
 ====
 This repository is inspired by [@mbektimirov](https://github.com/mbektimirov)'s question [Difference with Sigma.js](https://github.com/anvaka/ngraph/issues/6). I am trying to list all known graph drawing libraries, and [inviting their authors](https://github.com/anvaka/graph-drawing-libraries/issues/1) to collaborate here.
