@@ -47,4 +47,9 @@
     </tbody>
   </table>
   <h2 ng-hide='loaded'>Loading statistics...</h2>
+  <h3 ng-show='showSecondLoading' class='ng-cloak'>Still loading...</h3>
+  <h4 ng-show='showThirdLoading' class='ng-cloak'>My free Heroku server is still starting...</h4>
+  <h5 ng-show='showErrorLoading' class='ng-cloak'>I must admit something went wrong. Do you see any errors in the console?
+    Please <a href="https://github.com/anvaka/graph-drawing-libraries/issues">report them</a>.
+  </h5>
 </div>
