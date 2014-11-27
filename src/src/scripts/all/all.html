@@ -35,13 +35,18 @@
     </thead>
     <tbody>
       <tr ng-repeat='library in libraries' ng-click='routeTo(library.name)' class='library-info'>
-        <td><a href='#' target="_blank" ng-href='{{library.url}}'>{{library.name}}</a></td>
+        <td>
+          <a href='#' target="_blank" ng-href='{{library.url}}'>{{library.name}}</a>
+        </td>
         <td><a href='#' ng-href='{{"#/" + getRoute(library.name)}}'>demo</a></td>
         <td>{{library.watchers}}</td>
         <td>{{library.forks}}</td>
         <td ng-attr-title='{{library.createdTooltip}}'>{{library.created}}</td>
         <td ng-attr-title='{{library.updatedTooltip}}'>{{library.updated}}</td>
-        <td>{{library.issues}}</td>
+        <td>{{library.issues}}
+          <br>
+          <img ng-src='http://issuestats.com/github/{{library.name}}/badge/issue'>
+        </td>
         <td>{{library.license}}</td>
       </tr>
     </tbody>
