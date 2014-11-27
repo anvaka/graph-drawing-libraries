@@ -5,8 +5,9 @@
 var qs = require('query-string');
 var query = qs.parse(window.location.search.substring(1));
 var allLibraries = require('../data/libraries').libraries;
+var app = angular.module('perf', []);
 
-window.PerfController = PerfController;
+app.controller('PerfController', PerfController);
 
 function PerfController($scope) {
   $scope.share = require('../share');

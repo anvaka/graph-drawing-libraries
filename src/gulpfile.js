@@ -88,11 +88,11 @@ function copyDist() {
       .pipe(gulp.dest('./dist/performance'));
 
   gulp.src([
-    './node_modules/angular/lib/angular.min.js'
+    './node_modules/angular/angular.min.js'
   ]).pipe(gulp.dest('./dist/performance'));
 
   gulp.src([
-      './node_modules/angular/lib/angular.min.js',
+      './node_modules/angular/angular.min.js',
       './src/external/angular-route.js'
     ])
     .pipe(concat('external.min.js'))
