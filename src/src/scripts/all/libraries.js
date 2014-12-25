@@ -11,7 +11,7 @@ module.exports = function getLibraries($http) {
     function merge(repoInfo) {
       var offlineInfo = libraries.libraries[repoInfo.name];
       if (!offlineInfo) {
-        // we don't know wabout this library, bail out:
+        // we don't know about this library, bail out:
         return repoInfo;
       }
       for (var name in offlineInfo) {
