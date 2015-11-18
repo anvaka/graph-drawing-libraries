@@ -45,10 +45,14 @@
     };
     var options = {
       // immediately start rendering the graph
-      stabilize: false,
+      physics: {
+        stabilization: false,
+      },
 
       // turn smooth curves off, faster
-      smoothCurves: false,
+      edges: {
+        smooth: false
+      },
 
       // specify a shape for all nodes
       nodes: {
