@@ -1,7 +1,7 @@
 var libraries = require('../data/libraries');
 
 module.exports = function getLibraries($http) {
-  return $http.get('http://gh-graph-stats.herokuapp.com/githubstats/').then(mergeWithOfflineData);
+  return $http.get('//gh-graph-stats.herokuapp.com/githubstats/').then(mergeWithOfflineData);
 
   function mergeWithOfflineData(res) {
     var repositories = res.data.repositories;
