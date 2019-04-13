@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='perf'>
+<head>
+  <meta charset="UTF-8">
+  <title>Libraries performance comparison</title>
+  <style>
+body,
+iframe {
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+  </style>
+
+  <link rel="stylesheet" type="text/css" href="../styles/style.css">
+</head>
+<body ng-controller='PerfController'>
+  <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <p class="navbar-text">
+        Rendered with <select ng-model='currentLibrary'
+                ng-options="lib for lib in libraries" ng-change='changeLibrary(currentLibrary)'></select>
+             ; You can also 
+             <a href="#" ng-href='{{changeGraphUrl}}'>render different graph</a>
+        </p>
+        <p class="navbar-text">
+        </p>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a title="Fork me on GitHub"  href="https://github.com/anvaka/graph-drawing-libraries"><i class="fa fa-github fa-lg"></i></a></li>
+        <li><a title="Share on Twitter" ng-click='share("twitter", $event)' href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fanvaka.github.io%2Fgraph-drawing-libraries%2F"><i class="fa fa-twitter fa-lg"></i></a></li>
+        <li><a title="Share on Google+" ng-click='share("google", $event)' href="https://plus.google.com/share?url=http%3A%2F%2Fanvaka.github.io%2Fgraph-drawing-libraries%2F"><i class="fa fa-google-plus fa-lg"></i></a></li>
+        <li><a title="Share on Facebook" ng-click='share("facebook", $event)' href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fanvaka.github.io%2Fgraph-drawing-libraries%2F"><i class="fa fa-facebook fa-lg"></i></a></li>
+      </ul>
+    </div><!-- /.container-fluid -->
+  </nav>
+  <iframe id='runner' src="" ng-src="{{libraryUrl}}" frameborder="0"></iframe>
+  <script src='angular.min.js'></script>
+  <script src='perfBundle.js'></script>
+</body>
+</html>

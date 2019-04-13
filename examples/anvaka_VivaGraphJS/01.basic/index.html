@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>anvaka/VivaGraphJS Basic Example</title>
+  <style type="text/css">
+    body,
+    svg {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<script src='../lib/vivagraph.js'></script>
+<script>
+  // create a network
+  var graph = Viva.Graph.graph();
+
+  graph.addLink(1, 2);
+  graph.addLink(1, 3);
+  graph.addLink(2, 4);
+  graph.addLink(2, 5);
+
+  var renderer = Viva.Graph.View.renderer(graph);
+  renderer.run();
+</script>
+</body>
+</html>

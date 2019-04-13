@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>mbostock/d3 Graph Drawing Performance Test</title>
+
+<style>
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+body,
+svg {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
+</head>
+<body>
+
+<div id="mynetwork"></div>
+
+<script src='../lib/d3.v3.min.js'></script>
+<script src='../../../performance/runSuite.js'></script>
+<script>
+runSuite(function (ngraph) {
+  var nodes = [], links = [];
+
+  ngraph.forEachNode(function (node) {
+    nodes.push({ id: node.id });
+  });
+  ngraph.forEachLink(function (link) {
+    links.push({ source: link.fromId, target: link.toId});
+  });
+  var G = { nodes: nodes, links: links };
+  var width = document.body.clientWidth,
+    height = document.body.clientHeight;
+
+  var svg = d3.select("#mynetwork").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  var force = d3.layout.force()
+    .charge(-120)
+    .linkDistance(30)
+    .size([width, height])
+    .nodes(G.nodes)
+    .links(G.links)
+    .start();
+
+  var link = svg.selectAll(".link")
+    .data(G.links)
+    .enter().append("line")
+    .attr("class", "link");
+
+  var node = svg.selectAll(".node")
+    .data(G.nodes)
+    .enter().append("circle")
+    .attr("class", "node")
+    .attr("r", 5)
+    .call(force.drag);
+
+  force.on("tick", function() {
+    link.attr("x1", function(d) {
+      return d.source.x;
+    })
+    .attr("y1", function(d) {
+      return d.source.y;
+    })
+    .attr("x2", function(d) {
+      return d.target.x;
+    })
+    .attr("y2", function(d) {
+      return d.target.y;
+    });
+
+    node.attr("cx", function(d) {
+      return d.x;
+    })
+    .attr("cy", function(d) {
+      return d.y;
+    });
+  });
+});
+</script>
+</body>
+</html>

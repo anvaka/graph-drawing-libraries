@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>cytoscape/cytoscape.js Basic Example</title>
+<style type="text/css">
+    body,
+    #mynetwork {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+<div id="mynetwork"></div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="../lib/arbor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.2.3/cytoscape.min.js"></script>
+<script>
+$('#mynetwork').cytoscape({
+  style: cytoscape.stylesheet()
+    .selector('node')
+      .css({
+        'content': 'data(name)',
+        'text-valign': 'center',
+        'color': 'white',
+        'text-outline-width': 2,
+        'text-outline-color': '#888'
+      }),
+
+  elements: {
+    nodes: [
+      // ids have to be strings
+      { data: { id: '1', name: 'Node 1' } },
+      { data: { id: '2', name: 'Node 2' } },
+      { data: { id: '3', name: 'Node 3' } },
+      { data: { id: '4', name: 'Node 4' } },
+      { data: { id: '5', name: 'Node 5' } }
+    ],
+    edges: [
+      { data: { source: '1', target: '2' } },
+      { data: { source: '1', target: '3' } },
+      { data: { source: '2', target: '4' } },
+      { data: { source: '2', target: '5' } }
+    ]
+  },
+
+  layout: {
+    name: 'arbor'
+  }
+});
+</script>
+</body>
+</html>

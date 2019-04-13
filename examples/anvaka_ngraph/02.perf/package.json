@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "ngraph.graph": "0.0.3",
+    "ngraph.three": "0.0.8"
+  }
+}

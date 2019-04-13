@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>cpettitt/dagre Basic Example (with d3)</title>
+<style>
+svg {
+    overflow: hidden;
+}
+
+.node rect {
+    stroke: #333;
+    stroke-width: 1.5px;
+    fill: #fff;
+}
+
+.edgeLabel rect {
+    fill: #fff;
+}
+
+.edgePath {
+    stroke: #333;
+    stroke-width: 1.5px;
+    fill: none;
+}
+</style>
+</head>
+<body>
+<svg width=650 height=680>
+    <g transform="translate(20,20)"/>
+</svg>
+
+<script src="../lib/d3.v3.min.js"></script>
+<script src="../lib/dagre-d3.min.js"></script>
+<script>
+// Create a new directed graph
+var g = new dagreD3.graphlib.Graph()
+  .setGraph({})
+  .setDefaultEdgeLabel(function() { return {}; } );
+
+// Add nodes to the graph. The first argument is the node id. The second is
+// metadata about the node. In this case we're going to add labels to each of
+// our nodes.
+g.setNode(1, { label: "Node 1" });
+g.setNode(2, { label: "Node 2" });
+g.setNode(3, { label: "Node 3" });
+g.setNode(4, { label: "Node 4" });
+g.setNode(5, { label: "Node 5" });
+
+// Add edges to the graph.
+g.setEdge(1, 2, { label: "Label 1->2" });
+g.setEdge(1, 3, { label: "Label 1->3" });
+g.setEdge(2, 4, { label: "Label 2->4" });
+g.setEdge(2, 5, { label: "Label 2->5" });
+
+// Create the renderer
+var render = new dagreD3.render();
+
+// Set up an SVG group so that we can translate the final graph.
+var svg = d3.select("svg"),
+    svgGroup = svg.append("g");
+
+// Run the renderer. This is what draws the final graph.
+render(d3.select("svg g"), g);
+
+// Center the graph
+var xCenterOffset = (svg.attr("width") - g.graph().width) / 2;
+svgGroup.attr("transform", "translate(" + xCenterOffset + ", 20)");
+svg.attr("height", g.graph().height + 40);
+</script>
+</body>
+</html>

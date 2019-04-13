@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>We Love Graphs: JavaScript Graph Drawing Libraries</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default" role="navigation" ng-controller='navController'>
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">We ♥ Graphs</a>
+        </div>
+
+        <ul class="nav navbar-nav">
+          <li ng-class='currentRoute === "all" ? "active" : ""'><a href="#/all">Github Stats</a></li>
+          <li ng-class='currentRoute === "details" ? "active" : ""'><a href="#/library/almende_vis" ng-href="{{lastDetailsRoute}}">Details</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a title="Fork me on GitHub"  href="https://github.com/anvaka/graph-drawing-libraries"><i class="fa fa-github fa-lg"></i></a></li>
+          <li><a title="Share on Twitter" ng-click='share("twitter", $event)' href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fanvaka.github.io%2Fgraph-drawing-libraries%2F"><i class="fa fa-twitter fa-lg"></i></a></li>
+          <li><a title="Share on Google+" ng-click='share("google", $event)' href="https://plus.google.com/share?url=http%3A%2F%2Fanvaka.github.io%2Fgraph-drawing-libraries%2F"><i class="fa fa-google-plus fa-lg"></i></a></li>
+          <li><a title="Share on Facebook" ng-click='share("facebook", $event)' href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fanvaka.github.io%2Fgraph-drawing-libraries%2F"><i class="fa fa-facebook fa-lg"></i></a></li>
+        </ul>
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div ng-view></div>
+    <script src='external.min.js' type="text/javascript" charset="utf-8">
+    </script>
+    <script src='bundle.js' type="text/javascript" charset="utf-8">
+    </script>
+  </body>
+</html>

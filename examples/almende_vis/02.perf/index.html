@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>almende/vis Graph Drawing Performance Test</title>
+  <style type="text/css">
+    body,
+    #mynetwork {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div id="mynetwork"></div>
+
+<script src='../lib/vis.js'></script>
+<script src='../../../performance/runSuite.js'></script>
+<script>
+  runSuite(function (ngraph) {
+    // create an array with nodes
+    var nodes = [];
+
+    // create an array with edges
+    var edges = [];
+
+    // copy ngraph to almende/vis format
+    ngraph.forEachNode(function (node) {
+      nodes.push({ id: node.id, label: ''});
+    });
+
+    ngraph.forEachLink(function (link) {
+      edges.push({from: link.fromId, to: link.toId});
+    });
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+    var data = {
+      nodes: nodes,
+      edges: edges
+    };
+    var options = {
+      // immediately start rendering the graph
+      physics: {
+        stabilization: false,
+      },
+
+      // turn smooth curves off, faster
+      edges: {
+        smooth: false
+      },
+
+      // specify a shape for all nodes
+      nodes: {
+        shape: 'dot' // 'square', 'dot', 'triangle', 'triangleDown', 'star', etc...
+      },
+
+      // to get a menu with sliders to tune the physics constants:
+      //configurePhysics: true,
+
+      // tuned physics for this specific data set (stabilizes faster)
+      physics: {
+        barnesHut: {
+          gravitationalConstant: -4800,
+          springConstant: 0.5,
+          springLength: 50}
+      }
+    };
+    var network = new vis.Network(container, data, options);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>strathausen/dracula Performance Test</title>
+</head>
+<body>
+
+<div id="mynetwork"></div>
+
+<script src='../lib/raphael.js'></script>
+<script src='../lib/dracula_graffle.js'></script>
+<script src='../lib/dracula_graph.js'></script>
+<script src='../../../performance/runSuite.js'></script>
+<script>
+runSuite(function (ngraph) {
+  // make a new graph
+  var g = new Graph();
+  ngraph.forEachLink(function (link) {
+    g.addEdge(link.fromId.toString(), link.toId.toString());
+  })
+
+  var layouter = new Graph.Layout.Spring(g);
+  layouter.layout();
+
+  var renderer = new Graph.Renderer.Raphael('mynetwork', g, 640, 480);
+  renderer.draw();
+})
+</script>
+</body>
+</html>

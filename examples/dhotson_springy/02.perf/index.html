@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>dhotson/springy Performance Test</title>
+</head>
+<body>
+
+<canvas id="mynetwork" width="640" height="480" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src='../lib/springy.js'></script>
+<script src='../lib/springyui.js'></script>
+<script src='../../../performance/runSuite.js'></script>
+<script>
+runSuite(function (ngraph) {
+  // make a new graph
+  var graph = new Springy.Graph();
+
+  ngraph.forEachNode(function (node) {
+    graph.addNode(new Springy.Node(node.id, {label:node.id}));
+  });
+
+  ngraph.forEachLink(function (link) {
+			var node1 = graph.nodeSet[link.fromId];
+			if (node1 == undefined) {
+				throw new TypeError("invalid node name: " + link.fromId);
+			}
+			var node2 = graph.nodeSet[link.toId];
+			if (node2 == undefined) {
+				throw new TypeError("invalid node name: " + link.toId);
+			}
+
+      graph.newEdge(node1, node2);
+  });
+
+  jQuery('#mynetwork').springy({ graph: graph });
+});
+</script>
+</body>
+</html>
