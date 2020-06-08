@@ -11,7 +11,7 @@ const libraries = [
   {name: 'd3/d3-force', url: 'https://github.com/d3/d3-force', license: 'BSD3'},
   {name: 'samizdatco/arbor', url: 'https://github.com/samizdatco/arbor', license: 'MIT'},
   {name: 'strathausen/dracula', url: 'https://github.com/strathausen/dracula', license: 'MIT'},
-];
+].sort((a, b) => a.name.localeCompare(b.name));
 
 let container = document.querySelector('#table-container');
 let columns = [{
@@ -43,13 +43,23 @@ let columns = [{
 ];
 
 renderColumns(columns);
+renderSortedLibraries();
 
-libraries.forEach(renderLibrary);
+function renderSortedLibraries() {
+  clearLibraries();
+  libraries.forEach(renderLibrary);
+}
+
+function clearLibraries() {
+  Array.from(container.querySelectorAll('.library-container')).forEach(row => {
+    row.parentElement.removeChild(row);
+  });
+}
 
 function renderColumns(columns) {
   let header = document.createElement('tr');
   header.classList.add('header')
-  header.innerHTML = columns.map(c => `<td>${c.name}</td>`).join('');
+  header.innerHTML = columns.map((c, idx) => `<td class='column-header' data-column='${idx}'>${c.name}</td>`).join('');
   container.appendChild(header)
 }
 
@@ -62,8 +72,9 @@ function renderLibrary(library) {
   columns.forEach((column, colIndex) => {
     let td = document.createElement('td');
     if (column.className) td.classList.add(column.className);
-
-    if (column.request) {
+    if (library.columns[colIndex] !== undefined) {
+        td.innerHTML = library.columns[colIndex];
+    } else if (column.request) {
       fetch(column.request(library), {mode: 'cors'})
         .then(x => x.json())
         .then(json => {
