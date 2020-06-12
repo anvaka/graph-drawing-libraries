@@ -1,5 +1,5 @@
 const libraries = [
-  {name: 'visjs/vis-network', url: 'https://visjs.github.io/vis-network/examples/', license: 'Apache V2.0'},
+  {name: 'visjs/vis-network', url: 'https://visjs.github.io/vis-network/examples/', license: 'Apache-2.0'},
   {name: 'cytoscape/cytoscape.js', url: 'https://js.cytoscape.org/', license: 'MIT'},
   {name: 'dagrejs/dagre', url: 'https://github.com/dagrejs/dagre', license: 'MIT'},
   {name: 'anvaka/ngraph', url: 'https://github.com/anvaka/ngraph', license: 'MIT'},
@@ -11,6 +11,7 @@ const libraries = [
   {name: 'd3/d3-force', url: 'https://github.com/d3/d3-force', license: 'BSD3'},
   {name: 'samizdatco/arbor', url: 'https://github.com/samizdatco/arbor', license: 'MIT'},
   {name: 'strathausen/dracula', url: 'https://github.com/strathausen/dracula', license: 'MIT'},
+  {name: 'apache/incubator-echarts', url: 'https://github.com/apache/incubator-echarts', license: 'Apache-2.0'}
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 let container = document.querySelector('#table-container');
