@@ -12,6 +12,7 @@ This is a list of known graph drawing libraries. See [a website with interactive
 * [dhotson/springy](https://github.com/dhotson/springy) - A force directed graph layout algorithm in JavaScript http://getspringy.com
 * [fkling/JSNetworkX](https://github.com/fkling/JSNetworkX) - A port of the graph library NetworkX to JavaScript http://jsnetworkx.org
 * [GraphAlchemist/Alchemy](https://github.com/GraphAlchemist/Alchemy) - a graph drawing application built in d3.
+* [Graphistry](https://www.graphistry.com/get-started) - GPU client+server accelerated, point-and-click filtering/histograms/timebars/coloring/clustering, language-neutral REST and JavaScript/React/Python embedding APIs, [data science notebook support](https://github.com/graphistry/pygraphistry), all major browsers from last 5+ years + mobile
 * [jacomyal/sigma.js](https://github.com/jacomyal/sigma.js) - A JavaScript library dedicated to graph drawing http://sigmajs.org
 * [Linkurious/linkurious.js](https://github.com/Linkurious/linkurious.js) - A fork of `jacomyal/sigma.js` bundled with 30+ plugins.
 * [mbostock/d3](https://github.com/mbostock/d3) - A JavaScript visualization library for HTML and SVG. http://d3js.org
