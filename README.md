@@ -23,6 +23,9 @@ If you find something missing, please let me know.
 
 Video
 =====
+
+*NOTE: This video is outdated. Keeping it for historical reasons only*
+
 Side by side rendering of the grid graph by 12 libraries: https://www.youtube.com/watch?v=Ax7KSQZ0_hk 
 
 Why?
