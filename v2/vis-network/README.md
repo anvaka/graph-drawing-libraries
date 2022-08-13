@@ -6,12 +6,6 @@ Document below is work in progress.
 
 ## Architecture
 
-Sigma.js can be split into two parts:
-
-* graphology - a library that provides the graph structure and algorithms
-* sigma - a library that provides the visualization
-
-
 TODO: 
 * How graph structure is modelled?
 * Performance
