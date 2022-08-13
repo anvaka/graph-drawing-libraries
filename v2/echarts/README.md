@@ -2,18 +2,6 @@
 
 https://echarts.apache.org/examples/en/#chart-type-graph
 
-Document below is work in progress.
-
-## Architecture
-
-TODO: 
-* How graph structure is modelled?
-* Performance
-* UI customization
-* Community 
-* Language implemented
-* Accessibility
-
 ## Subjective notes
 
 These are notes I collected during hello world implementation

@@ -11,15 +11,6 @@ Sigma.js can be split into two parts:
 * graphology - a library that provides the graph structure and algorithms
 * sigma - a library that provides the visualization
 
-
-TODO: 
-* How graph structure is modelled?
-* Performance
-* UI customization
-* Community 
-* Language implemented
-* Accessibility
-
 ## Subjective notes
 
 These are notes I collected during hello world implementation
