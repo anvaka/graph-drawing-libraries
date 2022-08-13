@@ -38,4 +38,5 @@ What I don't like:
 * No documentation on using the library without bundlers (wasn't able to find how to do it)
 * Documentation is outdated for some modules. E.g. https://github.com/graphology/graphology/tree/master/src/layout-forceatlas2
 lists `forceAtlas2.assign(graph)` as a way to assign positions, but it actually will throw. 
+* Zoom in and out is a bit slow (likely due to the labels rendering?)
 

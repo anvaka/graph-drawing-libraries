@@ -3358,9 +3358,9 @@
       exports.getWheelDelta = getWheelDelta;
       var Captor = function(_super) {
         __extends(Captor2, _super);
-        function Captor2(container2, renderer2) {
+        function Captor2(container, renderer2) {
           var _this = _super.call(this) || this;
-          _this.container = container2;
+          _this.container = container;
           _this.renderer = renderer2;
           return _this;
         }
@@ -3436,8 +3436,8 @@
       var DOUBLE_CLICK_ZOOMING_DURATION = 200;
       var MouseCaptor = function(_super) {
         __extends(MouseCaptor2, _super);
-        function MouseCaptor2(container2, renderer2) {
-          var _this = _super.call(this, container2, renderer2) || this;
+        function MouseCaptor2(container, renderer2) {
+          var _this = _super.call(this, container, renderer2) || this;
           _this.enabled = true;
           _this.draggedEvents = 0;
           _this.downStartTime = null;
@@ -3457,22 +3457,22 @@
           _this.handleMove = _this.handleMove.bind(_this);
           _this.handleWheel = _this.handleWheel.bind(_this);
           _this.handleOut = _this.handleOut.bind(_this);
-          container2.addEventListener("click", _this.handleClick, false);
-          container2.addEventListener("contextmenu", _this.handleRightClick, false);
-          container2.addEventListener("mousedown", _this.handleDown, false);
-          container2.addEventListener("wheel", _this.handleWheel, false);
-          container2.addEventListener("mouseout", _this.handleOut, false);
+          container.addEventListener("click", _this.handleClick, false);
+          container.addEventListener("contextmenu", _this.handleRightClick, false);
+          container.addEventListener("mousedown", _this.handleDown, false);
+          container.addEventListener("wheel", _this.handleWheel, false);
+          container.addEventListener("mouseout", _this.handleOut, false);
           document.addEventListener("mousemove", _this.handleMove, false);
           document.addEventListener("mouseup", _this.handleUp, false);
           return _this;
         }
         MouseCaptor2.prototype.kill = function() {
-          var container2 = this.container;
-          container2.removeEventListener("click", this.handleClick);
-          container2.removeEventListener("contextmenu", this.handleRightClick);
-          container2.removeEventListener("mousedown", this.handleDown);
-          container2.removeEventListener("wheel", this.handleWheel);
-          container2.removeEventListener("mouseout", this.handleOut);
+          var container = this.container;
+          container.removeEventListener("click", this.handleClick);
+          container.removeEventListener("contextmenu", this.handleRightClick);
+          container.removeEventListener("mousedown", this.handleDown);
+          container.removeEventListener("wheel", this.handleWheel);
+          container.removeEventListener("mouseout", this.handleOut);
           document.removeEventListener("mousemove", this.handleMove);
           document.removeEventListener("mouseup", this.handleUp);
         };
@@ -3839,12 +3839,12 @@
       function getNodesInAxisAlignedRectangleArea(maxLevel, data, containers, x1, y1, w, h) {
         var stack = [0, 0];
         var collectedNodes = [];
-        var container2;
+        var container;
         while (stack.length) {
           var level = stack.pop(), block = stack.pop();
-          container2 = containers[block];
-          if (container2)
-            (0, extend_1.default)(collectedNodes, container2);
+          container = containers[block];
+          if (container)
+            (0, extend_1.default)(collectedNodes, container);
           if (level >= maxLevel)
             continue;
           var topLeftBlock = 4 * block + BLOCKS, topRightBlock = 4 * block + 2 * BLOCKS, bottomLeftBlock = 4 * block + 3 * BLOCKS, bottomRightBlock = 4 * block + 4 * BLOCKS;
@@ -5235,26 +5235,26 @@
       var TOUCH_INERTIA_DURATION = 200;
       var TouchCaptor = function(_super) {
         __extends(TouchCaptor2, _super);
-        function TouchCaptor2(container2, renderer2) {
-          var _this = _super.call(this, container2, renderer2) || this;
+        function TouchCaptor2(container, renderer2) {
+          var _this = _super.call(this, container, renderer2) || this;
           _this.enabled = true;
           _this.isMoving = false;
           _this.touchMode = 0;
           _this.handleStart = _this.handleStart.bind(_this);
           _this.handleLeave = _this.handleLeave.bind(_this);
           _this.handleMove = _this.handleMove.bind(_this);
-          container2.addEventListener("touchstart", _this.handleStart, false);
-          container2.addEventListener("touchend", _this.handleLeave, false);
-          container2.addEventListener("touchcancel", _this.handleLeave, false);
-          container2.addEventListener("touchmove", _this.handleMove, false);
+          container.addEventListener("touchstart", _this.handleStart, false);
+          container.addEventListener("touchend", _this.handleLeave, false);
+          container.addEventListener("touchcancel", _this.handleLeave, false);
+          container.addEventListener("touchmove", _this.handleMove, false);
           return _this;
         }
         TouchCaptor2.prototype.kill = function() {
-          var container2 = this.container;
-          container2.removeEventListener("touchstart", this.handleStart);
-          container2.removeEventListener("touchend", this.handleLeave);
-          container2.removeEventListener("touchcancel", this.handleLeave);
-          container2.removeEventListener("touchmove", this.handleMove);
+          var container = this.container;
+          container.removeEventListener("touchstart", this.handleStart);
+          container.removeEventListener("touchend", this.handleLeave);
+          container.removeEventListener("touchcancel", this.handleLeave);
+          container.removeEventListener("touchmove", this.handleMove);
         };
         TouchCaptor2.prototype.getDimensions = function() {
           return {
@@ -5535,7 +5535,7 @@
       }
       var Sigma2 = function(_super) {
         __extends(Sigma3, _super);
-        function Sigma3(graph2, container2, settings) {
+        function Sigma3(graph2, container, settings) {
           if (settings === void 0) {
             settings = {};
           }
@@ -5578,10 +5578,10 @@
           _this.settings = (0, utils_1.assign)({}, settings_1.DEFAULT_SETTINGS, settings);
           (0, settings_1.validateSettings)(_this.settings);
           (0, utils_1.validateGraph)(graph2);
-          if (!(container2 instanceof HTMLElement))
+          if (!(container instanceof HTMLElement))
             throw new Error("Sigma: container should be an html element.");
           _this.graph = graph2;
-          _this.container = container2;
+          _this.container = container;
           _this.createWebGLContext("edges", { preserveDrawingBuffer: true });
           _this.createCanvasContext("edgeLabels");
           _this.createWebGLContext("nodes");
@@ -6418,9 +6418,9 @@
             (0, utils_1.cancelFrame)(this.renderHighlightedNodesFrame);
             this.renderHighlightedNodesFrame = null;
           }
-          var container2 = this.container;
-          while (container2.firstChild)
-            container2.removeChild(container2.firstChild);
+          var container = this.container;
+          while (container.firstChild)
+            container.removeChild(container.firstChild);
         };
         Sigma3.prototype.scaleSize = function(size) {
           return size / this.cameraSizeRatio;
@@ -7220,7 +7220,6 @@
   var import_graphology = __toESM(require_graphology_umd_min());
   var import_sigma = __toESM(require_sigma2());
   var import_graphology_layout_forceatlas2 = __toESM(require_graphology_layout_forceatlas2());
-  var container = document.getElementById("sigma-container");
   var graph = new import_graphology.default();
   for (let x = 0; x < 10; x++) {
     for (let y = 0; y < 10; y++) {
@@ -7242,6 +7241,6 @@
     }
   }
   import_graphology_layout_forceatlas2.default.assign(graph, { iterations: 50 });
-  var renderer = new import_sigma.default(graph, container);
+  var renderer = new import_sigma.default(graph, document.getElementById("container"));
 })();
 //# sourceMappingURL=bundle.js.map

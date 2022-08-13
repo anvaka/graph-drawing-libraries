@@ -2,8 +2,6 @@ import Graph from 'graphology';
 import Sigma from 'sigma';
 import forceAtlas2 from 'graphology-layout-forceatlas2';
 
-const container = document.getElementById('sigma-container');
-
 const graph = new Graph();
 for (let x = 0; x < 10; x++) {
   for (let y = 0; y < 10; y++) {
@@ -28,4 +26,4 @@ for (let x = 0; x < 10; x++) {
 // Assign the positions to the nodes:
 forceAtlas2.assign(graph, {iterations: 50});
 
-const renderer = new Sigma(graph, container);
+const renderer = new Sigma(graph, document.getElementById('container'));
