@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cytoscape.js hello world</title>
+
+  <style>
+    html, body, #container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.22.1/cytoscape.min.js"></script>
+</head>
+<body>
+  <div id="container"></div>
+  
+  <script type="text/javascript">
+    var rows = 10, columns = 10;
+    var elements = [];
+    for (var x = 0; x < columns; x++) {
+      for (var y = 0; y < rows; y++) {
+        elements.push({
+          data: {
+            id: `${x}${y}`, 
+            name: `Node ${x} ${y}`, 
+          }
+        });
+      }
+    }
+
+    for (var x = 0; x < columns; x++) {
+      for (var y = 0; y < rows; y++) {
+        if (x + 1 < columns) elements.push({data: {source: `${x}${y}`, target: `${x + 1}${y}`}});
+        if (y + 1 < rows)    elements.push({data: {source: `${x}${y}`, target: `${x}${y + 1}`}});
+      }
+    }
+
+  var cy = cytoscape({
+  container: document.getElementById('container'), // container to render in
+  elements: elements,
+  style: [{
+      selector: 'node',
+      style: {
+        'background-color': '#666',
+        'label': 'data(name)'
+      }
+    }, {
+      selector: 'edge',
+      style: {
+        'width': 3,
+        'line-color': '#ccc',
+        'target-arrow-color': '#ccc',
+        'target-arrow-shape': 'triangle',
+        'curve-style': 'bezier'
+      }
+    }],
+  layout: {
+    name: 'cose',
+    rows: 2
+  }
+});
+  </script>
+</body>
+</html>
