@@ -25,3 +25,6 @@ or a bad (they called old things new names) thing
   - has `getElementById()`, but no `querySelector()`
   - has `selector` language, but has to augment API with functions like `successors, outgoers, incomers, predecessors, etc.`
 * No vector export?
+* Selector driven node customization could be taken a bit too far ([example](https://github.com/PathwayCommons/cytoscape-sbgn-stylesheet/blob/master/src/sbgnStyle/index.js#L39)):
+  - Some of these styles could probably be better on the node itself, not isolated in the styles
+  - Feels like reinventing a dot format
