@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dagre.js example</title>
+  <style>
+    html, body, svg {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js" integrity="sha512-psLUZfcgPmi012lcpVHkWoOqyztollwCGu4w/mXijFMK/YcdUdP06voJNVOJ7f/dUIlO2tGlDLuypRyXX2lcvQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js"></script>
+<script src='https://unpkg.com/simplesvg@0.1.3/dist/simplesvg.min.js'></script>
+</head>
+<body>
+  <svg>
+    <g id="graph">
+
+    </g>
+  </svg>
+ <script>
+
+  var g = new dagre.graphlib.Graph();
+
+  // These two lines are necessary, otherwise dagree crashes
+  g.setGraph({});
+  g.setDefaultEdgeLabel(function() { return {}; });
+
+  var rows = 5, columns = 5;
+  var nodeWidth = 140;
+  var nodeHeight = 32;
+  var nodes = [];
+  for (var x = 0; x < columns; x++) {
+    for (var y = 0; y < rows; y++) {
+      g.setNode(`${x}${y}`, { label: `Node ${x} ${y}`, width: nodeWidth, height: nodeHeight });
+    }
+  }
+
+  var edges = [];
+  for (var x = 0; x < columns; x++) {
+    for (var y = 0; y < rows; y++) {
+      if (x + 1 < columns) g.setEdge(`${x}${y}`, `${x + 1}${y}`);
+      if (y + 1 < rows) g.setEdge(`${x}${y}`, `${x}${y + 1}`);
+    }
+  }
+
+  dagre.layout(g);
+
+  // Render
+  var scene = document.querySelector('#graph');
+  panzoom(scene);
+
+  g.nodes().forEach(drawNode);
+  g.edges().forEach(drawLink);
+
+  function drawNode(nodeId) {
+    var node = g.node(nodeId);
+    scene.appendChild(sivg('rect', {
+      fill: 'white',
+      stroke: 'black',
+      'stroke-width': '1px',
+      width: node.width,
+      height: node.height,
+      x: node.x - node.width / 2,
+      y: node.y - node.height / 2,
+    }));
+
+    var label = sivg('text', {
+      x: node.x,
+      y: node.y,
+      'text-anchor': 'middle',
+      'alignment-baseline': 'middle',
+    });
+    label.text(node.label);
+    scene.appendChild(label);
+  }
+
+  function drawLink(e) {
+    scene.appendChild(sivg('path', {
+      d: getPathFromEdge(g.edge(e)),
+      fill: 'none',
+      stroke: 'black',
+      'stroke-width': '1px',
+    }))
+  }
+  function getPathFromEdge(edge) {
+    var points = edge.points;
+    while (points.length % 3 !== 0) {
+      points.push(points[points.length - 1]);
+    }
+
+    return `M ${points[0].x} ${points[0].y} C` + points.map(p => p.x + ' ' + p.y).join(' ');
+  }
+ </script> 
+</body>
+</html>
