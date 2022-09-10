@@ -17,7 +17,8 @@ This is a list of known graph drawing libraries. See [a website with interactive
 * [samizdatco/arbor](https://github.com/samizdatco/arbor) - a graph visualization library using web workers and jQuery http://arborjs.org
 * [strathausen/dracula](https://github.com/strathausen/dracula) - JavaScript browser based layout and representation of connected graphs. http://www.graphdracula.net
 * [antvis/g6](https://github.com/antvis/g6) - G6: A Graph Visualization Framework in TypeScript.
-
+* [vasturiano/force-graph](https://github.com/vasturiano/force-graph) - Force-directed graph rendered on HTML5 canvas.
+ 
 If you find something missing, please let me know.
 
 ## Commercial software
