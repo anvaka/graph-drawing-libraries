@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "build": "esbuild --bundle index.js --sourcemap --outfile=bundled/bundle.js"
+  },
+  "dependencies": {
+    "@cosmograph/cosmos": "^1.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.0"
+  }
+}
