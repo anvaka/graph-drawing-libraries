@@ -16,6 +16,7 @@ What I don't like:
 
 * License. I don't like the way it looks (Creative Commons Attribution-NonCommercial 4.0 International Public License)
 * No unit tests.
+* String ids not working or I have a bug somewhere? Gave up and rewrote with numbers.
 * Documentation is very limited. Had to read the source code to put all together.
 * Laptop gets hot
 * Not all GPUs support EXT_float_blend extension, make it unusable on some devices (e.g. iOS 15.4+)
