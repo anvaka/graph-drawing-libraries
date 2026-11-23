@@ -3,10 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>anvaka/VivaGraphJS Performance Test</title>
-<style type="text/css">
-    body,
-    canvas {
-      position: absolute;
+  <style type="text/css">
+    html,
+    body {
       margin: 0;
       padding: 0;
       width: 100%;
@@ -16,40 +15,14 @@
 </head>
 <body>
 
-<script src='../lib/vivagraph.js'></script>
+<script src='../lib/vivagraph.min.js'></script>
 <script src='../../../performance/runSuite.js'></script>
 <script>
-  runSuite(function (ngraph) {
-    // first we transform ngraph graph to vivagraph graph
-    // then run the webgl renderer:
-    var graph = Viva.Graph.graph();
-    ngraph.forEachNode(function (node) {
-      graph.addNode(node.id);
-    });
-
-    ngraph.forEachLink(function (link) {
-      graph.addLink(link.fromId, link.toId);
-    });
-
-    // adjust layout arguments:
-    var layout = Viva.Graph.Layout.forceDirected(graph, {
-        springLength : 30,
-        springCoeff : 0.0008,
-        dragCoeff : 0.01,
-        gravity : -1.2,
-        theta : 0.8
-    });
-
-    // use webgl renderer:
-    var graphics = Viva.Graph.View.webglGraphics();
-
-    var renderer = Viva.Graph.View.renderer(graph, {
-        layout   : layout,
-        graphics : graphics
-    });
-
-    // start animation
-    renderer.run();
+  runSuite(function (graph) {
+    // The performance suite makes an ngraph.graph, which is what VivaGraph
+    // draws: no need to convert it. Everything else is left at its default,
+    // so from 2,000 nodes up the layout runs on WebGPU where there is one.
+    Viva.render(graph);
   });
 </script>
 </body>

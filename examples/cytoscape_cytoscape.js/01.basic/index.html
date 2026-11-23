@@ -16,11 +16,11 @@
 </head>
 <body>
 <div id="mynetwork"></div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="../lib/arbor.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.2.3/cytoscape.min.js"></script>
+<script src="../lib/cytoscape.min.js"></script>
 <script>
-$('#mynetwork').cytoscape({
+cytoscape({
+  container: document.getElementById('mynetwork'),
+
   style: cytoscape.stylesheet()
     .selector('node')
       .css({
@@ -49,7 +49,7 @@ $('#mynetwork').cytoscape({
   },
 
   layout: {
-    name: 'arbor'
+    name: 'cose'
   }
 });
 </script>

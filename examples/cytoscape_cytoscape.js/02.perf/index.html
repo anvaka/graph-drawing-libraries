@@ -16,9 +16,7 @@
 </head>
 <body>
 <div id="mynetwork"></div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="../lib/arbor.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.2.3/cytoscape.min.js"></script>
+<script src="../lib/cytoscape.min.js"></script>
 <script src='../../../performance/runSuite.js'></script>
 <script>
 
@@ -33,15 +31,13 @@
       edges.push({ data: { source: link.fromId.toString(), target: link.toId.toString() } });
     })
 
-    $('#mynetwork').cytoscape({
+    cytoscape({
+      container: document.getElementById('mynetwork'),
+
       style: cytoscape.stylesheet()
         .selector('node')
           .css({
-            'content': 'data(name)',
-            'text-valign': 'center',
-            'color': 'white',
-            'text-outline-width': 2,
-            'text-outline-color': '#888'
+            'background-color': '#888'
           }),
 
       elements: {
@@ -50,7 +46,7 @@
       },
 
       layout: {
-        name: 'arbor'
+        name: 'cose'
       }
     });
 });

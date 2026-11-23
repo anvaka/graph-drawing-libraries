@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>vasturiano/3d-force-graph Basic Example</title>
+  <style type="text/css">
+    html,
+    body,
+    #graph {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+<div id="graph"></div>
+
+<script src='../lib/3d-force-graph.min.js'></script>
+<script>
+  // create a network
+  var data = {
+    nodes: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
+    links: [
+      { source: 1, target: 2 },
+      { source: 1, target: 3 },
+      { source: 2, target: 4 },
+      { source: 2, target: 5 }
+    ]
+  };
+
+  new ForceGraph3D(document.getElementById('graph')).graphData(data);
+</script>
+</body>
+</html>

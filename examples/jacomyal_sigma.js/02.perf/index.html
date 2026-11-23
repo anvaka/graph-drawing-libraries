@@ -15,36 +15,35 @@
   </style>
 </head>
 <body>
-
 <div id="mynetwork"></div>
 
+<script src='../lib/graphology.umd.min.js'></script>
+<script src='../lib/graphology-library.min.js'></script>
 <script src='../lib/sigma.min.js'></script>
-<script src='../lib/plugins/sigma.layout.forceAtlas2.min.js'></script>
 <script src='../../../performance/runSuite.js'></script>
 <script>
 runSuite(function (ngraph) {
-    var nodes = [], edges = [];
-    ngraph.forEachNode(function (node) {
-      nodes.push(
-        { id: node.id.toString(), x: Math.random(), y: Math.random(), size: 2, color: '#666' }
-      );
-    });
-    ngraph.forEachLink(function (link) {
-      edges.push(
-        { id: link.id, source: link.fromId.toString(), target: link.toId.toString() }
-      );
-    });
-
-  var graph = {
-        nodes: nodes,
-        edges: edges
-      };
-
-  var s = new sigma({
-    graph: graph,
-    container: 'mynetwork'
+  // copy ngraph to graphology
+  var graph = new graphology.Graph();
+  ngraph.forEachNode(function (node) {
+    graph.addNode(node.id, { x: Math.random(), y: Math.random(), size: 3, color: '#666' });
   });
-  s.startForceAtlas2();
+  ngraph.forEachLink(function (link) {
+    graph.mergeEdge(link.fromId, link.toId);
+  });
+
+  var renderer = new Sigma(graph, document.getElementById('mynetwork'), {
+    settings: {
+      // node sizes are in pixels, not in the units of the graph coordinates
+      itemSizesReference: 'screen'
+    }
+  });
+
+  var forceAtlas2 = graphologyLibrary.layoutForceAtlas2;
+  var layout = new graphologyLibrary.FA2Layout(graph, {
+    settings: forceAtlas2.inferSettings(graph)
+  });
+  layout.start();
 });
 </script>
 </body>

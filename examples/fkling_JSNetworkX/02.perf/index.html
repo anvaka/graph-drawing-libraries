@@ -20,7 +20,7 @@
 
 <div id="mynetwork"></div>
 
-<script src='../lib/d3.v2.min.js'></script>
+<script src='../lib/d3.v3.min.js'></script>
 <script src='../lib/jsnetworkx.js'></script>
 <script src='../../../performance/runSuite.js'></script>
 
@@ -30,9 +30,9 @@ runSuite(function (ngraph) {
     ngraph.forEachLink(function (link) {
       edges.push([link.fromId, link.toId]);
     });
-    var G = jsnx.Graph();
+    var G = new jsnx.Graph();
 
-    G.add_edges_from(edges);
+    G.addEdgesFrom(edges);
 
     jsnx.draw(G, { element: '#mynetwork' });
   });

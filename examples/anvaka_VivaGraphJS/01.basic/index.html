@@ -4,9 +4,8 @@
   <meta charset="utf-8">
   <title>anvaka/VivaGraphJS Basic Example</title>
   <style type="text/css">
-    body,
-    svg {
-      position: absolute;
+    html,
+    body {
       margin: 0;
       padding: 0;
       width: 100%;
@@ -16,18 +15,18 @@
 </head>
 <body>
 
-<script src='../lib/vivagraph.js'></script>
+<script src='../lib/vivagraph.min.js'></script>
 <script>
   // create a network
-  var graph = Viva.Graph.graph();
+  var graph = Viva.createGraph();
 
   graph.addLink(1, 2);
   graph.addLink(1, 3);
   graph.addLink(2, 4);
   graph.addLink(2, 5);
 
-  var renderer = Viva.Graph.View.renderer(graph);
-  renderer.run();
+  // one call runs the layout and draws the graph in the window
+  Viva.render(graph);
 </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /**
- * Springy v2.7.1
+ * Springy v2.8.0
  *
  * Copyright (c) 2010-2013 Dennis Hotson
  *
@@ -327,12 +327,13 @@
 
 	// -----------
 	var Layout = Springy.Layout = {};
-	Layout.ForceDirected = function(graph, stiffness, repulsion, damping, minEnergyThreshold) {
+	Layout.ForceDirected = function(graph, stiffness, repulsion, damping, minEnergyThreshold, maxSpeed) {
 		this.graph = graph;
 		this.stiffness = stiffness; // spring stiffness constant
 		this.repulsion = repulsion; // repulsion constant
 		this.damping = damping; // velocity damping factor
 		this.minEnergyThreshold = minEnergyThreshold || 0.01; //threshold used to determine render stop
+		this.maxSpeed = maxSpeed || Infinity; // nodes aren't allowed to exceed this speed
 
 		this.nodePoints = {}; // keep track of points associated with nodes
 		this.edgeSprings = {}; // keep track of springs associated with edges
@@ -451,6 +452,9 @@
 			// Is this, along with updatePosition below, the only places that your
 			// integration code exist?
 			point.v = point.v.add(point.a.multiply(timestep)).multiply(this.damping);
+			if (point.v.magnitude() > this.maxSpeed) {
+			    point.v = point.v.normalise().multiply(this.maxSpeed);
+			}
 			point.a = new Vector(0,0);
 		});
 	};
@@ -641,14 +645,16 @@
 	 * Renderer handles the layout rendering loop
 	 * @param onRenderStop optional callback function that gets executed whenever rendering stops.
 	 * @param onRenderStart optional callback function that gets executed whenever rendering starts.
+	 * @param onRender optional callback function that gets executed after each frame is rendered.
 	 */
-	var Renderer = Springy.Renderer = function(layout, clear, drawEdge, drawNode, onRenderStop, onRenderStart) {
+	var Renderer = Springy.Renderer = function(layout, clear, drawEdge, drawNode, onRenderStop, onRenderStart, onRender) {
 		this.layout = layout;
 		this.clear = clear;
 		this.drawEdge = drawEdge;
 		this.drawNode = drawNode;
 		this.onRenderStop = onRenderStop;
 		this.onRenderStart = onRenderStart;
+		this.onRender = onRender;
 
 		this.layout.graph.addGraphListener(this);
 	}
@@ -679,6 +685,8 @@
 			t.layout.eachNode(function(node, point) {
 				t.drawNode(node, point.p);
 			});
+			
+			if (t.onRender !== undefined) { t.onRender(); }
 		}, this.onRenderStop, this.onRenderStart);
 	};
 

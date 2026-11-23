@@ -5,25 +5,22 @@
   <title>strathausen/dracula Performance Test</title>
 </head>
 <body>
-
 <div id="mynetwork"></div>
 
-<script src='../lib/raphael.js'></script>
-<script src='../lib/dracula_graffle.js'></script>
-<script src='../lib/dracula_graph.js'></script>
+<script src='../lib/raphael.min.js'></script>
+<script src='../lib/dracula.min.js'></script>
 <script src='../../../performance/runSuite.js'></script>
 <script>
 runSuite(function (ngraph) {
   // make a new graph
-  var g = new Graph();
+  var g = new Dracula.Graph();
   ngraph.forEachLink(function (link) {
     g.addEdge(link.fromId.toString(), link.toId.toString());
   })
 
-  var layouter = new Graph.Layout.Spring(g);
-  layouter.layout();
+  var layouter = new Dracula.Layout.Spring(g);
 
-  var renderer = new Graph.Renderer.Raphael('mynetwork', g, 640, 480);
+  var renderer = new Dracula.Renderer.Raphael('#mynetwork', g, 640, 480);
   renderer.draw();
 })
 </script>

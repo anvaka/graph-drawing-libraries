@@ -1,44 +1,33 @@
-<!DOCTYPE html>
-<html lang="en" ng-app='perf'>
-<head>
-  <meta charset="UTF-8">
-  <title>Libraries performance comparison</title>
-  <style>
-body,
-iframe {
-  position: absolute;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-  </style>
-
-  <link rel="stylesheet" type="text/css" href="../styles/style.css">
-</head>
-<body ng-controller='PerfController'>
-  <nav class="navbar navbar-default" role="navigation" style="margin-bottom: 0;">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <p class="navbar-text">
-        Rendered with <select ng-model='currentLibrary'
-                ng-options="lib for lib in libraries" ng-change='changeLibrary(currentLibrary)'></select>
-             ; You can also 
-             <a href="#" ng-href='{{changeGraphUrl}}'>render different graph</a>
-        </p>
-        <p class="navbar-text">
-        </p>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a title="Fork me on GitHub"  href="https://github.com/anvaka/graph-drawing-libraries"><i class="fa fa-github fa-lg"></i></a></li>
-        <li><a title="Share on Twitter" ng-click='share("twitter", $event)' href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fanvaka.github.io%2Fgraph-drawing-libraries%2F"><i class="fa fa-twitter fa-lg"></i></a></li>
-        <li><a title="Share on Google+" ng-click='share("google", $event)' href="https://plus.google.com/share?url=http%3A%2F%2Fanvaka.github.io%2Fgraph-drawing-libraries%2F"><i class="fa fa-google-plus fa-lg"></i></a></li>
-        <li><a title="Share on Facebook" ng-click='share("facebook", $event)' href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fanvaka.github.io%2Fgraph-drawing-libraries%2F"><i class="fa fa-facebook fa-lg"></i></a></li>
-      </ul>
-    </div><!-- /.container-fluid -->
-  </nav>
-  <iframe id='runner' src="" ng-src="{{libraryUrl}}" frameborder="0"></iframe>
-  <script src='angular.min.js'></script>
-  <script src='perfBundle.js'></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Ctext y=%2714%27 font-size=%2716%27 fill=%27%23d1242f%27%3E♥%3C/text%3E%3C/svg%3E">
+    <title>Graph drawing libraries performance comparison</title>
+    <script type="module" crossorigin src="../assets/index-CQmSaK8j.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/graphs-GDEIUalX.js">
+    <link rel="stylesheet" crossorigin href="../assets/graphs-CWH5hqIH.css">
+  </head>
+  <body class="performance">
+    <header class="site-header">
+      <label>
+        Rendered with
+        <select id="library"></select>
+      </label>
+      <label>
+        Graph
+        <select id="graph"></select>
+      </label>
+      <form id="size" class="size-form" hidden></form>
+      <a href="https://github.com/anvaka/graph-drawing-libraries">GitHub</a>
+    </header>
+    <p id="graph-info" class="graph-info" aria-live="polite"></p>
+    <p id="notice" class="notice" role="status" hidden></p>
+    <div id="guard" class="guard" hidden>
+      <p id="guard-text"></p>
+      <button id="guard-go">Render anyway</button>
+    </div>
+    <iframe id="runner" title="Graph rendered by the selected library"></iframe>
+  </body>
 </html>

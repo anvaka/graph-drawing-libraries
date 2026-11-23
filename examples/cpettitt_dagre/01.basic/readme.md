@@ -1,5 +1,5 @@
 # Dagre Basic example
 
-Dagre itself is rendering agnostic, and provides
-layout only functionality. This basic demo uses
-rendering library on top of dagre: [dagre-d3](https://github.com/cpettitt/dagre-d3)
+Dagre itself is rendering agnostic, and provides layout only functionality.
+This demo computes the layout with [dagre](https://github.com/dagrejs/dagre),
+and draws the result with plain SVG.
