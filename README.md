@@ -68,6 +68,10 @@ npm run build   # production version in src/dist
   per library: the browser of the visitor remembers how large a graph each library drew well
   and on which it froze, and the performance test asks before it starts a graph that is much
   larger than the first or as large as the second.
+* A pull request that changes `src` gets a preview: the
+  [preview workflow](.github/workflows/preview.yml) publishes it to
+  `https://anvaka.github.io/graph-drawing-libraries/pr-preview/pr-<number>/` and posts the
+  link to the pull request. Pull requests from forks have no previews.
 
 Why?
 ====
