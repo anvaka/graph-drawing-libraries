@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>cosmosgl/graph Basic Example</title>
+  <style type="text/css">
+    html,
+    body,
+    #graph {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+<div id="graph"></div>
+
+<script src='../lib/cosmos.min.js'></script>
+<script>
+  // cosmos.gl takes typed arrays. Points are [x1, y1, x2, y2, ...]:
+  // the simulation moves them from where they start
+  var positions = new Float32Array([
+    2048, 2048,
+    2100, 2048,
+    2048, 2100,
+    2150, 2000,
+    2150, 2100
+  ]);
+  // Links are [source1, target1, source2, target2, ...], by the index of a point
+  var links = new Float32Array([
+    0, 1,
+    0, 2,
+    1, 3,
+    1, 4
+  ]);
+
+  var graph = new Cosmos.Graph(document.getElementById('graph'), {
+    backgroundColor: '#ffffff',
+    pointDefaultColor: '#4b5bbf',
+    pointDefaultSize: 8,
+    linkDefaultColor: '#999999',
+    fitViewOnInit: true,
+    fitViewDelay: 1000
+  });
+  graph.setPointPositions(positions);
+  graph.setLinks(links);
+  graph.render();
+</script>
+</body>
+</html>

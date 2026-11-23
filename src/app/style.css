@@ -1,0 +1,279 @@
+:root {
+  color-scheme: light dark;
+  --text: #1f2328;
+  --muted: #656d76;
+  --background: #ffffff;
+  --surface: #f6f8fa;
+  --border: #d8dee4;
+  --link: #0969da;
+  --heart: #d1242f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #e6edf3;
+    --muted: #9198a1;
+    --background: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --link: #4493f8;
+    --heart: #f85149;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font: 16px/1.5 system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--background);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+  padding: 12px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header > :last-child {
+  margin-left: auto;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px 24px 48px;
+}
+
+.lead {
+  margin: 8px 0 24px;
+}
+
+.note,
+.help {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.help {
+  margin: 4px 0 0;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+thead th {
+  border-bottom-width: 2px;
+}
+
+tbody tr:hover {
+  background: var(--surface);
+}
+
+.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+th button {
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+th button::after {
+  display: inline-block;
+  width: 1em;
+  margin-left: 2px;
+  content: '';
+  color: var(--muted);
+}
+
+th[aria-sort='ascending'] button::after {
+  content: '↑';
+}
+
+th[aria-sort='descending'] button::after {
+  content: '↓';
+}
+
+.badge {
+  margin-left: 8px;
+  padding: 1px 8px;
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.graph-form {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 420px);
+  gap: 16px 24px;
+  margin: 24px 0;
+}
+
+/* Parameters are rendered into their own wrappers, let them share the grid */
+.graph-form > div:last-child,
+.param {
+  display: contents;
+}
+
+.graph-form label {
+  padding-top: 6px;
+  font-weight: 600;
+}
+
+select,
+input {
+  padding: 6px 10px;
+  font: inherit;
+  color: inherit;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.graph-form select,
+.graph-form input {
+  width: 100%;
+}
+
+.action {
+  font-weight: 600;
+}
+
+/* Performance runner: a toolbar and the library demo below it */
+.performance {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.site-header select {
+  max-width: 100%;
+}
+
+.size-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.size-form[hidden] {
+  display: none;
+}
+
+.size-form input {
+  width: 6em;
+  margin-left: 6px;
+}
+
+.size-form button,
+.notice button,
+.guard button {
+  padding: 6px 14px;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.graph-info {
+  margin: 0;
+  padding: 6px 24px;
+  font-size: 14px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.notice {
+  margin: 0;
+  padding: 8px 24px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.notice button {
+  margin-left: 8px;
+  padding: 2px 10px;
+}
+
+/* Takes the place of the demo until the visitor agrees to run it */
+.guard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px;
+  text-align: center;
+}
+
+.guard[hidden] {
+  display: none;
+}
+
+.guard p {
+  max-width: 560px;
+  margin: 0 0 8px;
+}
+
+.performance iframe {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  /* Demos were written for a white page */
+  background: #ffffff;
+  color-scheme: light;
+}
+
+.heart {
+  color: var(--heart);
+}
