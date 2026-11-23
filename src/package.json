@@ -1,38 +1,20 @@
 {
-  "name": "src",
+  "name": "graph-drawing-libraries",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "start": "gulp --port 31337",
-    "deploy": "./deploy-travis.sh",
-    "cover": "istanbul cover ./test/flatten.js",
-    "test": "tap test/*.js"
-  },
-  "browserify": {
-    "transform": [
-      "brfs"
-    ]
-  },
-  "devDependencies": {
-    "brfs": "^1.1.2",
-    "browserify": "^3.33.0",
-    "connect-livereload": "^0.3.2",
-    "express": "^3.5.1",
-    "gulp": "^3.5.6",
-    "gulp-concat": "^2.2.0",
-    "gulp-less": "^1.2.3",
-    "gulp-util": "^2.2.14",
-    "tap": "^0.4.12",
-    "tape": "^2.12.0",
-    "tiny-lr": "0.0.5",
-    "yargs": "^1.2.1",
-    "zuul": "^1.5.4"
+    "dev": "npm run runsuite && vite",
+    "build": "npm run runsuite && vite build",
+    "preview": "vite preview",
+    "runsuite": "vite build --config vite.runsuite.config.js",
+    "stats": "node scripts/fetch-stats.js",
+    "test": "node --test"
   },
   "dependencies": {
-    "an": "0.0.6",
-    "angular": "^1.2.10",
-    "font-awesome": "^4.1.0",
-    "githuboauth": "0.0.5",
-    "ngraph.generators": "^0.0.8",
-    "query-string": "~0.1.1",
-    "twitter-bootstrap-3.0.0": "^3.0.0"
+    "ngraph.generators": "^21.0.0",
+    "ngraph.graph": "^20.1.2"
+  },
+  "devDependencies": {
+    "vite": "^8.3.8"
   }
 }
