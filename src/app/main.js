@@ -1,8 +1,5 @@
-import libraries, { currentExample, generated } from './libraries.js';
-import { queryNames } from './graphTypes.js';
-import { customSizeOf, defaultGraph, describeGraph, fillGraphSelect } from './graphs.js';
+import libraries, { currentExample, demoAddress, generated } from './libraries.js';
 
-const sourceRoot = 'https://github.com/anvaka/graph-drawing-libraries/tree/main/src/public/examples/';
 const app = document.querySelector('#app');
 
 const columns = [
@@ -20,16 +17,24 @@ const monthFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'sho
 const dayFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long' });
 const numberFormat = new Intl.NumberFormat('en');
 
-// Lives outside of the view, so that the order survives a visit to details
-const sort = { key: 'name', descending: false };
+// The order of the list survives a visit to a demo
+const SORT = 'graph-drawing-libraries:sort';
+const sort = rememberedSort() || { key: 'name', descending: false };
 
 window.addEventListener('hashchange', route);
 route();
 
 function route() {
+  // Every library used to have a page of its own between the list and the
+  // demo. Links to these pages lead straight to the demo now.
   const details = window.location.hash.match(/^#\/library\/(.+)$/);
-  const view = details ? renderDetails(currentExample(decodeURIComponent(details[1]))) : renderAll();
-  app.replaceChildren(view);
+  const example = details && currentExample(decodeURIComponent(details[1]));
+  if (libraries.some(library => library.example && library.example === example)) {
+    window.location.replace(demoAddress(example));
+    return;
+  }
+
+  app.replaceChildren(renderAll());
   window.scrollTo(0, 0);
 }
 
@@ -43,6 +48,7 @@ function renderAll() {
       // Names read best A to Z, numbers and dates are more useful largest first
       sort.descending = sort.key === column.key ? !sort.descending : Boolean(column.numeric || column.date);
       sort.key = column.key;
+      rememberSort();
       update();
     });
     return h('th', { className: column.numeric ? 'numeric' : '' }, button);
@@ -52,7 +58,9 @@ function renderAll() {
 
   return h('div', { className: 'container' },
     h('p', { className: 'lead' },
-      'A collection of well known graph (network) drawing libraries for JavaScript. Missing one? ',
+      'A collection of well known graph (network) drawing libraries for JavaScript. ',
+      'Run a demo to watch a library draw a graph: the other libraries are one click away from there, on the same graph. ',
+      'Missing a library? ',
       h('a', { href: 'https://github.com/anvaka/graph-drawing-libraries/issues' }, 'Open an issue'), '.'
     ),
     h('div', { className: 'table-scroll' },
@@ -67,6 +75,24 @@ function renderAll() {
       headers[index].setAttribute('aria-sort', order);
     });
     body.replaceChildren(...[...libraries].sort(compare).map(renderRow));
+  }
+}
+
+function rememberedSort() {
+  try {
+    const { key, descending } = JSON.parse(sessionStorage.getItem(SORT));
+    const known = columns.some(column => column.key === key && column.sortable !== false);
+    return known ? { key, descending: Boolean(descending) } : null;
+  } catch {
+    return null;
+  }
+}
+
+function rememberSort() {
+  try {
+    sessionStorage.setItem(SORT, JSON.stringify(sort));
+  } catch {
+    // Without storage the list starts sorted by name every time
   }
 }
 
@@ -90,7 +116,8 @@ function renderRow(library) {
       );
     }
     if (column.key === 'example') {
-      return h('td', {}, value ? h('a', { href: `#/library/${value}` }, 'demo') : '');
+      if (!value) return h('td', { className: 'muted', title: 'There is no demo of this library here yet' }, '—');
+      return h('td', {}, h('a', { className: 'run', href: demoAddress(value) }, 'Run demo'));
     }
     if (value == null) return h('td', { className: column.numeric ? 'numeric' : '' }, '—');
     if (column.numeric) return h('td', { className: 'numeric' }, numberFormat.format(value));
@@ -100,69 +127,6 @@ function renderRow(library) {
     }
     return h('td', {}, value);
   }));
-}
-
-function renderDetails(example) {
-  const library = libraries.find(candidate => candidate.example === example);
-  if (!library) {
-    return h('div', { className: 'container' },
-      h('h2', {}, 'There is no demo for this library yet'),
-      h('p', {}, h('a', { href: '#/all' }, 'See all libraries'))
-    );
-  }
-
-  const graphSelect = h('select', { id: 'graph-type' });
-  fillGraphSelect(graphSelect, defaultGraph);
-  const description = h('p', { className: 'help' });
-  const params = h('div');
-  const renderLink = h('a', { className: 'action' }, 'Render graph');
-  let inputs = [];
-
-  graphSelect.addEventListener('change', showGraphType);
-  showGraphType();
-
-  return h('div', { className: 'container' },
-    h('p', {}, h('a', { href: '#/all' }, '← All libraries')),
-    h('h2', {}, library.name),
-    library.description ? h('p', {}, library.description) : null,
-    h('h3', {}, 'Basic example'),
-    h('p', {}, 'Basic example shows how to implement a "hello world" kind of application with this graph drawing library. You can:'),
-    h('ul', {},
-      h('li', {}, h('a', { href: `examples/${example}/01.basic/index.html` }, 'Run interactive demo')),
-      h('li', {}, h('a', { href: `${sourceRoot}${example}/01.basic/` }, 'View the source code'))
-    ),
-    h('h3', {}, 'Performance'),
-    h('p', {}, 'Performance of a library is measured interactively. Choose a graph below and click on the "Render graph" link.'),
-    h('form', { className: 'graph-form' },
-      h('label', { htmlFor: 'graph-type' }, 'Graph'),
-      h('div', {}, graphSelect, description),
-      params
-    ),
-    h('p', {}, renderLink)
-  );
-
-  function showGraphType() {
-    // Only the graphs of the last group have a size to choose
-    const graphParams = customSizeOf(graphSelect.value)?.params || [];
-    description.textContent = describeGraph(graphSelect.value);
-
-    inputs = graphParams.map(param => {
-      const input = h('input', { type: 'number', step: 'any', min: '0', value: param.value, id: `param-${param.name}` });
-      input.addEventListener('input', updateLink);
-      return input;
-    });
-    params.replaceChildren(...graphParams.map((param, index) => h('div', { className: 'param' },
-      h('label', { htmlFor: `param-${param.name}` }, param.label),
-      h('div', {}, inputs[index], h('p', { className: 'help' }, param.description))
-    )));
-    updateLink();
-  }
-
-  function updateLink() {
-    const query = new URLSearchParams({ lib: example, graph: graphSelect.value });
-    inputs.forEach((input, index) => query.set(queryNames[index], input.value));
-    renderLink.href = `performance/?${query}`;
-  }
 }
 
 /**
