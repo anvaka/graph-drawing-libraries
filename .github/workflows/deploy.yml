@@ -9,17 +9,17 @@ on:
     - cron: '0 6 * * 1'
   workflow_dispatch:
 
+# The website is served from the gh-pages branch: previews of pull requests
+# live there too, in pr-preview/, see preview.yml
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -40,16 +40,12 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
       - run: npm test
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v5
+      # Without it GitHub Pages runs the files through Jekyll
+      - run: touch dist/.nojekyll
+      - uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
         with:
-          path: src/dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v5
+          folder: src/dist
+          branch: gh-pages
+          # Previews of open pull requests stay where they are
+          clean-exclude: pr-preview/
+          force: false

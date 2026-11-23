@@ -1,0 +1,47 @@
+name: Preview pull request
+
+# Every pull request that changes the website gets its own copy of it at
+# https://anvaka.github.io/graph-drawing-libraries/pr-preview/pr-<number>/
+# The link is posted to the pull request. The copy is removed when the pull
+# request is closed.
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+    paths: ['src/**']
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: preview-${{ github.ref }}
+
+jobs:
+  preview:
+    # Pull requests from forks and from Dependabot cannot write to the repository
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        if: github.event.action != 'closed'
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: src/package-lock.json
+      # GitHub statistics come from the committed data/stats.json here
+      - name: Test and build
+        if: github.event.action != 'closed'
+        run: |
+          npm ci
+          npm test
+          npm run build
+      - uses: rossjrw/pr-preview-action@873417d2df72380da1f3978378fb58560bcde976 # v1.8.2
+        with:
+          source-dir: src/dist
+          preview-branch: gh-pages
+          # The link is posted when the preview can be opened
+          wait-for-pages-deployment: true
+          qr-code: false
