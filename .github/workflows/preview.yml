@@ -42,6 +42,8 @@ jobs:
         with:
           source-dir: src/dist
           preview-branch: gh-pages
-          # The link is posted when the preview can be opened
-          wait-for-pages-deployment: true
+          # The link is posted when the preview can be opened. Nobody waits for
+          # a removed preview: a merge also publishes the website, and GitHub
+          # Pages cancels the build of the removal in favor of that one
+          wait-for-pages-deployment: ${{ github.event.action != 'closed' }}
           qr-code: false
