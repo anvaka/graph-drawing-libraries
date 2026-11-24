@@ -71,14 +71,29 @@ a:hover {
   margin: 8px 0 24px;
 }
 
-.note,
-.help {
+.note {
   color: var(--muted);
   font-size: 14px;
 }
 
-.help {
-  margin: 4px 0 0;
+.muted {
+  color: var(--muted);
+}
+
+/* The way from the list to a demo: easy to see and to hit */
+.run {
+  display: inline-block;
+  padding: 0 12px;
+  font-weight: 600;
+  line-height: 24px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.run:hover {
+  text-decoration: none;
+  background: var(--background);
+  border-color: var(--link);
 }
 
 .table-scroll {
@@ -146,24 +161,6 @@ th[aria-sort='descending'] button::after {
   border-radius: 999px;
 }
 
-.graph-form {
-  display: grid;
-  grid-template-columns: max-content minmax(0, 420px);
-  gap: 16px 24px;
-  margin: 24px 0;
-}
-
-/* Parameters are rendered into their own wrappers, let them share the grid */
-.graph-form > div:last-child,
-.param {
-  display: contents;
-}
-
-.graph-form label {
-  padding-top: 6px;
-  font-weight: 600;
-}
-
 select,
 input {
   padding: 6px 10px;
@@ -174,21 +171,122 @@ input {
   border-radius: 6px;
 }
 
-.graph-form select,
-.graph-form input {
-  width: 100%;
-}
-
-.action {
-  font-weight: 600;
-}
-
-/* Performance runner: a toolbar and the library demo below it */
+/* Performance runner: a toolbar, the list of libraries and the demo of one */
 .performance {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
+}
+
+.workbench {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.library-list {
+  flex: none;
+  width: 232px;
+  padding: 12px 0;
+  overflow-y: auto;
+  font-size: 15px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+}
+
+.library-list .back {
+  display: block;
+  padding: 0 24px 12px;
+}
+
+.library-list h2 {
+  margin: 0;
+  padding: 12px 24px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-top: 1px solid var(--border);
+}
+
+.library-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.library-list li a {
+  display: block;
+  padding: 5px 24px;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.library-list .owner {
+  color: var(--muted);
+}
+
+.library-list li a[aria-current] {
+  font-weight: 600;
+  background: var(--background);
+  box-shadow: inset 3px 0 var(--link);
+}
+
+.switcher {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.switcher select {
+  flex: 1;
+  min-width: 0;
+}
+
+.step {
+  flex: none;
+  width: 36px;
+  font-size: 20px;
+  line-height: 34px;
+  text-align: center;
+  color: var(--text);
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.step:hover {
+  text-decoration: none;
+  border-color: var(--link);
+}
+
+.library-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 16px;
+  margin: 0;
+  padding: 8px 24px 0;
+  font-size: 14px;
+}
+
+.library-info .about {
+  color: var(--muted);
+}
+
+.library-info strong {
+  color: var(--text);
 }
 
 .site-header select {
@@ -276,4 +374,41 @@ input {
 
 .heart {
   color: var(--heart);
+}
+
+/* Narrow screens: the list of libraries becomes a select with two arrows */
+@media (max-width: 859px) {
+  .library-list,
+  .library-info .about,
+  .performance .site-header > a:last-child {
+    display: none;
+  }
+
+  .switcher {
+    display: flex;
+    flex-basis: 100%;
+  }
+
+  .performance .site-header {
+    padding: 8px 16px;
+  }
+
+  .performance .site-header > label {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .performance .site-header > label select {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .library-info,
+  .graph-info,
+  .notice {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }

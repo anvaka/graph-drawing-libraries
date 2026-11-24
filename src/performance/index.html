@@ -9,10 +9,13 @@
   </head>
   <body class="performance">
     <header class="site-header">
-      <label>
-        Rendered with
-        <select id="library"></select>
-      </label>
+      <a class="brand" href="../#/all">We <span class="heart">♥</span> Graphs</a>
+      <!-- Narrow screens have no room for the list of libraries -->
+      <div class="switcher">
+        <a id="previous" class="step">‹</a>
+        <select id="library" aria-label="Rendered with"></select>
+        <a id="next" class="step">›</a>
+      </div>
       <label>
         Graph
         <select id="graph"></select>
@@ -20,13 +23,23 @@
       <form id="size" class="size-form" hidden></form>
       <a href="https://github.com/anvaka/graph-drawing-libraries">GitHub</a>
     </header>
-    <p id="graph-info" class="graph-info" aria-live="polite"></p>
-    <p id="notice" class="notice" role="status" hidden></p>
-    <div id="guard" class="guard" hidden>
-      <p id="guard-text"></p>
-      <button id="guard-go">Render anyway</button>
+    <div class="workbench">
+      <nav class="library-list" aria-label="Libraries">
+        <a class="back" href="../#/all">← All libraries</a>
+        <h2>Rendered with</h2>
+        <ul id="libraries"></ul>
+      </nav>
+      <main class="stage">
+        <p id="library-info" class="library-info"></p>
+        <p id="graph-info" class="graph-info" aria-live="polite"></p>
+        <p id="notice" class="notice" role="status" hidden></p>
+        <div id="guard" class="guard" hidden>
+          <p id="guard-text"></p>
+          <button id="guard-go">Render anyway</button>
+        </div>
+        <iframe id="runner" title="Graph rendered by the selected library"></iframe>
+      </main>
     </div>
-    <iframe id="runner" title="Graph rendered by the selected library"></iframe>
     <script type="module" src="../app/performance.js"></script>
   </body>
 </html>

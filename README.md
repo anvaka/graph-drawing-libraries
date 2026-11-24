@@ -53,6 +53,8 @@ npm run build   # production version in src/dist
 
 * `data/libraries.json` is the list of libraries on the website. `example` points to a folder
   in `public/examples` with a "hello world" demo (`01.basic`) and a performance test (`02.perf`).
+* "Run demo" in the list opens the performance test of a library (`performance/`). The page
+  lists the other libraries: each is a link that draws the same graph with that library.
 * `data/stats.json` holds GitHub statistics of these libraries. The
   [deploy workflow](.github/workflows/deploy.yml) runs on pushes to `main` and once a week:
   it fetches fresh statistics and publishes the website to GitHub Pages. The committed file

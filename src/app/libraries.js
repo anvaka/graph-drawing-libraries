@@ -21,11 +21,18 @@ export function currentExample(example) {
   return movedExamples[example] || example;
 }
 
+/** Where the demo of a library lives, relative to the home page */
+export function demoAddress(example) {
+  return `performance/?lib=${encodeURIComponent(example)}`;
+}
+
 export default libraries.map(library => ({
   name: library.repo,
   url: `https://github.com/${library.repo}`,
   license: library.license,
   ...statsByRepo.get(library.repo),
+  // GitHub draws :dizzy: as a picture, here it would stay a word
+  description: statsByRepo.get(library.repo)?.description?.replace(/:[a-z0-9_+-]+:\s*/g, ''),
   // Folder name inside public/examples, when we have demos for the library
   example: library.example
 }));
