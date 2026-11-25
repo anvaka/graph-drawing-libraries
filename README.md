@@ -3,6 +3,36 @@ JavaScript Graph Drawing Libraries
 
 This is a list of known graph drawing libraries. See [a website with interactive data](https://anvaka.github.io/graph-drawing-libraries/#/all).
 
+<!-- wall:start -->
+<!-- "npm run screenshots" in src writes this block, do not edit it by hand -->
+The same 10×10 grid, 10 seconds after each library started to draw it. Click a picture to run the demo:
+
+<p>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=antvis_G6&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/antvis_G6.png" width="200" alt="antvis/G6" title="antvis/G6: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=anvaka_VivaGraphJS&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/anvaka_VivaGraphJS.png" width="200" alt="anvaka/VivaGraphJS" title="anvaka/VivaGraphJS: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=apache_echarts&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/apache_echarts.png" width="200" alt="apache/echarts" title="apache/echarts: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=cosmosgl_graph&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/cosmosgl_graph.png" width="200" alt="cosmosgl/graph" title="cosmosgl/graph: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=cytoscape_cytoscape.js&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/cytoscape_cytoscape.js.png" width="200" alt="cytoscape/cytoscape.js" title="cytoscape/cytoscape.js: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=mbostock_d3&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/mbostock_d3.png" width="200" alt="d3/d3-force" title="d3/d3-force: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=cpettitt_dagre&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/cpettitt_dagre.png" width="200" alt="dagrejs/dagre" title="dagrejs/dagre: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=dhotson_springy&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/dhotson_springy.png" width="200" alt="dhotson/springy" title="dhotson/springy: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=ecomfe_echarts-gl&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/ecomfe_echarts-gl.png" width="200" alt="ecomfe/echarts-gl" title="ecomfe/echarts-gl: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=fkling_JSNetworkX&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/fkling_JSNetworkX.png" width="200" alt="fkling/JSNetworkX" title="fkling/JSNetworkX: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=GraphAlchemist_Alchemy&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/GraphAlchemist_Alchemy.png" width="200" alt="GraphAlchemist/Alchemy" title="GraphAlchemist/Alchemy: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=jacomyal_sigma.js&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/jacomyal_sigma.js.png" width="200" alt="jacomyal/sigma.js" title="jacomyal/sigma.js: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=kieler_elkjs&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/kieler_elkjs.png" width="200" alt="kieler/elkjs" title="kieler/elkjs: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=mdaines_viz-js&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/mdaines_viz-js.png" width="200" alt="mdaines/viz-js" title="mdaines/viz-js: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=memgraph_orb&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/memgraph_orb.png" width="200" alt="memgraph/orb" title="memgraph/orb: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=microsoft_msagljs&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/microsoft_msagljs.png" width="200" alt="microsoft/msagljs" title="microsoft/msagljs: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=samizdatco_arbor&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/samizdatco_arbor.png" width="200" alt="samizdatco/arbor" title="samizdatco/arbor: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=strathausen_dracula&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/strathausen_dracula.png" width="200" alt="strathausen/dracula" title="strathausen/dracula: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=tgdwyer_WebCola&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/tgdwyer_WebCola.png" width="200" alt="tgdwyer/WebCola" title="tgdwyer/WebCola: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=vasturiano_3d-force-graph&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/vasturiano_3d-force-graph.png" width="200" alt="vasturiano/3d-force-graph" title="vasturiano/3d-force-graph: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=vasturiano_force-graph&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/vasturiano_force-graph.png" width="200" alt="vasturiano/force-graph" title="vasturiano/force-graph: run the demo"></a>
+<a href="https://anvaka.github.io/graph-drawing-libraries/performance/?lib=visjs_vis-network&amp;graph=grid&amp;n=10&amp;m=10"><img src="screenshots/visjs_vis-network.png" width="200" alt="visjs/vis-network" title="visjs/vis-network: run the demo"></a>
+</p>
+<!-- wall:end -->
+
 * [antvis/G6](https://github.com/antvis/G6) - A Graph Visualization Framework in JavaScript.
 * [anvaka/VivaGraphJS](https://github.com/anvaka/VivaGraphJS) - Graph drawing library for JavaScript
 * [apache/echarts](https://github.com/apache/echarts) - A powerful, interactive charting and data visualization library for browser
@@ -50,6 +80,7 @@ cd src
 npm install
 npm run dev     # local development server
 npm run stats   # refresh GitHub statistics in data/stats.json
+npm run screenshots   # retake the pictures of the libraries in this file (needs Chrome)
 npm test
 npm run build   # production version in src/dist
 ```

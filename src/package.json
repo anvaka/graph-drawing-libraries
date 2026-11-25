@@ -8,6 +8,7 @@
     "preview": "vite preview",
     "runsuite": "vite build --config vite.runsuite.config.js",
     "stats": "node scripts/fetch-stats.js",
+    "screenshots": "npm run runsuite && node scripts/screenshots.js",
     "test": "node --test"
   },
   "dependencies": {
@@ -15,6 +16,7 @@
     "ngraph.graph": "^20.1.2"
   },
   "devDependencies": {
+    "puppeteer-core": "^25.18.1",
     "vite": "^8.3.8"
   }
 }
