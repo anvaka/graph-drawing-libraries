@@ -116,7 +116,6 @@ function renderRow(library) {
       );
     }
     if (column.key === 'example') {
-      if (!value) return h('td', { className: 'muted', title: 'There is no demo of this library here yet' }, '—');
       return h('td', {}, h('a', { className: 'run', href: demoAddress(value) }, 'Run demo'));
     }
     if (value == null) return h('td', { className: column.numeric ? 'numeric' : '' }, '—');

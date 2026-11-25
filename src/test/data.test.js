@@ -10,6 +10,13 @@ const readJSON = name => JSON.parse(readFileSync(new URL(`../data/${name}`, impo
 const libraries = readJSON('libraries.json');
 const stats = readJSON('stats.json');
 
+test('every library has a demo', () => {
+  // A library that cannot be run here is not listed: the list is for comparing
+  for (const library of libraries) {
+    assert.ok(library.example, `${library.repo} has no example folder`);
+  }
+});
+
 test('every example has basic and performance pages', () => {
   const examples = libraries.filter(library => library.example);
   assert.ok(examples.length > 0);
