@@ -10,13 +10,11 @@ This is a list of known graph drawing libraries. See [a website with interactive
 * [cytoscape/cytoscape.js](https://github.com/cytoscape/cytoscape.js) - Graph theory (network) library for visualisation and analysis
 * [d3/d3-force](https://github.com/d3/d3-force) - Force-directed graph layout using velocity Verlet integration.
 * [dagrejs/dagre](https://github.com/dagrejs/dagre) - Directed graph layout for JavaScript
-* [dash14/v-network-graph](https://github.com/dash14/v-network-graph) - An interactive network graph visualization component for Vue 3
 * [dhotson/springy](https://github.com/dhotson/springy) - A force directed graph layout algorithm in JavaScript
 * [fkling/JSNetworkX](https://github.com/fkling/JSNetworkX) - Build, process and analyze graphs in JavaScript (port of NetworkX)
 * [GraphAlchemist/Alchemy](https://github.com/GraphAlchemist/Alchemy) - a graph drawing application built in d3.
 * [jacomyal/sigma.js](https://github.com/jacomyal/sigma.js) - A JavaScript library aimed at visualizing graphs of thousands of nodes and edges
 * [memgraph/orb](https://github.com/memgraph/orb) - Graph visualization library
-* [reaviz/reagraph](https://github.com/reaviz/reagraph) - WebGL Graph Visualizations for React.
 * [samizdatco/arbor](https://github.com/samizdatco/arbor) - a graph visualization library using web workers and jQuery
 * [strathausen/dracula](https://github.com/strathausen/dracula) - JavaScript layout and representation of connected graphs.
 * [vasturiano/3d-force-graph](https://github.com/vasturiano/3d-force-graph) - 3D force-directed graph component using ThreeJS/WebGL

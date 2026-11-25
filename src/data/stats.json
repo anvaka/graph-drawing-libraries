@@ -100,20 +100,6 @@
       "archived": false
     },
     {
-      "repo": "dash14/v-network-graph",
-      "name": "dash14/v-network-graph",
-      "url": "https://github.com/dash14/v-network-graph",
-      "homepage": "https://dash14.github.io/v-network-graph/",
-      "description": "An interactive network graph visualization component for Vue 3",
-      "stars": 648,
-      "forks": 50,
-      "issues": 30,
-      "created": "2021-07-31T14:46:04Z",
-      "pushed": "2026-11-23T12:09:40Z",
-      "license": "MIT",
-      "archived": false
-    },
-    {
       "repo": "dhotson/springy",
       "name": "dhotson/springy",
       "url": "https://github.com/dhotson/springy",
@@ -180,20 +166,6 @@
       "issues": 16,
       "created": "2022-07-04T17:23:40Z",
       "pushed": "2026-09-08T10:26:05Z",
-      "license": "Apache-2.0",
-      "archived": false
-    },
-    {
-      "repo": "reaviz/reagraph",
-      "name": "reaviz/reagraph",
-      "url": "https://github.com/reaviz/reagraph",
-      "homepage": "https://reagraph.dev",
-      "description": "🕸 WebGL Graph Visualizations for React. Maintained by @goodcodeus.",
-      "stars": 1100,
-      "forks": 93,
-      "issues": 13,
-      "created": "2022-04-13T18:47:26Z",
-      "pushed": "2026-06-25T13:37:21Z",
       "license": "Apache-2.0",
       "archived": false
     },

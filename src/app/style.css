@@ -76,10 +76,6 @@ a:hover {
   font-size: 14px;
 }
 
-.muted {
-  color: var(--muted);
-}
-
 /* The way from the list to a demo: easy to see and to hit */
 .run {
   display: inline-block;
