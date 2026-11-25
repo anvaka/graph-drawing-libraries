@@ -29,6 +29,16 @@ test('every example has basic and performance pages', () => {
   }
 });
 
+test('every library has a picture in README.md', () => {
+  const readme = readFileSync(new URL('../../README.md', import.meta.url), 'utf8');
+  for (const { example } of libraries) {
+    const picture = `screenshots/${example}.png`;
+    const hint = 'run "npm run screenshots"';
+    assert.ok(existsSync(new URL(`../../${picture}`, import.meta.url)), `${picture} is missing, ${hint}`);
+    assert.ok(readme.includes(`src="${picture}"`), `README.md does not show ${picture}, ${hint}`);
+  }
+});
+
 test('every library has statistics', () => {
   const known = new Set(stats.libraries.map(record => record.repo));
   for (const { repo } of libraries) {
