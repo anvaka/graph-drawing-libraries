@@ -399,6 +399,136 @@ input {
 }
 
 /* Narrow screens: the list of libraries becomes a select with two arrows */
+/* The list of libraries on a narrow screen: a card for every library, so that
+   nothing is hidden behind a sideways scroll */
+.sort-picker {
+  display: none;
+}
+
+@media (max-width: 719px) {
+  .container {
+    padding: 12px 16px 40px;
+  }
+
+  .sort-picker {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 4px;
+    color: var(--muted);
+  }
+
+  .sort-picker select {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    color: var(--text);
+  }
+
+  .table-scroll {
+    overflow: visible;
+  }
+
+  table,
+  tbody {
+    display: block;
+    white-space: normal;
+  }
+
+  thead {
+    display: none;
+  }
+
+  /* A card: the name and the demo, how large a graph it takes, then
+     popularity in one row and age in another */
+  tbody tr {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px 12px;
+    padding: 12px 0 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr:hover {
+    background: none;
+  }
+
+  td,
+  td.numeric {
+    display: block;
+    padding: 0;
+    font-size: 15px;
+    text-align: left;
+    overflow-wrap: anywhere;
+    border: 0;
+  }
+
+  td::before {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    content: attr(data-label);
+  }
+
+  /* The name and the demo need no label */
+  td[data-key='name']::before,
+  td[data-key='example']::before {
+    content: none;
+  }
+
+  td[data-key='name'] {
+    grid-area: 1 / 1 / 2 / 3;
+    align-self: center;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  /* Easy to hit with a finger */
+  td[data-key='name'] a {
+    display: inline-block;
+    padding: 10px 0;
+  }
+
+  td[data-key='example'] {
+    grid-area: 1 / 3;
+    align-self: center;
+    justify-self: end;
+  }
+
+  .run {
+    padding: 0 10px;
+    font-size: 16px;
+    line-height: 42px;
+    white-space: nowrap;
+  }
+
+  /* The label and the number on one line, the meter under them */
+  td[data-key='responsive'] {
+    display: grid;
+    grid-area: 2 / 1 / 3 / -1;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    font-size: 16px;
+  }
+
+  td[data-key='responsive']::before {
+    font-size: 14px;
+  }
+
+  .meter {
+    grid-column: 1 / -1;
+    height: 6px;
+    border-radius: 3px;
+  }
+
+  td[data-key='stars'] { grid-area: 3 / 1; }
+  td[data-key='forks'] { grid-area: 3 / 2; }
+  td[data-key='issues'] { grid-area: 3 / 3; }
+  td[data-key='created'] { grid-area: 4 / 1; }
+  td[data-key='pushed'] { grid-area: 4 / 2; }
+  td[data-key='license'] { grid-area: 4 / 3; }
+}
+
 @media (max-width: 859px) {
   .library-list,
   .library-info .about,

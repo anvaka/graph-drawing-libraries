@@ -55,15 +55,14 @@ function renderAll() {
     if (column.sortable === false) return h('th', {}, column.title);
 
     const button = h('button', { type: 'button', title: column.hint || '' }, column.title);
-    button.addEventListener('click', () => {
-      // Names read best A to Z, numbers and dates are more useful largest first
-      sort.descending = sort.key === column.key ? !sort.descending : Boolean(column.numeric || column.date);
-      sort.key = column.key;
-      rememberSort();
-      update();
-    });
+    button.addEventListener('click', () => sortBy(column));
     return h('th', { className: column.numeric ? 'numeric' : '' }, button);
   });
+
+  // A narrow screen shows a card for every library and no header to sort with
+  const picker = h('select', {}, columns.filter(column => column.sortable !== false)
+    .map(column => h('option', { value: column.key }, column.title)));
+  picker.addEventListener('change', () => sortBy(columns.find(column => column.key === picker.value)));
 
   update();
 
@@ -74,6 +73,7 @@ function renderAll() {
       'Missing a library? ',
       h('a', { href: 'https://github.com/anvaka/graph-drawing-libraries/issues' }, 'Open an issue'), '.'
     ),
+    h('label', { className: 'sort-picker' }, 'Sort by ', picker),
     h('div', { className: 'table-scroll' },
       h('table', {}, h('thead', {}, h('tr', {}, headers)), body)
     ),
@@ -88,7 +88,16 @@ function renderAll() {
     h('p', { className: 'note' }, `GitHub statistics were collected on ${dayFormat.format(new Date(generated))}.`)
   );
 
+  function sortBy(column) {
+    // Names read best A to Z, numbers and dates are more useful largest first
+    sort.descending = sort.key === column.key ? !sort.descending : Boolean(column.numeric || column.date);
+    sort.key = column.key;
+    rememberSort();
+    update();
+  }
+
   function update() {
+    picker.value = sort.key;
     columns.forEach((column, index) => {
       const order = sort.key !== column.key ? 'none' : sort.descending ? 'descending' : 'ascending';
       headers[index].setAttribute('aria-sort', order);
@@ -127,25 +136,33 @@ function compare(a, b) {
 
 function renderRow(library) {
   return h('tr', {}, columns.map(column => {
-    const value = library[column.key];
-    if (column.key === 'name') {
-      return h('td', {},
-        h('a', { href: library.url, title: library.description || '' }, library.name),
-        library.archived ? h('span', { className: 'badge', title: 'The repository is archived' }, 'archived') : null
-      );
-    }
-    if (column.key === 'example') {
-      return h('td', {}, h('a', { className: 'run', href: demoAddress(value) }, 'Run demo'));
-    }
-    if (value == null) return h('td', { className: column.numeric ? 'numeric' : '' }, '—');
-    if (column.key === 'responsive') return responsiveCell(library);
-    if (column.numeric) return h('td', { className: 'numeric' }, numberFormat.format(value));
-    if (column.date) {
-      const date = new Date(value);
-      return h('td', { title: dayFormat.format(date) }, monthFormat.format(date));
-    }
-    return h('td', {}, value);
+    const cell = renderCell(library, column);
+    // A card of a narrow screen places the cell by the key, and shows the label before the value
+    cell.dataset.key = column.key;
+    cell.dataset.label = column.title;
+    return cell;
   }));
+}
+
+function renderCell(library, column) {
+  const value = library[column.key];
+  if (column.key === 'name') {
+    return h('td', {},
+      h('a', { href: library.url, title: library.description || '' }, library.name),
+      library.archived ? h('span', { className: 'badge', title: 'The repository is archived' }, 'archived') : null
+    );
+  }
+  if (column.key === 'example') {
+    return h('td', {}, h('a', { className: 'run', href: demoAddress(value) }, 'Run demo'));
+  }
+  if (value == null) return h('td', { className: column.numeric ? 'numeric' : '' }, '—');
+  if (column.key === 'responsive') return responsiveCell(library);
+  if (column.numeric) return h('td', { className: 'numeric' }, numberFormat.format(value));
+  if (column.date) {
+    const date = new Date(value);
+    return h('td', { title: dayFormat.format(date) }, monthFormat.format(date));
+  }
+  return h('td', {}, value);
 }
 
 function responsiveCell(library) {
