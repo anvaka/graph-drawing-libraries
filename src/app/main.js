@@ -1,10 +1,16 @@
-import libraries, { currentExample, demoAddress, generated } from './libraries.js';
+import libraries, { currentExample, demoAddress, generated, measurement } from './libraries.js';
 
 const app = document.querySelector('#app');
 
 const columns = [
   { key: 'name', title: 'Library' },
   { key: 'example', title: 'Demo', sortable: false },
+  {
+    key: 'responsive',
+    title: 'Stays responsive',
+    numeric: true,
+    hint: 'The largest graph, nodes and links together, that the library drew in our measurements without freezing the tab'
+  },
   { key: 'stars', title: 'Stars', numeric: true },
   { key: 'forks', title: 'Forks', numeric: true },
   { key: 'created', title: 'Created', date: true },
@@ -16,6 +22,11 @@ const columns = [
 const monthFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short' });
 const dayFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long' });
 const numberFormat = new Intl.NumberFormat('en');
+const compactFormat = new Intl.NumberFormat('en', { notation: 'compact', maximumSignificantDigits: 2 });
+// The meters of the "Stays responsive" column are logarithmic: they start at
+// a thousand nodes and links, and are full at the largest graph of the measurements
+const METER_FROM = 1000;
+const largestMeasured = Math.max(...libraries.map(library => library.responsive || 0));
 
 // The order of the list survives a visit to a demo
 const SORT = 'graph-drawing-libraries:sort';
@@ -65,6 +76,14 @@ function renderAll() {
     ),
     h('div', { className: 'table-scroll' },
       h('table', {}, h('thead', {}, h('tr', {}, headers)), body)
+    ),
+    h('p', { className: 'note' },
+      '"Stays responsive" is the largest graph, nodes and links together, that a library drew in ',
+      h('a', { href: 'https://github.com/anvaka/graph-drawing-libraries/blob/main/src/data/measurements.json' }, 'our measurements'),
+      ` without freezing the tab for ${measurement.frozenMs / 1000} seconds. `,
+      `They were made in Chrome on a computer slowed down ${measurement.slowdown} times, with square grids of up to `,
+      `${numberFormat.format(largestMeasured)} nodes and links and with graphs of the performance test: a plus is a library that never froze the tab. `,
+      'It is about the demos of this website, and says nothing about how good a layout is.'
     ),
     h('p', { className: 'note' }, `GitHub statistics were collected on ${dayFormat.format(new Date(generated))}.`)
   );
@@ -119,6 +138,7 @@ function renderRow(library) {
       return h('td', {}, h('a', { className: 'run', href: demoAddress(value) }, 'Run demo'));
     }
     if (value == null) return h('td', { className: column.numeric ? 'numeric' : '' }, '—');
+    if (column.key === 'responsive') return responsiveCell(library);
     if (column.numeric) return h('td', { className: 'numeric' }, numberFormat.format(value));
     if (column.date) {
       const date = new Date(value);
@@ -126,6 +146,22 @@ function renderRow(library) {
     }
     return h('td', {}, value);
   }));
+}
+
+function responsiveCell(library) {
+  const size = `${numberFormat.format(library.responsive)} nodes and links`;
+  const { froze, failed } = library;
+  const title = failed ? `Drew ${size}. Stopped with an error on ${numberFormat.format(failed)}`
+    : froze ? `Drew ${size}. Froze the tab on ${numberFormat.format(froze)}`
+      : `Never froze the tab: ${size} was the largest graph we tried`;
+
+  const share = Math.log(Math.max(library.responsive, METER_FROM) / METER_FROM) / Math.log(largestMeasured / METER_FROM);
+  const meter = h('span', { className: 'meter' }, h('span'));
+  meter.firstChild.style.width = `${Math.round(Math.min(1, share) * 100)}%`;
+
+  return h('td', { className: 'numeric responsive', title },
+    compactFormat.format(library.responsive) + (froze || failed ? '' : '+'), meter
+  );
 }
 
 /**

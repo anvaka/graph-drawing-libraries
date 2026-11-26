@@ -6,11 +6,12 @@
  *
  * The callback is always called asynchronously: most graphs are downloaded.
  * Inside of the performance page it can also wait for the visitor to agree,
- * when the graph may be too large for the library, see guard.js
+ * when the library is likely to freeze the tab on the graph, see guard.js
  */
 import loadGraph from './loadGraph.js';
 import { resolveGraphName } from './graphs.js';
 import { markRunning, whyAsk } from './guard.js';
+import limits from '../data/limits.json';
 
 export default function runSuite(graphReadyCallback) {
   const query = new URLSearchParams(window.location.search);
@@ -22,13 +23,15 @@ export default function runSuite(graphReadyCallback) {
     // Guardrails need the toolbar to ask the visitor: a demo page opened on
     // its own starts right away
     const library = insideRunner() ? libraryOfThisPage() : null;
-    const ask = library ? whyAsk(library, nodes, links) : null;
+    const ask = library ? whyAsk(library, nodes, links, limits.libraries[library]?.froze) : null;
 
     tellRunner({ name, about, credit, nodes, links, ask });
     if (ask) await runnerAgrees();
     // If the library never gives the tab back, this note tells the next visit
     if (library && !document.hidden) markRunning({ library, nodes, links, t: Date.now() });
 
+    // Measurements (scripts/measure.js) count from here: the library gets the graph
+    performance.mark('graph-ready', { detail: { nodes, links } });
     graphReadyCallback(graph);
   }, error => {
     const message = `Could not load the graph "${name}": ${error.message}`;

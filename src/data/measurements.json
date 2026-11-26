@@ -1,0 +1,1959 @@
+{
+  "slowdown": 4,
+  "frozenMs": 10000,
+  "runs": [
+    {
+      "library": "antvis_G6",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 744,
+      "busy": 0.07
+    },
+    {
+      "library": "antvis_G6",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 4083,
+      "busy": 0.4
+    },
+    {
+      "library": "antvis_G6",
+      "graph": "grid 44x44",
+      "nodes": 1936,
+      "links": 3784,
+      "outcome": "ok",
+      "longest": 4998,
+      "busy": 0.53
+    },
+    {
+      "library": "antvis_G6",
+      "graph": "grid 54x54",
+      "nodes": 2916,
+      "links": 5724,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 1
+    },
+    {
+      "library": "antvis_G6",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "froze",
+      "longest": 10011,
+      "busy": 1
+    },
+    {
+      "library": "antvis_G6",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "froze",
+      "longest": 10000,
+      "busy": 1
+    },
+    {
+      "library": "anvaka_VivaGraphJS",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 46,
+      "busy": 0
+    },
+    {
+      "library": "anvaka_VivaGraphJS",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 190,
+      "busy": 0.02
+    },
+    {
+      "library": "anvaka_VivaGraphJS",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 236,
+      "busy": 0.02
+    },
+    {
+      "library": "anvaka_VivaGraphJS",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "ok",
+      "longest": 331,
+      "busy": 0.03
+    },
+    {
+      "library": "anvaka_VivaGraphJS",
+      "graph": "grid 220x220",
+      "nodes": 48400,
+      "links": 96360,
+      "outcome": "ok",
+      "longest": 658,
+      "busy": 0.07
+    },
+    {
+      "library": "anvaka_VivaGraphJS",
+      "graph": "grid 400x400",
+      "nodes": 160000,
+      "links": 319200,
+      "outcome": "ok",
+      "longest": 1853,
+      "busy": 0.25
+    },
+    {
+      "library": "anvaka_VivaGraphJS",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 899,
+      "busy": 0.09
+    },
+    {
+      "library": "anvaka_VivaGraphJS",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 350,
+      "busy": 0.03
+    },
+    {
+      "library": "anvaka_VivaGraphJS",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 652,
+      "busy": 0.07
+    },
+    {
+      "library": "anvaka_VivaGraphJS",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "ok",
+      "longest": 413,
+      "busy": 0.04
+    },
+    {
+      "library": "anvaka_VivaGraphJS",
+      "graph": "English nouns (WordNet)",
+      "nodes": 74241,
+      "links": 75628,
+      "outcome": "ok",
+      "longest": 2400,
+      "busy": 0.28
+    },
+    {
+      "library": "anvaka_VivaGraphJS",
+      "graph": "Barabasi-Albert (100k)",
+      "nodes": 100000,
+      "links": 199997,
+      "outcome": "ok",
+      "longest": 1954,
+      "busy": 0.29
+    },
+    {
+      "library": "apache_echarts",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 83,
+      "busy": 0
+    },
+    {
+      "library": "apache_echarts",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 337,
+      "busy": 0.03
+    },
+    {
+      "library": "apache_echarts",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 804,
+      "busy": 0.4
+    },
+    {
+      "library": "apache_echarts",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "ok",
+      "longest": 4859,
+      "busy": 0.95
+    },
+    {
+      "library": "apache_echarts",
+      "graph": "grid 147x147",
+      "nodes": 21609,
+      "links": 42924,
+      "outcome": "froze",
+      "longest": 10002,
+      "busy": 1
+    },
+    {
+      "library": "apache_echarts",
+      "graph": "grid 220x220",
+      "nodes": 48400,
+      "links": 96360,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 1
+    },
+    {
+      "library": "apache_echarts",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 776,
+      "busy": 0.11
+    },
+    {
+      "library": "apache_echarts",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 807,
+      "busy": 0.08
+    },
+    {
+      "library": "apache_echarts",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 4371,
+      "busy": 0.95
+    },
+    {
+      "library": "apache_echarts",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "froze",
+      "longest": 10003,
+      "busy": 1
+    },
+    {
+      "library": "cosmosgl_graph",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 3447,
+      "busy": 0.34
+    },
+    {
+      "library": "cosmosgl_graph",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 3592,
+      "busy": 0.36
+    },
+    {
+      "library": "cosmosgl_graph",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 313,
+      "busy": 0.03
+    },
+    {
+      "library": "cosmosgl_graph",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "ok",
+      "longest": 326,
+      "busy": 0.07
+    },
+    {
+      "library": "cosmosgl_graph",
+      "graph": "grid 220x220",
+      "nodes": 48400,
+      "links": 96360,
+      "outcome": "ok",
+      "longest": 3329,
+      "busy": 0.36
+    },
+    {
+      "library": "cosmosgl_graph",
+      "graph": "grid 400x400",
+      "nodes": 160000,
+      "links": 319200,
+      "outcome": "ok",
+      "longest": 1226,
+      "busy": 0.18
+    },
+    {
+      "library": "cosmosgl_graph",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 483,
+      "busy": 0.05
+    },
+    {
+      "library": "cosmosgl_graph",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 527,
+      "busy": 0.05
+    },
+    {
+      "library": "cosmosgl_graph",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 521,
+      "busy": 0.08
+    },
+    {
+      "library": "cosmosgl_graph",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "ok",
+      "longest": 527,
+      "busy": 0.08
+    },
+    {
+      "library": "cosmosgl_graph",
+      "graph": "English nouns (WordNet)",
+      "nodes": 74241,
+      "links": 75628,
+      "outcome": "ok",
+      "longest": 895,
+      "busy": 0.14
+    },
+    {
+      "library": "cosmosgl_graph",
+      "graph": "Barabasi-Albert (100k)",
+      "nodes": 100000,
+      "links": 199997,
+      "outcome": "ok",
+      "longest": 454,
+      "busy": 0.06
+    },
+    {
+      "library": "cpettitt_dagre",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 950,
+      "busy": 0.09
+    },
+    {
+      "library": "cpettitt_dagre",
+      "graph": "grid 24x24",
+      "nodes": 576,
+      "links": 1104,
+      "outcome": "ok",
+      "longest": 2981,
+      "busy": 0.3
+    },
+    {
+      "library": "cpettitt_dagre",
+      "graph": "grid 30x30",
+      "nodes": 900,
+      "links": 1740,
+      "outcome": "ok",
+      "longest": 7387,
+      "busy": 0.6
+    },
+    {
+      "library": "cpettitt_dagre",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "froze",
+      "longest": 10002,
+      "busy": 1
+    },
+    {
+      "library": "cpettitt_dagre",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 1961,
+      "busy": 0.2
+    },
+    {
+      "library": "cpettitt_dagre",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "froze",
+      "longest": 10009,
+      "busy": 1
+    },
+    {
+      "library": "cytoscape_cytoscape.js",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 684,
+      "busy": 0.41
+    },
+    {
+      "library": "cytoscape_cytoscape.js",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 4436,
+      "busy": 0.96
+    },
+    {
+      "library": "cytoscape_cytoscape.js",
+      "graph": "grid 44x44",
+      "nodes": 1936,
+      "links": 3784,
+      "outcome": "ok",
+      "longest": 9329,
+      "busy": 0.98
+    },
+    {
+      "library": "cytoscape_cytoscape.js",
+      "graph": "grid 54x54",
+      "nodes": 2916,
+      "links": 5724,
+      "outcome": "froze",
+      "longest": 10003,
+      "busy": 1
+    },
+    {
+      "library": "cytoscape_cytoscape.js",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 1
+    },
+    {
+      "library": "cytoscape_cytoscape.js",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 1
+    },
+    {
+      "library": "dhotson_springy",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 137,
+      "busy": 0.01
+    },
+    {
+      "library": "dhotson_springy",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 305,
+      "busy": 0.23
+    },
+    {
+      "library": "dhotson_springy",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 2365,
+      "busy": 0.95
+    },
+    {
+      "library": "dhotson_springy",
+      "graph": "grid 81x81",
+      "nodes": 6561,
+      "links": 12960,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 0.99
+    },
+    {
+      "library": "dhotson_springy",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "froze",
+      "longest": 10003,
+      "busy": 1
+    },
+    {
+      "library": "dhotson_springy",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 1482,
+      "busy": 0.92
+    },
+    {
+      "library": "dhotson_springy",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 2202,
+      "busy": 0.93
+    },
+    {
+      "library": "dhotson_springy",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "froze",
+      "longest": 10003,
+      "busy": 1
+    },
+    {
+      "library": "ecomfe_echarts-gl",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 1412,
+      "busy": 0.14
+    },
+    {
+      "library": "ecomfe_echarts-gl",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 372,
+      "busy": 0.04
+    },
+    {
+      "library": "ecomfe_echarts-gl",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 431,
+      "busy": 0.04
+    },
+    {
+      "library": "ecomfe_echarts-gl",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "ok",
+      "longest": 623,
+      "busy": 0.06
+    },
+    {
+      "library": "ecomfe_echarts-gl",
+      "graph": "grid 220x220",
+      "nodes": 48400,
+      "links": 96360,
+      "outcome": "ok",
+      "longest": 1306,
+      "busy": 0.25
+    },
+    {
+      "library": "ecomfe_echarts-gl",
+      "graph": "grid 400x400",
+      "nodes": 160000,
+      "links": 319200,
+      "outcome": "ok",
+      "longest": 3466,
+      "busy": 0.3
+    },
+    {
+      "library": "ecomfe_echarts-gl",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 924,
+      "busy": 0.09
+    },
+    {
+      "library": "ecomfe_echarts-gl",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 407,
+      "busy": 0.04
+    },
+    {
+      "library": "ecomfe_echarts-gl",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 1189,
+      "busy": 0.12
+    },
+    {
+      "library": "ecomfe_echarts-gl",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "ok",
+      "longest": 708,
+      "busy": 0.07
+    },
+    {
+      "library": "ecomfe_echarts-gl",
+      "graph": "English nouns (WordNet)",
+      "nodes": 74241,
+      "links": 75628,
+      "outcome": "ok",
+      "longest": 1899,
+      "busy": 0.33
+    },
+    {
+      "library": "ecomfe_echarts-gl",
+      "graph": "Barabasi-Albert (100k)",
+      "nodes": 100000,
+      "links": 199997,
+      "outcome": "ok",
+      "longest": 2314,
+      "busy": 0.42
+    },
+    {
+      "library": "fkling_JSNetworkX",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 512,
+      "busy": 0.05
+    },
+    {
+      "library": "fkling_JSNetworkX",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 242,
+      "busy": 0.05
+    },
+    {
+      "library": "fkling_JSNetworkX",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 552,
+      "busy": 0.32
+    },
+    {
+      "library": "fkling_JSNetworkX",
+      "graph": "grid 81x81",
+      "nodes": 6561,
+      "links": 12960,
+      "outcome": "ok",
+      "longest": 1204,
+      "busy": 0.69
+    },
+    {
+      "library": "fkling_JSNetworkX",
+      "graph": "grid 99x99",
+      "nodes": 9801,
+      "links": 19404,
+      "outcome": "failed",
+      "longest": 1651,
+      "busy": 0.95
+    },
+    {
+      "library": "fkling_JSNetworkX",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "failed",
+      "longest": 2017,
+      "busy": 1
+    },
+    {
+      "library": "fkling_JSNetworkX",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 378,
+      "busy": 0.14
+    },
+    {
+      "library": "fkling_JSNetworkX",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 506,
+      "busy": 0.38
+    },
+    {
+      "library": "fkling_JSNetworkX",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 1162,
+      "busy": 0.82
+    },
+    {
+      "library": "fkling_JSNetworkX",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "failed",
+      "longest": 2987,
+      "busy": 1
+    },
+    {
+      "library": "GraphAlchemist_Alchemy",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 40,
+      "busy": 0
+    },
+    {
+      "library": "GraphAlchemist_Alchemy",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 358,
+      "busy": 0.06
+    },
+    {
+      "library": "GraphAlchemist_Alchemy",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 1113,
+      "busy": 0.61
+    },
+    {
+      "library": "GraphAlchemist_Alchemy",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "ok",
+      "longest": 4049,
+      "busy": 0.93
+    },
+    {
+      "library": "GraphAlchemist_Alchemy",
+      "graph": "grid 147x147",
+      "nodes": 21609,
+      "links": 42924,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 1
+    },
+    {
+      "library": "GraphAlchemist_Alchemy",
+      "graph": "grid 220x220",
+      "nodes": 48400,
+      "links": 96360,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 1
+    },
+    {
+      "library": "GraphAlchemist_Alchemy",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 734,
+      "busy": 0.1
+    },
+    {
+      "library": "GraphAlchemist_Alchemy",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 1203,
+      "busy": 0.64
+    },
+    {
+      "library": "GraphAlchemist_Alchemy",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 3221,
+      "busy": 0.89
+    },
+    {
+      "library": "GraphAlchemist_Alchemy",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "ok",
+      "longest": 8864,
+      "busy": 0.95
+    },
+    {
+      "library": "GraphAlchemist_Alchemy",
+      "graph": "English nouns (WordNet)",
+      "nodes": 74241,
+      "links": 75628,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 1
+    },
+    {
+      "library": "jacomyal_sigma.js",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 2209,
+      "busy": 0.22
+    },
+    {
+      "library": "jacomyal_sigma.js",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 200,
+      "busy": 0.02
+    },
+    {
+      "library": "jacomyal_sigma.js",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 283,
+      "busy": 0.03
+    },
+    {
+      "library": "jacomyal_sigma.js",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "ok",
+      "longest": 502,
+      "busy": 0.06
+    },
+    {
+      "library": "jacomyal_sigma.js",
+      "graph": "grid 220x220",
+      "nodes": 48400,
+      "links": 96360,
+      "outcome": "ok",
+      "longest": 2126,
+      "busy": 0.23
+    },
+    {
+      "library": "jacomyal_sigma.js",
+      "graph": "grid 400x400",
+      "nodes": 160000,
+      "links": 319200,
+      "outcome": "ok",
+      "longest": 8706,
+      "busy": 0.72
+    },
+    {
+      "library": "jacomyal_sigma.js",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 306,
+      "busy": 0.03
+    },
+    {
+      "library": "jacomyal_sigma.js",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 332,
+      "busy": 0.03
+    },
+    {
+      "library": "jacomyal_sigma.js",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 547,
+      "busy": 0.09
+    },
+    {
+      "library": "jacomyal_sigma.js",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "ok",
+      "longest": 908,
+      "busy": 0.09
+    },
+    {
+      "library": "jacomyal_sigma.js",
+      "graph": "English nouns (WordNet)",
+      "nodes": 74241,
+      "links": 75628,
+      "outcome": "ok",
+      "longest": 3139,
+      "busy": 0.44
+    },
+    {
+      "library": "jacomyal_sigma.js",
+      "graph": "Barabasi-Albert (100k)",
+      "nodes": 100000,
+      "links": 199997,
+      "outcome": "ok",
+      "longest": 5797,
+      "busy": 0.64
+    },
+    {
+      "library": "kieler_elkjs",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 400,
+      "busy": 0.04
+    },
+    {
+      "library": "kieler_elkjs",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 1653,
+      "busy": 0.16
+    },
+    {
+      "library": "kieler_elkjs",
+      "graph": "grid 44x44",
+      "nodes": 1936,
+      "links": 3784,
+      "outcome": "ok",
+      "longest": 3500,
+      "busy": 0.35
+    },
+    {
+      "library": "kieler_elkjs",
+      "graph": "grid 54x54",
+      "nodes": 2916,
+      "links": 5724,
+      "outcome": "ok",
+      "longest": 6112,
+      "busy": 0.55
+    },
+    {
+      "library": "kieler_elkjs",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "froze",
+      "longest": 10002,
+      "busy": 0.98
+    },
+    {
+      "library": "kieler_elkjs",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 1905,
+      "busy": 0.2
+    },
+    {
+      "library": "kieler_elkjs",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "froze",
+      "longest": 10002,
+      "busy": 0.98
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 36,
+      "busy": 0
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 88,
+      "busy": 0
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 251,
+      "busy": 0.02
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "ok",
+      "longest": 819,
+      "busy": 0.81
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "grid 220x220",
+      "nodes": 48400,
+      "links": 96360,
+      "outcome": "ok",
+      "longest": 2746,
+      "busy": 0.94
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "grid 268x268",
+      "nodes": 71824,
+      "links": 143112,
+      "outcome": "ok",
+      "longest": 5081,
+      "busy": 0.97
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "grid 328x328",
+      "nodes": 107584,
+      "links": 214512,
+      "outcome": "froze",
+      "longest": 10002,
+      "busy": 0.99
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "grid 400x400",
+      "nodes": 160000,
+      "links": 319200,
+      "outcome": "froze",
+      "longest": 10003,
+      "busy": 0.99
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 239,
+      "busy": 0.04
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 212,
+      "busy": 0.07
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 631,
+      "busy": 0.7
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "ok",
+      "longest": 1166,
+      "busy": 0.86
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "English nouns (WordNet)",
+      "nodes": 74241,
+      "links": 75628,
+      "outcome": "ok",
+      "longest": 4055,
+      "busy": 0.96
+    },
+    {
+      "library": "mbostock_d3",
+      "graph": "Barabasi-Albert (100k)",
+      "nodes": 100000,
+      "links": 199997,
+      "outcome": "ok",
+      "longest": 8693,
+      "busy": 0.99
+    },
+    {
+      "library": "mdaines_viz-js",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 192,
+      "busy": 0.02
+    },
+    {
+      "library": "mdaines_viz-js",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 1032,
+      "busy": 0.1
+    },
+    {
+      "library": "mdaines_viz-js",
+      "graph": "grid 44x44",
+      "nodes": 1936,
+      "links": 3784,
+      "outcome": "ok",
+      "longest": 1823,
+      "busy": 0.18
+    },
+    {
+      "library": "mdaines_viz-js",
+      "graph": "grid 54x54",
+      "nodes": 2916,
+      "links": 5724,
+      "outcome": "ok",
+      "longest": 4934,
+      "busy": 0.49
+    },
+    {
+      "library": "mdaines_viz-js",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "froze",
+      "longest": 10002,
+      "busy": 0.99
+    },
+    {
+      "library": "mdaines_viz-js",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 2680,
+      "busy": 0.27
+    },
+    {
+      "library": "mdaines_viz-js",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "froze",
+      "longest": 10000,
+      "busy": 0.99
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 23,
+      "busy": 0
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 83,
+      "busy": 0
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 190,
+      "busy": 0.03
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "ok",
+      "longest": 274,
+      "busy": 0.04
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "grid 220x220",
+      "nodes": 48400,
+      "links": 96360,
+      "outcome": "ok",
+      "longest": 747,
+      "busy": 0.21
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "grid 268x268",
+      "nodes": 71824,
+      "links": 143112,
+      "outcome": "ok",
+      "longest": 979,
+      "busy": 0.44
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "grid 328x328",
+      "nodes": 107584,
+      "links": 214512,
+      "outcome": "ok",
+      "longest": 1833,
+      "busy": 0.62
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "grid 400x400",
+      "nodes": 160000,
+      "links": 319200,
+      "outcome": "froze",
+      "longest": 10000,
+      "busy": 0.98
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 96,
+      "busy": 0
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 163,
+      "busy": 0.03
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 218,
+      "busy": 0.02
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "ok",
+      "longest": 408,
+      "busy": 0.19
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "English nouns (WordNet)",
+      "nodes": 74241,
+      "links": 75628,
+      "outcome": "ok",
+      "longest": 1581,
+      "busy": 0.38
+    },
+    {
+      "library": "memgraph_orb",
+      "graph": "Barabasi-Albert (100k)",
+      "nodes": 100000,
+      "links": 199997,
+      "outcome": "froze",
+      "longest": 10002,
+      "busy": 0.99
+    },
+    {
+      "library": "microsoft_msagljs",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 815,
+      "busy": 0.16
+    },
+    {
+      "library": "microsoft_msagljs",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 1554,
+      "busy": 0.27
+    },
+    {
+      "library": "microsoft_msagljs",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 4330,
+      "busy": 0.58
+    },
+    {
+      "library": "microsoft_msagljs",
+      "graph": "grid 81x81",
+      "nodes": 6561,
+      "links": 12960,
+      "outcome": "ok",
+      "longest": 7599,
+      "busy": 0.65
+    },
+    {
+      "library": "microsoft_msagljs",
+      "graph": "grid 99x99",
+      "nodes": 9801,
+      "links": 19404,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 1
+    },
+    {
+      "library": "microsoft_msagljs",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "froze",
+      "longest": 10002,
+      "busy": 1
+    },
+    {
+      "library": "microsoft_msagljs",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 6262,
+      "busy": 0.55
+    },
+    {
+      "library": "microsoft_msagljs",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 4732,
+      "busy": 0.47
+    },
+    {
+      "library": "microsoft_msagljs",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "froze",
+      "longest": 10021,
+      "busy": 1
+    },
+    {
+      "library": "samizdatco_arbor",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 39,
+      "busy": 0
+    },
+    {
+      "library": "samizdatco_arbor",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 56,
+      "busy": 0
+    },
+    {
+      "library": "samizdatco_arbor",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 123,
+      "busy": 0.02
+    },
+    {
+      "library": "samizdatco_arbor",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "ok",
+      "longest": 203,
+      "busy": 0.2
+    },
+    {
+      "library": "samizdatco_arbor",
+      "graph": "grid 220x220",
+      "nodes": 48400,
+      "links": 96360,
+      "outcome": "ok",
+      "longest": 737,
+      "busy": 0.13
+    },
+    {
+      "library": "samizdatco_arbor",
+      "graph": "grid 400x400",
+      "nodes": 160000,
+      "links": 319200,
+      "outcome": "ok",
+      "longest": 2159,
+      "busy": 0.26
+    },
+    {
+      "library": "samizdatco_arbor",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 86,
+      "busy": 0
+    },
+    {
+      "library": "samizdatco_arbor",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 145,
+      "busy": 0.04
+    },
+    {
+      "library": "samizdatco_arbor",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 221,
+      "busy": 0.23
+    },
+    {
+      "library": "samizdatco_arbor",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "ok",
+      "longest": 339,
+      "busy": 0.2
+    },
+    {
+      "library": "samizdatco_arbor",
+      "graph": "English nouns (WordNet)",
+      "nodes": 74241,
+      "links": 75628,
+      "outcome": "ok",
+      "longest": 1207,
+      "busy": 0.14
+    },
+    {
+      "library": "samizdatco_arbor",
+      "graph": "Barabasi-Albert (100k)",
+      "nodes": 100000,
+      "links": 199997,
+      "outcome": "ok",
+      "longest": 1286,
+      "busy": 0.14
+    },
+    {
+      "library": "strathausen_dracula",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 1053,
+      "busy": 0.14
+    },
+    {
+      "library": "strathausen_dracula",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 8342,
+      "busy": 0.65
+    },
+    {
+      "library": "strathausen_dracula",
+      "graph": "grid 44x44",
+      "nodes": 1936,
+      "links": 3784,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 1
+    },
+    {
+      "library": "strathausen_dracula",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "froze",
+      "longest": 10002,
+      "busy": 1
+    },
+    {
+      "library": "strathausen_dracula",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "froze",
+      "longest": 10003,
+      "busy": 1
+    },
+    {
+      "library": "tgdwyer_WebCola",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 118,
+      "busy": 0.01
+    },
+    {
+      "library": "tgdwyer_WebCola",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 949,
+      "busy": 0.76
+    },
+    {
+      "library": "tgdwyer_WebCola",
+      "graph": "grid 44x44",
+      "nodes": 1936,
+      "links": 3784,
+      "outcome": "ok",
+      "longest": 2989,
+      "busy": 0.9
+    },
+    {
+      "library": "tgdwyer_WebCola",
+      "graph": "grid 54x54",
+      "nodes": 2916,
+      "links": 5724,
+      "outcome": "ok",
+      "longest": 5849,
+      "busy": 0.95
+    },
+    {
+      "library": "tgdwyer_WebCola",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "froze",
+      "longest": 10000,
+      "busy": 1
+    },
+    {
+      "library": "tgdwyer_WebCola",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 1
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 41,
+      "busy": 0
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 291,
+      "busy": 0.04
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 240,
+      "busy": 0.17
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "ok",
+      "longest": 847,
+      "busy": 0.87
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "grid 220x220",
+      "nodes": 48400,
+      "links": 96360,
+      "outcome": "ok",
+      "longest": 3553,
+      "busy": 0.95
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "grid 268x268",
+      "nodes": 71824,
+      "links": 143112,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 0.98
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "grid 400x400",
+      "nodes": 160000,
+      "links": 319200,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 0.99
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 174,
+      "busy": 0.18
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 298,
+      "busy": 0.18
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 726,
+      "busy": 0.78
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "ok",
+      "longest": 1532,
+      "busy": 0.88
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "English nouns (WordNet)",
+      "nodes": 74241,
+      "links": 75628,
+      "outcome": "ok",
+      "longest": 5465,
+      "busy": 0.96
+    },
+    {
+      "library": "vasturiano_3d-force-graph",
+      "graph": "Barabasi-Albert (100k)",
+      "nodes": 100000,
+      "links": 199997,
+      "outcome": "ok",
+      "longest": 9863,
+      "busy": 0.99
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 37,
+      "busy": 0
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 47,
+      "busy": 0
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 157,
+      "busy": 0.08
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "ok",
+      "longest": 804,
+      "busy": 0.82
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "grid 220x220",
+      "nodes": 48400,
+      "links": 96360,
+      "outcome": "ok",
+      "longest": 2254,
+      "busy": 0.72
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "grid 268x268",
+      "nodes": 71824,
+      "links": 143112,
+      "outcome": "froze",
+      "longest": 9999,
+      "busy": 0.98
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "grid 400x400",
+      "nodes": 160000,
+      "links": 319200,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 0.98
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 63,
+      "busy": 0
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 115,
+      "busy": 0.08
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 472,
+      "busy": 0.32
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "ok",
+      "longest": 7342,
+      "busy": 0.74
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "English nouns (WordNet)",
+      "nodes": 74241,
+      "links": 75628,
+      "outcome": "ok",
+      "longest": 2977,
+      "busy": 0.78
+    },
+    {
+      "library": "vasturiano_force-graph",
+      "graph": "Barabasi-Albert (100k)",
+      "nodes": 100000,
+      "links": 199997,
+      "outcome": "froze",
+      "longest": 10002,
+      "busy": 0.98
+    },
+    {
+      "library": "visjs_vis-network",
+      "graph": "grid 20x20",
+      "nodes": 400,
+      "links": 760,
+      "outcome": "ok",
+      "longest": 118,
+      "busy": 0.01
+    },
+    {
+      "library": "visjs_vis-network",
+      "graph": "grid 36x36",
+      "nodes": 1296,
+      "links": 2520,
+      "outcome": "ok",
+      "longest": 235,
+      "busy": 0.02
+    },
+    {
+      "library": "visjs_vis-network",
+      "graph": "grid 66x66",
+      "nodes": 4356,
+      "links": 8580,
+      "outcome": "ok",
+      "longest": 479,
+      "busy": 0.27
+    },
+    {
+      "library": "visjs_vis-network",
+      "graph": "grid 121x121",
+      "nodes": 14641,
+      "links": 29040,
+      "outcome": "ok",
+      "longest": 2137,
+      "busy": 0.83
+    },
+    {
+      "library": "visjs_vis-network",
+      "graph": "grid 220x220",
+      "nodes": 48400,
+      "links": 96360,
+      "outcome": "ok",
+      "longest": 8420,
+      "busy": 0.97
+    },
+    {
+      "library": "visjs_vis-network",
+      "graph": "grid 268x268",
+      "nodes": 71824,
+      "links": 143112,
+      "outcome": "froze",
+      "longest": 10001,
+      "busy": 1
+    },
+    {
+      "library": "visjs_vis-network",
+      "graph": "grid 400x400",
+      "nodes": 160000,
+      "links": 319200,
+      "outcome": "froze",
+      "longest": 10000,
+      "busy": 1
+    },
+    {
+      "library": "visjs_vis-network",
+      "graph": "Chess openings",
+      "nodes": 3866,
+      "links": 3865,
+      "outcome": "ok",
+      "longest": 1669,
+      "busy": 0.21
+    },
+    {
+      "library": "visjs_vis-network",
+      "graph": "US counties",
+      "nodes": 3144,
+      "links": 9287,
+      "outcome": "ok",
+      "longest": 617,
+      "busy": 0.22
+    },
+    {
+      "library": "visjs_vis-network",
+      "graph": "Languages of the world",
+      "nodes": 13090,
+      "links": 12661,
+      "outcome": "ok",
+      "longest": 8697,
+      "busy": 0.94
+    },
+    {
+      "library": "visjs_vis-network",
+      "graph": "Barabasi-Albert (20k)",
+      "nodes": 20000,
+      "links": 39997,
+      "outcome": "ok",
+      "longest": 2958,
+      "busy": 0.86
+    },
+    {
+      "library": "visjs_vis-network",
+      "graph": "English nouns (WordNet)",
+      "nodes": 74241,
+      "links": 75628,
+      "outcome": "froze",
+      "longest": 10003,
+      "busy": 1
+    }
+  ]
+}

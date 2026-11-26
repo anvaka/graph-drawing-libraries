@@ -1,8 +1,10 @@
 /**
  * The list of libraries (data/libraries.json) merged with their GitHub
- * statistics (data/stats.json, produced by `npm run stats`).
+ * statistics (data/stats.json, produced by `npm run stats`) and with what we
+ * measured about them (data/limits.json, produced by `npm run measure`).
  */
 import libraries from '../data/libraries.json';
+import limits from '../data/limits.json';
 import stats from '../data/stats.json';
 
 const statsByRepo = new Map(stats.libraries.map(record => [record.repo, record]));
@@ -34,5 +36,16 @@ export default libraries.map(library => ({
   // GitHub draws :dizzy: as a picture, here it would stay a word
   description: statsByRepo.get(library.repo)?.description?.replace(/:[a-z0-9_+-]+:\s*/g, ''),
   // Folder name inside public/examples, when we have demos for the library
-  example: library.example
+  example: library.example,
+  // The largest graph, nodes and links together, that the library drew in the
+  // measurements while the tab stayed responsive
+  responsive: limits.libraries[library.example]?.ok,
+  // The smallest graph that froze the tab there. Missing for a library that never did.
+  froze: limits.libraries[library.example]?.froze,
+  // The smallest graph that ended with an error of the library instead of a
+  // drawing, when that happened below any freeze
+  failed: limits.libraries[library.example]?.failed
 }));
+
+/** How the measurements were made: a computer `slowdown` times slower, silent for `frozenMs` */
+export const measurement = { slowdown: limits.slowdown, frozenMs: limits.frozenMs };

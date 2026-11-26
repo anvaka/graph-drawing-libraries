@@ -10,11 +10,8 @@
  *
  * Layouts start from random positions, so a picture differs from run to run.
  */
-import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
-import puppeteer from 'puppeteer-core';
-import { createServer } from 'vite';
+import { launchChrome, serveWebsite } from './chrome.js';
 
 // The graph in the pictures, as the query of the performance test
 const GRAPH = 'graph=grid&n=10&m=10';
@@ -40,52 +37,46 @@ if (unknown.length) {
 
 await mkdir(screenshots, { recursive: true });
 
-const server = await createServer({ root: fileURLToPath(new URL('..', import.meta.url)), logLevel: 'error' });
-await server.listen();
-const address = server.resolvedUrls.local[0];
-
-const browser = await puppeteer.launch({
-  executablePath: findChrome(),
-  headless: true,
-  // WebGL libraries should draw with the real GPU when there is one
-  args: ['--enable-gpu', '--ignore-gpu-blocklist', ...(process.platform === 'darwin' ? ['--use-angle=metal'] : [])]
-});
+const server = await serveWebsite();
 
 const queue = libraries.filter(library => !requested.length || requested.includes(library.example));
-// A few at a time: every layout gets a processor core of its own
+// A few at a time, each in a browser of its own: every layout gets a processor
+// core, and no demo is a background tab, where Chrome pauses animation frames
 await Promise.all([1, 2, 3].map(async () => {
+  const browser = await launchChrome();
+  const page = await browser.newPage();
+
   for (let library = queue.shift(); library; library = queue.shift()) {
-    await writeFile(new URL(`${library.example}.png`, screenshots), await framed(library, await capture(library)));
+    await writeFile(new URL(`${library.example}.png`, screenshots), await framed(page, library, await capture(page, library)));
     console.log(`Saved ${library.example}.png`);
   }
+  await browser.close();
 }));
 
-await browser.close();
 await server.close();
 
 await writeFile(readme, withWall(await readFile(readme, 'utf8')));
 console.log('Updated README.md');
 process.exit(0);
 
-async function capture(library) {
-  const page = await browser.newPage();
+async function capture(page, library) {
+  const onError = error => console.warn(`${library.example}: ${error.message}`);
+  page.on('pageerror', onError);
   await page.setViewport(VIEW);
-  page.on('pageerror', error => console.warn(`${library.example}: ${error.message}`));
-  await page.goto(`${address}examples/${library.example}/02.perf/index.html?${GRAPH}`, { waitUntil: 'load' });
+  await page.goto(`${server.address}examples/${library.example}/02.perf/index.html?${GRAPH}`, { waitUntil: 'load' });
   await new Promise(resolve => setTimeout(resolve, SECONDS * 1000));
   const picture = await page.screenshot({ encoding: 'base64' });
-  await page.close();
+  page.off('pageerror', onError);
   return picture;
 }
 
 /** Puts the name of the library under its picture */
-async function framed(library, picture) {
+async function framed(page, library, picture) {
   const [owner, name] = library.repo.split('/');
   const width = VIEW.width * VIEW.deviceScaleFactor;
   const height = VIEW.height * VIEW.deviceScaleFactor;
 
-  const page = await browser.newPage();
-  await page.setViewport({ width, height: height + CAPTION_HEIGHT });
+  await page.setViewport({ width, height: height + CAPTION_HEIGHT, deviceScaleFactor: 1 });
   await page.setContent(`
     <body style="margin: 0; background: #fff">
       <img src="data:image/png;base64,${picture}" width="${width}" height="${height}" style="display: block">
@@ -96,9 +87,7 @@ async function framed(library, picture) {
       </div>
       <div style="position: fixed; inset: 0; border: 2px solid #d1d9e0"></div>
     </body>`);
-  const tile = await page.screenshot();
-  await page.close();
-  return tile;
+  return page.screenshot();
 }
 
 /** Replaces the wall of pictures in the text of README.md */
@@ -124,17 +113,4 @@ function withWall(text) {
     '</p>',
     ''
   ].join('\n') + text.slice(to);
-}
-
-function findChrome() {
-  const chrome = [
-    process.env.CHROME_PATH,
-    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    '/usr/bin/google-chrome',
-    '/usr/bin/chromium',
-    '/usr/bin/chromium-browser',
-    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
-  ].find(path => path && existsSync(path));
-  if (!chrome) throw new Error('Chrome is not found, set CHROME_PATH to its executable');
-  return chrome;
 }

@@ -9,6 +9,7 @@
     "runsuite": "vite build --config vite.runsuite.config.js",
     "stats": "node scripts/fetch-stats.js",
     "screenshots": "npm run runsuite && node scripts/screenshots.js",
+    "measure": "npm run runsuite && node scripts/measure.js",
     "test": "node --test"
   },
   "dependencies": {

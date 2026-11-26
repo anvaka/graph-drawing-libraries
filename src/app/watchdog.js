@@ -1,7 +1,7 @@
 /**
  * The part of the guardrails (see guard.js) that lives in the toolbar page:
- * asks the visitor before a graph that may be too large for the library is
- * started, and notices when the library freezes the tab.
+ * asks the visitor before a graph that is likely to freeze the tab is started,
+ * and notices when the library freezes the tab.
  *
  * The demo runs in an iframe of the same origin, so it shares a thread with
  * this page: while the library is busy, timers here do not fire. A timer that
@@ -19,7 +19,7 @@ const numberFormat = new Intl.NumberFormat('en');
  * `runner` is the iframe of the demo, `libraryName` is how the library is
  * called in messages. Call it before the demo is loaded. Returns `{ask}`.
  */
-export default function createWatchdog({ runner, libraryName }) {
+export default function createWatchdog({ runner, libraryName, frozenMs }) {
   const panel = document.querySelector('#guard');
   const panelText = document.querySelector('#guard-text');
   const agree = document.querySelector('#guard-go');
@@ -74,15 +74,14 @@ export default function createWatchdog({ runner, libraryName }) {
   }
 
   function explain(why, nodes, links) {
-    const size = `${format(nodes)} nodes and ${format(links)} links`;
-    if (why.reason === 'froze' && why.froze.ms) {
-      return `${libraryName} froze this tab for ${seconds(why.froze.ms)} on a graph of ${format(why.froze.size)} nodes and links. This graph has ${size}.`;
+    const size = `This graph has ${format(nodes)} nodes and ${format(links)} links.`;
+    const smaller = `a graph of ${format(why.froze.size)} nodes and links`;
+
+    if (why.reason === 'measured') {
+      return `${size} It is likely to freeze this tab: when we measured ${libraryName} on a slow computer, it froze the tab for more than ${seconds(frozenMs)} on ${smaller}.`;
     }
-    if (why.reason === 'froze') {
-      return `The last time ${libraryName} got a graph of ${format(why.froze.size)} nodes and links, the tab was closed before it finished, most likely because it froze. This graph has ${size}.`;
-    }
-    const largest = why.largest ? ` (the largest so far had ${format(why.largest)} nodes and links)` : '';
-    return `This graph has ${size}. ${libraryName} has not drawn a graph this large in this browser yet${largest}. A library that is too slow for a graph freezes the whole tab, this toolbar included.`;
+    if (why.froze.ms) return `${size} ${libraryName} froze this tab for ${seconds(why.froze.ms)} on ${smaller}.`;
+    return `${size} The last time ${libraryName} got ${smaller}, the tab was closed before it finished, most likely because it froze.`;
   }
 
   function beat() {

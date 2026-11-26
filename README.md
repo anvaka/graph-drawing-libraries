@@ -81,6 +81,7 @@ npm install
 npm run dev     # local development server
 npm run stats   # refresh GitHub statistics in data/stats.json
 npm run screenshots   # retake the pictures of the libraries in this file (needs Chrome)
+npm run measure       # measure how large a graph each library takes before it freezes the tab (needs Chrome)
 npm test
 npm run build   # production version in src/dist
 ```
@@ -98,10 +99,13 @@ npm run build   # production version in src/dist
   the same names, plus generators of a size that the visitor chooses. Nothing is copied here:
   `app/loadGraph.js` downloads the files from the deployed demo and from its
   [SuiteSparse](https://sparse.tamu.edu) mirror.
-* `app/guard.js` keeps a slow library from freezing the tab without warning. It has no limits
-  per library: the browser of the visitor remembers how large a graph each library drew well
-  and on which it froze, and the performance test asks before it starts a graph that is much
-  larger than the first or as large as the second.
+* `app/guard.js` keeps a slow library from freezing the tab without warning. The performance
+  test asks before it starts a graph only when a freeze is likely: the library froze a tab on
+  a graph this large when we measured it, or it froze the browser of the visitor before.
+  `npm run measure` does the measurements. It gives every library square grids and graphs of the
+  picker in a Chrome that is slowed down four times, and writes down the smallest graph that
+  kept the tab silent for ten seconds: all runs are in `data/measurements.json`, the limits made
+  from them in `data/limits.json`.
 * A pull request that changes `src` gets a preview: the
   [preview workflow](.github/workflows/preview.yml) publishes it to
   `https://anvaka.github.io/graph-drawing-libraries/pr-preview/pr-<number>/` and posts the
