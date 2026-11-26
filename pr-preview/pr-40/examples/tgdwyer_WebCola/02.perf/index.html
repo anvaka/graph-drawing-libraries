@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>tgdwyer/WebCola Performance Test</title>
+<style>
+body,
+svg {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.node {
+  fill: #1f77b4;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+</style>
+</head>
+<body>
+<svg id="mynetwork"></svg>
+
+<script src="../lib/cola.min.js"></script>
+<script src='../../../performance/runSuite.js'></script>
+<script>
+runSuite(function (ngraph) {
+  var nodes = [];
+  var links = [];
+  var indexOf = new Map();
+
+  ngraph.forEachNode(function (node) {
+    indexOf.set(node.id, nodes.length);
+    nodes.push({});
+  });
+  ngraph.forEachLink(function (link) {
+    // source and target are indices of the nodes
+    links.push({ source: indexOf.get(link.fromId), target: indexOf.get(link.toId) });
+  });
+
+  // WebCola computes positions only, drawing is up to you. Here we use plain SVG:
+  var svg = document.getElementById('mynetwork');
+  var lines = links.map(function () {
+    return append(svg, 'line', { 'class': 'link' });
+  });
+  var circles = nodes.map(function () {
+    return append(svg, 'circle', { 'class': 'node', r: 5 });
+  });
+
+  var layout = new cola.Layout()
+    .size([document.body.clientWidth, document.body.clientHeight])
+    .nodes(nodes)
+    .links(links)
+    .on('tick', draw)
+    // the last argument asks the layout not to run to the end right away...
+    .start(0, 0, 0, 0, false);
+
+  // ...so that we can show every step of it
+  requestAnimationFrame(function step() {
+    if (!layout.tick()) requestAnimationFrame(step);
+  });
+
+  function draw() {
+    // by now the layout has replaced indices in links with the nodes
+    links.forEach(function (link, i) {
+      setAttributes(lines[i], { x1: link.source.x, y1: link.source.y, x2: link.target.x, y2: link.target.y });
+    });
+    var left = Infinity, top = Infinity, right = -Infinity, bottom = -Infinity;
+    nodes.forEach(function (node, i) {
+      setAttributes(circles[i], { cx: node.x, cy: node.y });
+      left = Math.min(left, node.x);
+      top = Math.min(top, node.y);
+      right = Math.max(right, node.x);
+      bottom = Math.max(bottom, node.y);
+    });
+    // the layout does not stay within the size it was given: keep it in view
+    if (nodes.length) {
+      svg.setAttribute('viewBox', [left - 20, top - 20, right - left + 40, bottom - top + 40].join(' '));
+    }
+  }
+
+  function append(parent, tagName, attributes) {
+    var element = document.createElementNS('http://www.w3.org/2000/svg', tagName);
+    setAttributes(element, attributes);
+    return parent.appendChild(element);
+  }
+
+  function setAttributes(element, attributes) {
+    Object.keys(attributes).forEach(function (name) {
+      element.setAttribute(name, attributes[name]);
+    });
+  }
+});
+</script>
+</body>
+</html>
