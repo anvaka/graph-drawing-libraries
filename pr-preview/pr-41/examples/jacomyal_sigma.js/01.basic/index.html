@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>jacomyal/sigma.js Basic Example</title>
+  <style type="text/css">
+    body,
+    #mynetwork {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+<div id="mynetwork"></div>
+
+<script src='../lib/graphology.umd.min.js'></script>
+<script src='../lib/graphology-library.min.js'></script>
+<script src='../lib/sigma.min.js'></script>
+<script>
+// sigma renders graphs stored in graphology
+var graph = new graphology.Graph();
+
+// nodes need initial coordinates
+graph.addNode('1', { label: 'Node 1', x: Math.random(), y: Math.random(), size: 8, color: '#666' });
+graph.addNode('2', { label: 'Node 2', x: Math.random(), y: Math.random(), size: 8, color: '#666' });
+graph.addNode('3', { label: 'Node 3', x: Math.random(), y: Math.random(), size: 8, color: '#666' });
+graph.addNode('4', { label: 'Node 4', x: Math.random(), y: Math.random(), size: 8, color: '#666' });
+graph.addNode('5', { label: 'Node 5', x: Math.random(), y: Math.random(), size: 8, color: '#666' });
+
+graph.addEdge('1', '2');
+graph.addEdge('1', '3');
+graph.addEdge('2', '4');
+graph.addEdge('2', '5');
+
+var renderer = new Sigma(graph, document.getElementById('mynetwork'), {
+  settings: {
+    // node sizes are in pixels, not in the units of the graph coordinates
+    itemSizesReference: 'screen'
+  }
+});
+
+// ForceAtlas2 layout runs in a web worker and updates node positions
+var forceAtlas2 = graphologyLibrary.layoutForceAtlas2;
+var layout = new graphologyLibrary.FA2Layout(graph, {
+  settings: forceAtlas2.inferSettings(graph)
+});
+layout.start();
+</script>
+</body>
+</html>

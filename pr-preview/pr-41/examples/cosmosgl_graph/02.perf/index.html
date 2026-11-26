@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>cosmosgl/graph Performance Test</title>
+  <style type="text/css">
+    html,
+    body,
+    #graph {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+<div id="graph"></div>
+
+<script src='../lib/cosmos.min.js'></script>
+<script src='../../../performance/runSuite.js'></script>
+<script>
+  runSuite(function (ngraph) {
+    // copy ngraph to typed arrays: points are [x1, y1, x2, y2, ...] and links
+    // are [source1, target1, ...] by the index of a point
+    var indexOf = new Map();
+    ngraph.forEachNode(function (node) {
+      indexOf.set(node.id, indexOf.size);
+    });
+
+    // the simulation needs a place to start from: random, in the middle of
+    // the 4096 x 4096 space of cosmos.gl
+    var positions = new Float32Array(indexOf.size * 2);
+    for (var i = 0; i < positions.length; i++) {
+      positions[i] = 2048 + (Math.random() - 0.5) * 400;
+    }
+
+    var links = new Float32Array(ngraph.getLinksCount() * 2);
+    var at = 0;
+    ngraph.forEachLink(function (link) {
+      links[at++] = indexOf.get(link.fromId);
+      links[at++] = indexOf.get(link.toId);
+    });
+
+    var graph = new Cosmos.Graph(document.getElementById('graph'), {
+      backgroundColor: '#ffffff',
+      pointDefaultColor: '#4b5bbf',
+      linkDefaultColor: '#999999',
+      fitViewOnInit: true,
+      fitViewDelay: 1000
+    });
+    graph.setPointPositions(positions);
+    graph.setLinks(links);
+    graph.render();
+  });
+</script>
+</body>
+</html>

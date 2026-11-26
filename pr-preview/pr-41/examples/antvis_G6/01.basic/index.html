@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>antvis/G6 Basic Example</title>
+  <style type="text/css">
+    html,
+    body,
+    #graph {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+<div id="graph"></div>
+
+<script src='../lib/g6.min.js'></script>
+<script>
+  // create a network; ids are strings in G6
+  var data = {
+    nodes: [{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }, { id: '5' }],
+    edges: [
+      { source: '1', target: '2' },
+      { source: '1', target: '3' },
+      { source: '2', target: '4' },
+      { source: '2', target: '5' }
+    ]
+  };
+
+  var graph = new G6.Graph({
+    container: 'graph',
+    data: data,
+    layout: { type: 'force' },
+    behaviors: ['drag-canvas', 'zoom-canvas', 'drag-element']
+  });
+  graph.render();
+</script>
+</body>
+</html>
