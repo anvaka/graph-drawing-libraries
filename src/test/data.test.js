@@ -39,6 +39,14 @@ test('every library has a picture in README.md', () => {
   }
 });
 
+test('every library was measured', () => {
+  // The performance test asks before a graph that froze the tab in the measurements
+  const limits = readJSON('limits.json').libraries;
+  for (const { example } of libraries) {
+    assert.ok(limits[example], `${example} is not in limits.json, run "npm run measure -- ${example}"`);
+  }
+});
+
 test('every library has statistics', () => {
   const known = new Set(stats.libraries.map(record => record.repo));
   for (const { repo } of libraries) {

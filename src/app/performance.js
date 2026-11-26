@@ -6,7 +6,7 @@
  * Every library is a link to this page with another `lib`: each one gets the
  * same graph and starts in a fresh page.
  */
-import libraries, { currentExample } from './libraries.js';
+import libraries, { currentExample, measurement } from './libraries.js';
 import { queryNames } from './graphTypes.js';
 import { customSizeOf, fillGraphSelect, graphTitle, resolveGraphName, sizeArguments } from './graphs.js';
 import createWatchdog from './watchdog.js';
@@ -22,6 +22,9 @@ const sourceRoot = 'https://github.com/anvaka/graph-drawing-libraries/tree/main/
 const numberFormat = new Intl.NumberFormat('en');
 const runner = document.querySelector('#runner');
 const info = document.querySelector('#graph-info');
+// Where each library is in the list and in the switcher of narrow screens
+const listLinks = new Map();
+const switcherOptions = new Map();
 
 document.title = `${current.name} draws ${graphName} · We ♥ Graphs`;
 showLibrary();
@@ -42,7 +45,7 @@ showSizeForm(customSizeOf(graphName));
 info.textContent = `Loading ${graphTitle(graphName)}…`;
 window.addEventListener('message', showLoadedGraph);
 // Before the demo is loaded: it reads what the watchdog remembers
-const watchdog = createWatchdog({ runner, libraryName: current.name });
+const watchdog = createWatchdog({ runner, libraryName: current.name, frozenMs: measurement.frozenMs });
 runner.src = `../examples/${current.example}/02.perf/index.html?${query}`;
 
 // The same graph and the same size, drawn by another library
@@ -71,6 +74,7 @@ function showLibraryList() {
       element('span', { className: 'owner' }, `${owner}/`), name
     );
     if (library === current) link.setAttribute('aria-current', 'page');
+    listLinks.set(library, link);
     return element('li', {}, link);
   });
   document.querySelector('#libraries').append(...items);
@@ -81,7 +85,9 @@ function showLibraryList() {
 function showLibrarySwitcher() {
   const select = document.querySelector('#library');
   withExamples.forEach(library => {
-    select.add(new Option(library.name, library.example, false, library === current));
+    const option = new Option(library.name, library.example, false, library === current);
+    switcherOptions.set(library, option);
+    select.add(option);
   });
   select.addEventListener('change', () => {
     query.set('lib', select.value);
@@ -146,8 +152,24 @@ function showLoadedGraph(event) {
   info.replaceChildren([size, details.about].filter(Boolean).join(' '));
   if (details.credit) info.append(' Data: ', creditElement(details.credit), '.');
 
-  // The graph may be too large for the library: the demo waits for the visitor
+  showLikelyFreezes(details.nodes + details.links);
+  // The library is likely to freeze the tab on this graph: the demo waits for the visitor
   if (details.ask) watchdog.ask(details.ask, details);
+}
+
+// Before the visitor switches: which libraries froze the tab on a graph of
+// this size or smaller when we measured them (data/limits.json)
+function showLikelyFreezes(size) {
+  for (const library of withExamples) {
+    if (library === current || !library.froze || size < library.froze) continue;
+
+    const froze = `${count(library.froze, 'node')} and links`;
+    listLinks.get(library).append(element('span', {
+      className: 'slow',
+      title: `${library.name} froze the tab on a graph of ${froze} in our measurements`
+    }, 'may freeze on this graph'));
+    switcherOptions.get(library).text += ' (may freeze)';
+  }
 }
 
 function creditElement({ text, href }) {

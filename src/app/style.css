@@ -148,6 +148,26 @@ th[aria-sort='descending'] button::after {
   content: '↓';
 }
 
+/* "Stays responsive": the number over a meter of how large the graph was */
+.responsive {
+  min-width: 96px;
+}
+
+.meter {
+  display: block;
+  height: 4px;
+  margin-top: 4px;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.meter span {
+  display: block;
+  height: 100%;
+  background: var(--link);
+  border-radius: 2px;
+}
+
 .badge {
   margin-left: 8px;
   padding: 1px 8px;
@@ -231,6 +251,12 @@ input {
 }
 
 .library-list .owner {
+  color: var(--muted);
+}
+
+.library-list .slow {
+  display: block;
+  font-size: 12px;
   color: var(--muted);
 }
 

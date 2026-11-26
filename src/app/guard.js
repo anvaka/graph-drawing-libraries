@@ -2,21 +2,20 @@
  * Guardrails of the performance test: a library that is too slow for a graph
  * freezes the whole tab, the toolbar included.
  *
- * There are no limits per library here, those would be opinions and depend on
- * the computer. The browser remembers what it has seen instead:
+ * The visitor is asked before a graph is started only when a freeze is likely:
  *
- * - how large the largest graph was that a library drew while the tab stayed
- *   responsive. A much larger graph is not started until the visitor agrees;
- * - the smallest graph on which a library froze the tab. Graphs of that size
- *   and larger are not started until the visitor agrees.
+ * - the library froze a tab for ten seconds or longer on a graph of this size
+ *   or smaller when we measured it on a slow computer (data/limits.json, made
+ *   by scripts/measure.js);
+ * - or it froze this very browser on a graph of this size or smaller.
+ *
+ * What this browser has seen wins over what we measured: a library that drew a
+ * graph here while the tab stayed responsive gets graphs of that size without
+ * a question.
  *
  * The size of a graph is the number of its nodes and links together.
  */
 
-/** Every library is trusted with graphs of this size */
-export const FLOOR = 3000;
-/** ...and with graphs this many times larger than the largest that went well */
-export const STEP = 5;
 /** A tab that does not respond for this long is frozen */
 export const FREEZE_MS = 5000;
 /** A run that stayed responsive for this long went well */
@@ -27,16 +26,21 @@ const RUNNING = 'graph-drawing-libraries:running';
 
 /**
  * Why the visitor should be asked before `library` gets a graph of this size:
- * `{reason: 'froze', froze}`, `{reason: 'large', largest}`, or null to go on.
+ * `{reason: 'froze', froze}` when it froze this browser, `{reason: 'measured',
+ * froze}` when it froze in our measurements, or null to go on.
+ *
+ * `measured` is the `froze` size of the library in data/limits.json, if any.
+ * `froze` is `{size, ms}` of the graph that froze this browser (`ms` is null
+ * for a tab that never came back), and `{size}` of the one in our measurements.
  */
-export function whyAsk(library, nodes, links, storage = browserStorage()) {
+export function whyAsk(library, nodes, links, measured, storage = browserStorage()) {
   const size = nodes + links;
   const seen = read(storage, SEEN)[library] || {};
 
   if (seen.froze && size >= seen.froze.size) return { reason: 'froze', froze: seen.froze };
-
-  const largest = seen.ok || 0;
-  if (size > FLOOR && size > STEP * largest) return { reason: 'large', largest };
+  // This computer is faster than the one of the measurements
+  if (size <= (seen.ok || 0)) return null;
+  if (measured && size >= measured) return { reason: 'measured', froze: { size: measured } };
   return null;
 }
 

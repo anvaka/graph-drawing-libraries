@@ -1,0 +1,89 @@
+{
+  "slowdown": 4,
+  "frozenMs": 10000,
+  "libraries": {
+    "antvis_G6": {
+      "ok": 5720,
+      "froze": 7731
+    },
+    "anvaka_VivaGraphJS": {
+      "ok": 479200
+    },
+    "apache_echarts": {
+      "ok": 43681,
+      "froze": 59997
+    },
+    "cosmosgl_graph": {
+      "ok": 479200
+    },
+    "cytoscape_cytoscape.js": {
+      "ok": 5720,
+      "froze": 7731
+    },
+    "mbostock_d3": {
+      "ok": 299997,
+      "froze": 322096
+    },
+    "cpettitt_dagre": {
+      "ok": 2640,
+      "froze": 3816
+    },
+    "dhotson_springy": {
+      "ok": 12936,
+      "froze": 19521
+    },
+    "ecomfe_echarts-gl": {
+      "ok": 479200
+    },
+    "fkling_JSNetworkX": {
+      "ok": 25751,
+      "failed": 29205
+    },
+    "GraphAlchemist_Alchemy": {
+      "ok": 59997,
+      "froze": 64533
+    },
+    "jacomyal_sigma.js": {
+      "ok": 479200
+    },
+    "kieler_elkjs": {
+      "ok": 8640,
+      "froze": 12431
+    },
+    "mdaines_viz-js": {
+      "ok": 8640,
+      "froze": 12431
+    },
+    "memgraph_orb": {
+      "ok": 214936,
+      "froze": 299997
+    },
+    "microsoft_msagljs": {
+      "ok": 19521,
+      "froze": 25751
+    },
+    "samizdatco_arbor": {
+      "ok": 479200
+    },
+    "strathausen_dracula": {
+      "ok": 3816,
+      "froze": 5720
+    },
+    "tgdwyer_WebCola": {
+      "ok": 5720,
+      "froze": 7731
+    },
+    "vasturiano_3d-force-graph": {
+      "ok": 149869,
+      "froze": 214936
+    },
+    "vasturiano_force-graph": {
+      "ok": 149869,
+      "froze": 214936
+    },
+    "visjs_vis-network": {
+      "ok": 144760,
+      "froze": 149869
+    }
+  }
+}
