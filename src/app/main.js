@@ -3,11 +3,14 @@ import libraries, { currentExample, demoAddress, generated, measurement } from '
 const app = document.querySelector('#app');
 
 const columns = [
-  { key: 'name', title: 'Library' },
-  { key: 'example', title: 'Demo', sortable: false },
+  // `sortTitle` is how the picker of narrow screens calls the column, `label` is
+  // what a card shows before the value, `unit` is a second line of the header
+  { key: 'name', title: 'Library', sortTitle: 'Name' },
   {
     key: 'responsive',
-    title: 'Stays responsive',
+    title: 'Largest graph',
+    label: 'Largest graph without freezing',
+    unit: 'nodes + links, no freeze',
     numeric: true,
     hint: 'The largest graph, nodes and links together, that the library drew in our measurements without freezing the tab'
   },
@@ -23,7 +26,7 @@ const monthFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'sho
 const dayFormat = new Intl.DateTimeFormat('en', { dateStyle: 'long' });
 const numberFormat = new Intl.NumberFormat('en');
 const compactFormat = new Intl.NumberFormat('en', { notation: 'compact', maximumSignificantDigits: 2 });
-// The meters of the "Stays responsive" column are logarithmic: they start at
+// The meters of the "Largest graph" column are logarithmic: they start at
 // a thousand nodes and links, and are full at the largest graph of the measurements
 const METER_FROM = 1000;
 const largestMeasured = Math.max(...libraries.map(library => library.responsive || 0));
@@ -56,13 +59,15 @@ function renderAll() {
 
     const button = h('button', { type: 'button', title: column.hint || '' }, column.title);
     button.addEventListener('click', () => sortBy(column));
-    return h('th', { className: column.numeric ? 'numeric' : '' }, button);
+    return h('th', { className: column.numeric ? 'numeric' : '' }, button, column.unit ? h('small', {}, column.unit) : null);
   });
 
   // A narrow screen shows a card for every library and no header to sort with
   const picker = h('select', {}, columns.filter(column => column.sortable !== false)
-    .map(column => h('option', { value: column.key }, column.title)));
+    .map(column => h('option', { value: column.key }, column.sortTitle || column.title)));
   picker.addEventListener('change', () => sortBy(columns.find(column => column.key === picker.value)));
+  const direction = h('button', { type: 'button' });
+  direction.addEventListener('click', () => sortBy(columns.find(column => column.key === sort.key)));
 
   update();
 
@@ -73,12 +78,16 @@ function renderAll() {
       'Missing a library? ',
       h('a', { href: 'https://github.com/anvaka/graph-drawing-libraries/issues' }, 'Open an issue'), '.'
     ),
-    h('label', { className: 'sort-picker' }, 'Sort by ', picker),
+    h('p', { className: 'note' },
+      '"Largest graph" is how large a graph, nodes and links together, a library drew before it froze the tab: ',
+      h('a', { href: '#measurements' }, 'how we measured it'), '.'
+    ),
+    h('div', { className: 'sort-picker' }, h('label', {}, 'Sort by ', picker), direction),
     h('div', { className: 'table-scroll' },
       h('table', {}, h('thead', {}, h('tr', {}, headers)), body)
     ),
-    h('p', { className: 'note' },
-      '"Stays responsive" is the largest graph, nodes and links together, that a library drew in ',
+    h('p', { className: 'note', id: 'measurements' },
+      '"Largest graph" is the largest graph, nodes and links together, that a library drew in ',
       h('a', { href: 'https://github.com/anvaka/graph-drawing-libraries/blob/main/src/data/measurements.json' }, 'our measurements'),
       ` without freezing the tab for ${measurement.frozenMs / 1000} seconds. `,
       `They were made in Chrome on a computer slowed down ${measurement.slowdown} times, with square grids of up to `,
@@ -98,6 +107,9 @@ function renderAll() {
 
   function update() {
     picker.value = sort.key;
+    direction.textContent = sort.descending ? '↓' : '↑';
+    direction.title = sort.descending ? 'Largest first. Reverse the order' : 'Smallest first. Reverse the order';
+    direction.setAttribute('aria-label', direction.title);
     columns.forEach((column, index) => {
       const order = sort.key !== column.key ? 'none' : sort.descending ? 'descending' : 'ascending';
       headers[index].setAttribute('aria-sort', order);
@@ -139,22 +151,14 @@ function renderRow(library) {
     const cell = renderCell(library, column);
     // A card of a narrow screen places the cell by the key, and shows the label before the value
     cell.dataset.key = column.key;
-    cell.dataset.label = column.title;
+    cell.dataset.label = column.label || column.title;
     return cell;
   }));
 }
 
 function renderCell(library, column) {
   const value = library[column.key];
-  if (column.key === 'name') {
-    return h('td', {},
-      h('a', { href: library.url, title: library.description || '' }, library.name),
-      library.archived ? h('span', { className: 'badge', title: 'The repository is archived' }, 'archived') : null
-    );
-  }
-  if (column.key === 'example') {
-    return h('td', {}, h('a', { className: 'run', href: demoAddress(value) }, 'Run demo'));
-  }
+  if (column.key === 'name') return libraryCell(library);
   if (value == null) return h('td', { className: column.numeric ? 'numeric' : '' }, '—');
   if (column.key === 'responsive') return responsiveCell(library);
   if (column.numeric) return h('td', { className: 'numeric' }, numberFormat.format(value));
@@ -163,6 +167,28 @@ function renderCell(library, column) {
     return h('td', { title: dayFormat.format(date) }, monthFormat.format(date));
   }
   return h('td', {}, value);
+}
+
+/** The picture, the name and the description of a library: all of them lead to its demo */
+function libraryCell(library) {
+  const demo = demoAddress(library.example);
+  const picture = h('img', {
+    src: `thumbnails/${library.example}.png`, alt: '', width: 400, height: 300, loading: 'lazy'
+  });
+
+  return h('td', {}, h('div', { className: 'library' },
+    // The name next to it is a link to the same place: one of them is enough for a keyboard
+    h('a', { className: 'thumbnail', href: demo, tabIndex: -1, ariaHidden: 'true' }, picture),
+    h('div', { className: 'about' },
+      h('a', { className: 'name', href: demo }, library.name),
+      library.archived ? h('span', { className: 'badge', title: 'The repository is archived' }, 'archived') : null,
+      library.description ? h('p', { className: 'description' }, library.description) : null,
+      h('p', { className: 'actions' },
+        h('a', { className: 'run', href: demo }, 'Run demo'),
+        h('a', { href: library.url }, 'GitHub')
+      )
+    )
+  ));
 }
 
 function responsiveCell(library) {
@@ -177,7 +203,8 @@ function responsiveCell(library) {
   meter.firstChild.style.width = `${Math.round(Math.min(1, share) * 100)}%`;
 
   return h('td', { className: 'numeric responsive', title },
-    compactFormat.format(library.responsive) + (froze || failed ? '' : '+'), meter
+    compactFormat.format(library.responsive) + (froze || failed ? '' : '+'),
+    h('span', { className: 'unit' }, ' nodes + links'), meter
   );
 }
 

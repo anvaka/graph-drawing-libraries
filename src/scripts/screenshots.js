@@ -1,7 +1,8 @@
 /**
  * Takes a picture of every library drawing the same graph, saves the pictures
  * to the `screenshots` folder of the repository and rebuilds the wall of them
- * in README.md.
+ * in README.md. Takes one more picture for the list of libraries of the
+ * website (public/thumbnails): the graph that a demo starts with.
  *
  *   npm run screenshots                      # all libraries
  *   npm run screenshots -- kieler_elkjs      # only these example folders
@@ -16,6 +17,8 @@ import { launchChrome, serveWebsite } from './chrome.js';
 // The graph in the pictures, as the query of the performance test
 const GRAPH = 'graph=grid&n=10&m=10';
 const GRAPH_NAME = '10×10 grid';
+// The graph in the pictures of the website: what "Run demo" shows first
+const THUMBNAIL_GRAPH = 'graph=Miserables';
 // How long a library has to lay the graph out before the picture is taken
 const SECONDS = 10;
 // Demos are drawn at this size, and saved at half of it: the wall shows them
@@ -26,6 +29,7 @@ const WEBSITE = 'https://anvaka.github.io/graph-drawing-libraries/';
 
 const libraries = JSON.parse(await readFile(new URL('../data/libraries.json', import.meta.url), 'utf8'));
 const screenshots = new URL('../../screenshots/', import.meta.url);
+const thumbnails = new URL('../public/thumbnails/', import.meta.url);
 const readme = new URL('../../README.md', import.meta.url);
 
 const requested = process.argv.slice(2);
@@ -36,6 +40,7 @@ if (unknown.length) {
 }
 
 await mkdir(screenshots, { recursive: true });
+await mkdir(thumbnails, { recursive: true });
 
 const server = await serveWebsite();
 
@@ -47,7 +52,8 @@ await Promise.all([1, 2, 3].map(async () => {
   const page = await browser.newPage();
 
   for (let library = queue.shift(); library; library = queue.shift()) {
-    await writeFile(new URL(`${library.example}.png`, screenshots), await framed(page, library, await capture(page, library)));
+    await writeFile(new URL(`${library.example}.png`, thumbnails), await capture(page, library, THUMBNAIL_GRAPH));
+    await writeFile(new URL(`${library.example}.png`, screenshots), await framed(page, library, await capture(page, library, GRAPH, 'base64')));
     console.log(`Saved ${library.example}.png`);
   }
   await browser.close();
@@ -59,13 +65,13 @@ await writeFile(readme, withWall(await readFile(readme, 'utf8')));
 console.log('Updated README.md');
 process.exit(0);
 
-async function capture(page, library) {
+async function capture(page, library, graph, encoding = 'binary') {
   const onError = error => console.warn(`${library.example}: ${error.message}`);
   page.on('pageerror', onError);
   await page.setViewport(VIEW);
-  await page.goto(`${server.address}examples/${library.example}/02.perf/index.html?${GRAPH}`, { waitUntil: 'load' });
+  await page.goto(`${server.address}examples/${library.example}/02.perf/index.html?${graph}`, { waitUntil: 'load' });
   await new Promise(resolve => setTimeout(resolve, SECONDS * 1000));
-  const picture = await page.screenshot({ encoding: 'base64' });
+  const picture = await page.screenshot({ encoding });
   page.off('pageerror', onError);
   return picture;
 }
