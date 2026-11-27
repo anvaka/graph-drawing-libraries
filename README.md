@@ -80,7 +80,7 @@ cd src
 npm install
 npm run dev     # local development server
 npm run stats   # refresh GitHub statistics in data/stats.json
-npm run screenshots   # retake the pictures of the libraries in this file (needs Chrome)
+npm run screenshots   # retake the pictures of the libraries in this file and in the list of the website (needs Chrome)
 npm run measure       # measure how large a graph each library takes before it freezes the tab (needs Chrome)
 npm test
 npm run build   # production version in src/dist

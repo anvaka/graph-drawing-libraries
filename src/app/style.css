@@ -62,13 +62,17 @@ a:hover {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 16px 24px 48px;
 }
 
 .lead {
-  margin: 8px 0 24px;
+  margin: 8px 0 12px;
+}
+
+.lead + .note {
+  margin: 0 0 24px;
 }
 
 .note {
@@ -104,9 +108,73 @@ table {
 
 th,
 td {
-  padding: 10px 12px;
+  padding: 12px;
   text-align: left;
   border-bottom: 1px solid var(--border);
+}
+
+th {
+  vertical-align: bottom;
+}
+
+/* The second line of a header: what the numbers of the column count */
+th small {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+/* A library in the list: its picture, then the name, what it is and where to go */
+.library {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  white-space: normal;
+}
+
+.thumbnail {
+  flex: none;
+  width: 112px;
+}
+
+.thumbnail img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.about {
+  min-width: 0;
+  max-width: 340px;
+}
+
+.about .name {
+  font-weight: 600;
+}
+
+.about p {
+  margin: 2px 0 0;
+}
+
+.description {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.about .actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+/* In the table the header says what the number counts */
+.unit {
+  display: none;
 }
 
 thead th {
@@ -148,7 +216,7 @@ th[aria-sort='descending'] button::after {
   content: '↓';
 }
 
-/* "Stays responsive": the number over a meter of how large the graph was */
+/* "Largest graph": the number over a meter of how large the graph was */
 .responsive {
   min-width: 96px;
 }
@@ -399,6 +467,179 @@ input {
 }
 
 /* Narrow screens: the list of libraries becomes a select with two arrows */
+/* The list of libraries on a screen that is too narrow for the table: a card
+   for every library, so that nothing is hidden behind a sideways scroll */
+.sort-picker {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  .sort-picker {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    max-width: 420px;
+    margin-bottom: 4px;
+    color: var(--muted);
+  }
+
+  .sort-picker label {
+    display: flex;
+    flex: 1;
+    gap: 8px;
+    align-items: center;
+    min-width: 0;
+    white-space: nowrap;
+  }
+
+  .sort-picker select,
+  .sort-picker button {
+    min-height: 44px;
+    font: inherit;
+    color: var(--text);
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .sort-picker select {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sort-picker button {
+    width: 44px;
+    cursor: pointer;
+  }
+
+  .table-scroll {
+    overflow: visible;
+  }
+
+  table {
+    display: block;
+    white-space: normal;
+  }
+
+  thead {
+    display: none;
+  }
+
+  /* As many cards in a row as fit */
+  tbody {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+    gap: 0 40px;
+  }
+
+  /* A card: the library, how large a graph it takes, then popularity in one
+     row and age in another */
+  tbody tr {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px 12px;
+    align-content: start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr:hover {
+    background: none;
+  }
+
+  td,
+  td.numeric {
+    display: block;
+    padding: 0;
+    font-size: 15px;
+    text-align: left;
+    overflow-wrap: anywhere;
+    border: 0;
+  }
+
+  td::before {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    content: attr(data-label);
+  }
+
+  td[data-key='name'] {
+    grid-area: 1 / 1 / 2 / -1;
+    font-size: 16px;
+  }
+
+  /* The picture and the name say which library it is */
+  td[data-key='name']::before {
+    content: none;
+  }
+
+  .about {
+    max-width: none;
+  }
+
+  .about .name {
+    font-size: 17px;
+  }
+
+  /* Easy to hit with a finger */
+  .about .actions {
+    gap: 4px;
+  }
+
+  .about .actions a {
+    padding: 0 12px;
+    line-height: 38px;
+  }
+
+  /* The label and the number on one line, the meter under them */
+  td[data-key='responsive'] {
+    display: grid;
+    grid-area: 2 / 1 / 3 / -1;
+    grid-template-columns: 1fr auto auto;
+    align-items: baseline;
+    font-size: 16px;
+  }
+
+  td[data-key='responsive']::before {
+    font-size: 14px;
+  }
+
+  .unit {
+    display: inline;
+    font-size: 14px;
+    color: var(--muted);
+    white-space: pre;
+  }
+
+  .meter {
+    grid-column: 1 / -1;
+    height: 6px;
+    border-radius: 3px;
+  }
+
+  td[data-key='stars'] { grid-area: 3 / 1; }
+  td[data-key='forks'] { grid-area: 3 / 2; }
+  td[data-key='issues'] { grid-area: 3 / 3; }
+  td[data-key='created'] { grid-area: 4 / 1; }
+  td[data-key='pushed'] { grid-area: 4 / 2; }
+  td[data-key='license'] { grid-area: 4 / 3; }
+}
+
+@media (max-width: 719px) {
+  .container {
+    padding: 12px 16px 40px;
+  }
+
+  .sort-picker {
+    max-width: none;
+  }
+
+  .thumbnail {
+    width: 96px;
+  }
+}
+
 @media (max-width: 859px) {
   .library-list,
   .library-info .about,

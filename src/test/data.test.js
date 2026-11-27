@@ -39,6 +39,13 @@ test('every library has a picture in README.md', () => {
   }
 });
 
+test('every library has a picture in the list of the website', () => {
+  for (const { example } of libraries) {
+    const picture = `public/thumbnails/${example}.png`;
+    assert.ok(existsSync(new URL(`../${picture}`, import.meta.url)), `${picture} is missing, run "npm run screenshots"`);
+  }
+});
+
 test('every library was measured', () => {
   // The performance test asks before a graph that froze the tab in the measurements
   const limits = readJSON('limits.json').libraries;

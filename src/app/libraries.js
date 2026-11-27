@@ -33,8 +33,9 @@ export default libraries.map(library => ({
   url: `https://github.com/${library.repo}`,
   license: library.license,
   ...statsByRepo.get(library.repo),
-  // GitHub draws :dizzy: as a picture, here it would stay a word
-  description: statsByRepo.get(library.repo)?.description?.replace(/:[a-z0-9_+-]+:\s*/g, ''),
+  // GitHub draws :dizzy: as a picture, here it would stay a word. A symbol
+  // that a description starts with is decoration too.
+  description: statsByRepo.get(library.repo)?.description?.replace(/:[a-z0-9_+-]+:\s*/g, '').replace(/^[^\p{L}\p{N}]+/u, ''),
   // Folder name inside public/examples, when we have demos for the library
   example: library.example,
   // The largest graph, nodes and links together, that the library drew in the
